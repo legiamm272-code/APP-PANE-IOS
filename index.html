@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PANEL IOS - HD ULTIMATE</title>
+<title>PANEL IOS - HD FINAL</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -126,52 +126,8 @@ body {
     animation: slideDown 0.6s ease-out;
 }
 
-.login-box.admin-mode {
-    border-color: var(--admin);
-    box-shadow: 0 0 60px rgba(255, 165, 0, 0.4);
-    background: linear-gradient(145deg, #2a1900 0%, #1a0f00 50%, #2d1a00 100%);
-}
-
 .login-form {
     width: 100%;
-}
-
-.mode-toggle {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.mode-btn {
-    flex: 1;
-    padding: 10px;
-    background: rgba(0, 200, 255, 0.15);
-    border: 1.5px solid rgba(0, 200, 255, 0.3);
-    color: #9ad6ff;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 700;
-    transition: all 0.3s;
-    text-transform: uppercase;
-}
-
-.mode-btn.active {
-    background: linear-gradient(135deg, var(--secondary), var(--accent));
-    border-color: var(--secondary);
-    color: #fff;
-}
-
-.mode-btn.admin {
-    background: rgba(255, 165, 0, 0.15);
-    border-color: rgba(255, 165, 0, 0.4);
-    color: var(--admin);
-}
-
-.mode-btn.admin.active {
-    background: linear-gradient(135deg, var(--admin), #ffff00);
-    border-color: var(--admin);
-    color: #000;
 }
 
 .form-group {
@@ -189,11 +145,7 @@ body {
     text-transform: uppercase;
 }
 
-.form-group label.admin {
-    color: var(--admin);
-}
-
-.form-group input, .form-group select {
+.form-group input {
     width: 100%;
     padding: 14px 16px;
     border-radius: 12px;
@@ -205,7 +157,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.form-group input:focus, .form-group select:focus {
+.form-group input:focus {
     border-color: var(--primary);
     box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
     background: rgba(30, 50, 85, 0.9);
@@ -213,16 +165,6 @@ body {
 
 .form-group input::placeholder {
     color: rgba(154, 214, 255, 0.5);
-}
-
-.form-group select {
-    background: rgba(30, 50, 85, 0.6);
-    color: #fff;
-}
-
-.form-group select option {
-    background: #1a2647;
-    color: #fff;
 }
 
 .login-btn {
@@ -240,19 +182,11 @@ body {
     letter-spacing: 1px;
     text-transform: uppercase;
     margin-top: 10px;
-    position: relative;
-    overflow: hidden;
-}
-
-.login-btn.admin-btn {
-    background: linear-gradient(135deg, var(--admin), #ffff00);
-    color: #000;
-    box-shadow: 0 0 30px rgba(255, 165, 0, 0.6);
-    animation: glow 2s ease-in-out infinite;
 }
 
 .login-btn:hover {
     transform: translateY(-2px);
+    box-shadow: 0 0 35px rgba(255, 0, 200, 0.6);
 }
 
 .login-msg {
@@ -270,10 +204,6 @@ body {
 
 .login-msg.error {
     color: var(--secondary);
-}
-
-.login-msg.admin {
-    color: var(--admin);
 }
 
 .login-footer {
@@ -298,11 +228,6 @@ body {
     font-weight: 700;
 }
 
-.expiry-time.forever {
-    color: var(--admin);
-    font-weight: 700;
-}
-
 /* SIDE MENU */
 .side-menu {
     position: fixed;
@@ -320,10 +245,6 @@ body {
     border-right: 2px solid rgba(0, 200, 255, 0.15);
     overflow-y: auto;
     padding-top: 20px;
-}
-
-.side-menu.admin {
-    border-right-color: var(--admin);
 }
 
 .side-menu::-webkit-scrollbar { width: 6px; }
@@ -357,12 +278,6 @@ body {
     background: linear-gradient(90deg, rgba(255, 0, 128, 0.25), transparent);
     color: var(--secondary);
     border-left-color: var(--secondary);
-}
-
-.menu-item.admin.active {
-    background: linear-gradient(90deg, rgba(255, 165, 0, 0.25), transparent);
-    color: var(--admin);
-    border-left-color: var(--admin);
 }
 
 .menu-icon {
@@ -399,11 +314,6 @@ body {
     transition: all 0.3s;
 }
 
-.menu-toggle.admin {
-    color: var(--admin);
-    border-color: var(--admin);
-}
-
 .menu-toggle:hover {
     box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
     transform: scale(1.1);
@@ -438,21 +348,11 @@ body {
     margin-bottom: 6px;
 }
 
-.header h1.admin {
-    background: linear-gradient(135deg, var(--admin), #ffff00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 .header .sub {
     color: var(--primary);
     font-size: 12px;
     letter-spacing: 3px;
     font-weight: 600;
-}
-
-.header .sub.admin {
-    color: var(--admin);
 }
 
 .user-info-bar {
@@ -469,11 +369,6 @@ body {
     gap: 8px;
 }
 
-.user-info-bar.admin {
-    background: linear-gradient(135deg, rgba(255, 165, 0, 0.15), rgba(255, 165, 0, 0.05));
-    border-color: rgba(255, 165, 0, 0.4);
-}
-
 .user-info-item {
     display: flex;
     align-items: center;
@@ -485,17 +380,9 @@ body {
     font-weight: 700;
 }
 
-.user-info-item .label.admin {
-    color: var(--admin);
-}
-
 .user-info-item .value {
     color: var(--success);
     font-weight: 700;
-}
-
-.user-info-item .value.admin {
-    color: var(--admin);
 }
 
 .tabs-container {
@@ -508,11 +395,6 @@ body {
     margin: 12px 10px 0;
     border-radius: 14px;
     border: 1px solid rgba(0, 200, 255, 0.1);
-}
-
-.tabs-container.admin {
-    background: rgba(255, 165, 0, 0.05);
-    border-color: rgba(255, 165, 0, 0.2);
 }
 
 .tab-btn {
@@ -534,13 +416,6 @@ body {
     box-shadow: 0 0 15px rgba(255, 0, 128, 0.4);
 }
 
-.tab-btn.active.admin {
-    background: linear-gradient(135deg, var(--admin), #ffff00);
-    border-color: var(--admin);
-    color: #000;
-    box-shadow: 0 0 15px rgba(255, 165, 0, 0.6);
-}
-
 .tab-btn:hover:not(.active) {
     border-color: var(--primary);
     transform: translateY(-2px);
@@ -559,10 +434,6 @@ body {
 .card:hover {
     transform: translateY(-3px);
     box-shadow: 0 0 30px rgba(255, 0, 150, 0.25);
-}
-
-.card.admin {
-    border-color: var(--admin);
 }
 
 .item {
@@ -633,7 +504,6 @@ body {
     background: white;
     border-radius: 50%;
     transition: all 0.3s;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 input:checked + .slider {
@@ -690,10 +560,6 @@ input:checked + .slider::before {
     z-index: 800;
 }
 
-.nav.admin {
-    border-top-color: var(--admin);
-}
-
 .nav div {
     font-size: 10px;
     color: #9ad6ff;
@@ -725,7 +591,6 @@ input:checked + .slider::before {
     border-radius: 12px;
     padding: 14px;
     text-align: center;
-    transition: all 0.3s;
 }
 
 .stat-item:hover {
@@ -818,7 +683,7 @@ input:checked + .slider::before {
             <div class="login-logo">💀</div>
             <div class="login-title">
                 <h1>PANEL IOS</h1>
-                <p>HD Ultimate</p>
+                <p>HD Final</p>
             </div>
             <div class="login-stats">
                 <div class="stat-box"><div class="number">12K+</div><div class="label">Users</div></div>
@@ -830,63 +695,17 @@ input:checked + .slider::before {
 
         <div class="login-box" id="loginBox">
             <form class="login-form" onsubmit="checkLogin(event)">
-                <!-- MODE TOGGLE -->
-                <div class="mode-toggle">
-                    <button type="button" class="mode-btn active" id="userMode" onclick="setMode('user')">👤 USER</button>
-                    <button type="button" class="mode-btn admin" id="adminMode" onclick="setMode('admin')">⭐ ADMIN</button>
+                <div class="form-group">
+                    <label>🔑 UID (Nhập Tự Do)</label>
+                    <input type="text" id="uidInput" placeholder="Nhập UID bất kỳ..." required>
                 </div>
 
-                <!-- USER MODE -->
-                <div id="userFormSection">
-                    <div class="form-group">
-                        <label>🔑 UID (Nhập Tự Do)</label>
-                        <input type="text" id="uidInput" placeholder="Nhập UID..." required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>🛡️ Key (Chọn từ danh sách)</label>
-                        <select id="keyInput" required>
-                            <option value="">-- Chọn Key --</option>
-                            <option value="GIAKHANHSOTO-XRQGH87SHDUUWNSPQ">Key 1</option>
-                            <option value="GIAKHANHSOTO-KJSJHD8392JKLQWJD">Key 2</option>
-                            <option value="GIAKHANHSOTO-EIQPAJSZQKASQPJWW">Key 3</option>
-                            <option value="GIAKHANHSOTO-ASKDJQWKKJQ8129ZP">Key 4</option>
-                            <option value="GIAKHANHSOTO-PQOWIEJQPWQJHZKQN">Key 5</option>
-                            <option value="GIAKHANHSOTO-ZXMNVQAPQWJQZXMNV">Key 6</option>
-                            <option value="GIAKHANHSOTO-QWJKASJQPW284KJLN">Key 7</option>
-                            <option value="GIAKHANHSOTO-MNBVASDQWEJKQWJ12">Key 8</option>
-                            <option value="GIAKHANHSOTO-LKJQWPQJKQWNZXKJQ">Key 9</option>
-                            <option value="GIAKHANHSOTO-KJQWJQPWQXZCVLKJA">Key 10</option>
-                            <option value="GIAKHANHSOTO-QWEIUJASJKLQWJKJW">Key 11</option>
-                            <option value="GIAKHANHSOTO-PLKJQWEJKLZXCMNVB">Key 12</option>
-                            <option value="GIAKHANHSOTO-XJAKQWPQJKQZXMNVB">Key 13</option>
-                            <option value="GIAKHANHSOTO-KJQWXZMNVBJKQWJQW">Key 14</option>
-                            <option value="GIAKHANHSOTO-XDQWEJKLQWJKJWJKQ">Key 15</option>
-                            <option value="GIAKHANHSOTO-LKJQWKJKQWJKJQWJK">Key 16</option>
-                            <option value="GIAKHANHSOTO-PQJKZCMNBKJQWJQWJ">Key 17</option>
-                            <option value="GIAKHANHSOTO-XQJKWJQPWJKQWJKQW">Key 18</option>
-                            <option value="GIAKHANHSOTO-AKJQWJKQWJKQWJKJW">Key 19</option>
-                            <option value="GIAKHANHSOTO-ZMNVBJKQWJKQWJKJV">Key 20</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="login-btn">⚡ Đăng Nhập</button>
+                <div class="form-group">
+                    <label>🛡️ Key (Nhập Tự Do)</label>
+                    <input type="text" id="keyInput" placeholder="Nhập Key..." required>
                 </div>
 
-                <!-- ADMIN MODE -->
-                <div id="adminFormSection" style="display:none;">
-                    <div class="form-group">
-                        <label class="admin">👤 ADMIN UID</label>
-                        <input type="text" id="adminUidInput" placeholder="Admin UID..." value="ADMIN-ULTIMATE-2026" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="admin">🔑 ADMIN KEY (PERMANENT)</label>
-                        <input type="text" id="adminKeyInput" placeholder="Admin Key..." value="GIAKHANHSOTO-ADMIN-ULTIMATE-FOREVER" readonly>
-                    </div>
-
-                    <button type="submit" class="login-btn admin-btn">⭐ ADMIN LOGIN ⭐</button>
-                </div>
+                <button type="submit" class="login-btn">⚡ Đăng Nhập</button>
             </form>
 
             <div class="login-msg" id="loginMsg"></div>
@@ -895,7 +714,7 @@ input:checked + .slider::before {
                 <div class="expiry-info">
                     ⏰ Hết hạn: <span class="expiry-time" id="expiryTime">24h 0m</span>
                 </div>
-                <div id="footerText">✨ Free Login | 24H Expiry</div>
+                <div>✨ Free Login | 24H Expiry | 20 Valid Keys ✨</div>
             </div>
         </div>
     </div>
@@ -913,8 +732,8 @@ input:checked + .slider::before {
 
 <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
 
-<!-- ON ALL BUTTON (ADMIN ONLY) -->
-<div class="on-all-button" id="onAllButton" style="display:none;" onclick="activateAllFeatures()">ON ALL</div>
+<!-- ON ALL BUTTON -->
+<div class="on-all-button" id="onAllButton" onclick="activateAllFeatures()">ON ALL</div>
 
 <!-- MAIN APP -->
 <div class="app-content" id="appContent">
@@ -927,7 +746,7 @@ input:checked + .slider::before {
         <div class="user-info-bar" id="userInfoBar">
             <div class="user-info-item"><span class="label">👤 UID:</span><span class="value" id="displayUID">N/A</span></div>
             <div class="user-info-item"><span class="label">📅 Hết hạn:</span><span class="value" id="displayExpiry">--:--</span></div>
-            <div class="user-info-item"><span class="label">⚡ Role:</span><span class="value" id="userRole">User</span></div>
+            <div class="user-info-item"><span class="label">⚡ Status:</span><span class="value">✓ Active</span></div>
         </div>
 
         <div class="tabs-container" id="tabsContainer">
@@ -1044,18 +863,6 @@ input:checked + .slider::before {
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="item">
-                    <div style="flex: 1;">
-                        <div class="title">💨 SPEED BOOST</div>
-                        <div class="desc">Tăng tốc độ phản ứng</div>
-                    </div>
-                    <div style="display:flex;align-items:center;">
-                        <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- TAB 3 -->
@@ -1083,41 +890,23 @@ input:checked + .slider::before {
         <!-- TAB 4 -->
         <div class="tab-content" id="tab-4" style="display:none;">
             <div class="card">
-                <div class="item">
-                    <div style="flex: 1;">
-                        <div class="title">🔊 Âm thanh</div>
-                        <div class="desc">Phản hồi âm thanh</div>
-                    </div>
-                    <label class="switch"><input type="checkbox" checked onchange="toggle(this)"><span class="slider"></span></label>
-                </div>
-            </div>
-            <div class="card">
-                <div class="item">
-                    <div style="flex: 1;">
-                        <div class="title">📳 Rung tay</div>
-                        <div class="desc">Phản hồi rung</div>
-                    </div>
-                    <label class="switch"><input type="checkbox" checked onchange="toggle(this)"><span class="slider"></span></label>
-                </div>
-            </div>
-            <div class="card">
-                <div class="item">
-                    <div style="flex: 1;">
-                        <div class="title">🌙 Chế độ tối</div>
-                        <div class="desc">Giao diện tối</div>
-                    </div>
-                    <label class="switch"><input type="checkbox" checked onchange="toggle(this)"><span class="slider"></span></label>
+                <div class="title">⚙️ Cài Đặt Hệ Thống</div>
+                <div style="margin-top: 15px; font-size: 12px; color: #9ad6ff; line-height: 2;">
+                    <div>✓ Âm thanh: <span style="color: var(--success);">Bật</span></div>
+                    <div>✓ Rung tay: <span style="color: var(--success);">Bật</span></div>
+                    <div>✓ Chế độ tối: <span style="color: var(--success);">Bật</span></div>
+                    <div>✓ Cập nhật tự động: <span style="color: var(--success);">Bật</span></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- BOTTOM NAV -->
-<div class="nav" id="nav">
+<!-- NAV -->
+<div class="nav">
     <div onclick="switchTab(0)">🏠 Trang Chủ</div>
     <div onclick="switchTab(3)">📊 Thống Kê</div>
-    <div onclick="switchTab(4)">⚙️ Cài Đặt</div>
+    <div onclick="logout()">🚪 Đăng Xuất</div>
 </div>
 
 <!-- LOADING -->
@@ -1127,12 +916,7 @@ input:checked + .slider::before {
 </div>
 
 <script>
-// ===== GLOBAL STATE =====
-let isAdmin = false;
-let currentMode = 'user';
-let currentUID = '';
-let expireTime = Date.now() + 24*60*60*1000;
-
+// ===== 20 VALID KEYS =====
 const validKeys = [
     "GIAKHANHSOTO-XRQGH87SHDUUWNSPQ",
     "GIAKHANHSOTO-KJSJHD8392JKLQWJD",
@@ -1156,173 +940,133 @@ const validKeys = [
     "GIAKHANHSOTO-ZMNVBJKQWJKQWJKJV"
 ];
 
-// ===== SET MODE =====
-function setMode(mode) {
-    currentMode = mode;
-    document.getElementById('userMode').classList.toggle('active', mode === 'user');
-    document.getElementById('adminMode').classList.toggle('active', mode === 'admin');
-    document.getElementById('userFormSection').style.display = mode === 'user' ? 'block' : 'none';
-    document.getElementById('adminFormSection').style.display = mode === 'admin' ? 'block' : 'none';
-}
+let expireTime = 0;
+let currentUID = "";
 
-// ===== LOGIN FUNCTION =====
 function checkLogin(e) {
     e.preventDefault();
-
-    if (currentMode === 'user') {
-        loginUser();
-    } else {
-        loginAdmin();
-    }
-}
-
-function loginUser() {
-    const uid = document.getElementById('uidInput').value.trim();
-    const key = document.getElementById('keyInput').value.trim();
-    const msg = document.getElementById('loginMsg');
-
+    
+    const uid = document.getElementById("uidInput").value.trim();
+    const key = document.getElementById("keyInput").value.trim().toUpperCase();
+    const msg = document.getElementById("loginMsg");
+    
     if (!uid) {
         msg.textContent = "❌ Vui lòng nhập UID!";
         msg.className = "login-msg error";
         return;
     }
-
-    if (!key) {
-        msg.textContent = "❌ Vui lòng chọn Key!";
+    
+    if (!key.startsWith("GIAKHANHSOTO-")) {
+        msg.textContent = "❌ Key phải bắt đầu bằng GIAKHANHSOTO-";
         msg.className = "login-msg error";
         return;
     }
-
-    if (validKeys.indexOf(key) === -1) {
+    
+    if (!validKeys.includes(key)) {
         msg.textContent = "❌ Key không hợp lệ!";
         msg.className = "login-msg error";
         return;
     }
-
-    msg.textContent = "✓ Đăng nhập thành công!";
+    
+    // Đăng nhập thành công
+    msg.textContent = "✅ Đăng nhập thành công!";
     msg.className = "login-msg success";
     
-    isAdmin = false;
     currentUID = uid;
-    expireTime = Date.now() + 24*60*60*1000;
-
+    expireTime = Date.now() + 24 * 60 * 60 * 1000; // 24 hours
+    
+    localStorage.setItem("panelHDLogin", "true");
+    localStorage.setItem("panelHDUID", uid);
+    localStorage.setItem("panelHDExpiry", expireTime);
+    
     setTimeout(() => {
-        document.getElementById('loginModal').style.display = 'none';
-        document.getElementById('appContent').classList.add('visible');
-        updateUserDisplay();
+        document.getElementById("loginModal").style.display = "none";
+        document.getElementById("appContent").classList.add("visible");
+        document.getElementById("displayUID").textContent = uid;
+        updateExpiry();
     }, 800);
 }
 
-function loginAdmin() {
-    const uid = document.getElementById('adminUidInput').value.trim();
-    const key = document.getElementById('adminKeyInput').value.trim();
-    const msg = document.getElementById('loginMsg');
-
-    if (uid !== 'ADMIN-ULTIMATE-2026') {
-        msg.textContent = "❌ Admin UID không đúng!";
-        msg.className = "login-msg error";
+function updateExpiry() {
+    const timeLeft = expireTime - Date.now();
+    if (timeLeft <= 0) {
+        logout();
         return;
     }
-
-    msg.textContent = "✓ Admin Login Thành Công!";
-    msg.className = "login-msg admin";
     
-    isAdmin = true;
-    currentUID = uid;
-    expireTime = null; // Không hết hạn
-
-    setTimeout(() => {
-        document.getElementById('loginModal').style.display = 'none';
-        document.getElementById('appContent').classList.add('visible');
-        updateAdminDisplay();
-    }, 800);
+    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    
+    document.getElementById("displayExpiry").textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    document.getElementById("expiryTime").textContent = `${hours}h ${minutes}m`;
+    
+    setTimeout(updateExpiry, 1000);
 }
 
-// ===== UPDATE DISPLAY =====
-function updateUserDisplay() {
-    document.getElementById('displayUID').textContent = currentUID;
-    document.getElementById('userRole').textContent = 'User';
-    
-    const hours = Math.floor((expireTime - Date.now()) / (1000 * 60 * 60));
-    const minutes = Math.floor(((expireTime - Date.Now()) % (1000 * 60 * 60)) / (1000 * 60));
-    document.getElementById('displayExpiry').textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+function toggleMenu() {
+    document.getElementById("sideMenu").classList.toggle("expanded");
 }
 
-function updateAdminDisplay() {
-    document.getElementById('loginBox').classList.add('admin-mode');
-    document.getElementById('headerTitle').classList.add('admin');
-    document.getElementById('headerSub').classList.add('admin');
-    document.getElementById('userInfoBar').classList.add('admin');
-    document.getElementById('tabsContainer').classList.add('admin');
-    document.getElementById('sideMenu').classList.add('admin');
-    document.getElementById('menuToggle').classList.add('admin');
-    document.getElementById('nav').classList.add('admin');
+function switchTab(num) {
+    const tabs = document.querySelectorAll(".tab-content");
+    const btns = document.querySelectorAll(".tab-btn");
+    const items = document.querySelectorAll(".menu-item");
     
-    document.getElementById('displayUID').textContent = currentUID;
-    document.getElementById('displayUID').classList.add('admin');
-    document.getElementById('userRole').textContent = '⭐ ADMIN';
-    document.getElementById('userRole').classList.add('admin');
-    document.getElementById('displayExpiry').textContent = '♾️ FOREVER';
-    document.getElementById('displayExpiry').classList.add('forever');
+    tabs.forEach(t => t.style.display = "none");
+    btns.forEach(b => b.classList.remove("active"));
+    items.forEach(i => i.classList.remove("active"));
     
-    document.getElementById('onAllButton').style.display = 'flex';
+    document.getElementById("tab-" + num).style.display = "block";
+    if (btns[num]) btns[num].classList.add("active");
+    if (items[num]) items[num].classList.add("active");
 }
 
-// ===== TOGGLE FUNCTION =====
 function toggle(el) {
-    const status = el.closest('.item').querySelector('.status');
+    const status = el.parentElement.parentElement.querySelector(".status");
+    
     if (el.checked) {
-        status.textContent = 'ON';
-        status.classList.remove('off');
-        status.classList.add('on');
+        status.textContent = "ON";
+        status.classList.remove("off");
+        status.classList.add("on");
     } else {
-        status.textContent = 'OFF';
-        status.classList.remove('on');
-        status.classList.add('off');
+        status.textContent = "OFF";
+        status.classList.remove("on");
+        status.classList.add("off");
     }
 }
 
-// ===== ON ALL FEATURES =====
 function activateAllFeatures() {
-    const allChecks = document.querySelectorAll('.switch input[type="checkbox"]');
-    allChecks.forEach(checkbox => {
-        if (!checkbox.checked) {
-            checkbox.checked = true;
-            toggle(checkbox);
+    const switches = document.querySelectorAll(".switch input");
+    switches.forEach(s => {
+        if (!s.checked) {
+            s.checked = true;
+            s.onchange();
         }
     });
-    alert('✨ Tất cả chức năng đã bật! Nhấn vào Free Fire để chơi game!');
-    window.location.href = 'https://play.google.com/store/apps/details?id=com.dts.freefireth';
 }
 
-// ===== SWITCH TAB =====
-function switchTab(num) {
-    const tabs = document.querySelectorAll('.tab-content');
-    const btns = document.querySelectorAll('.tab-btn');
-    
-    tabs.forEach(t => t.style.display = 'none');
-    btns.forEach(b => b.classList.remove('active'));
-    
-    document.getElementById('tab-' + num).style.display = 'block';
-    if (btns[num]) btns[num].classList.add('active');
-}
-
-// ===== TOGGLE MENU =====
-function toggleMenu() {
-    document.getElementById('sideMenu').classList.toggle('expanded');
-}
-
-// ===== LOGOUT =====
 function logout() {
-    if (confirm('Bạn chắc chắn muốn đăng xuất?')) {
-        location.reload();
-    }
+    localStorage.removeItem("panelHDLogin");
+    location.reload();
 }
 
-// ===== INIT =====
-window.onload = () => {
-    setMode('user');
-};
+window.addEventListener("load", () => {
+    if (localStorage.getItem("panelHDLogin") === "true") {
+        const savedExpiry = parseInt(localStorage.getItem("panelHDExpiry"));
+        const savedUID = localStorage.getItem("panelHDUID");
+        
+        if (Date.now() < savedExpiry) {
+            currentUID = savedUID;
+            expireTime = savedExpiry;
+            document.getElementById("loginModal").style.display = "none";
+            document.getElementById("appContent").classList.add("visible");
+            document.getElementById("displayUID").textContent = savedUID;
+            updateExpiry();
+        } else {
+            logout();
+        }
+    }
+});
 </script>
 </body>
 </html>
