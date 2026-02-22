@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PANEL IOS - HD COMPLETE</title>
+<title>PANEL IOS - HD SIMPLE LOGIN</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -18,9 +18,7 @@
     --blur: rgba(10, 14, 39, 0.98);
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     background: linear-gradient(135deg, var(--dark) 0%, #1a1f3a 50%, var(--darker) 100%);
@@ -30,7 +28,6 @@ body {
     min-height: 100vh;
 }
 
-/* ===== ANIMATIONS ===== */
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
@@ -143,8 +140,6 @@ body {
     border: 2px solid rgba(0, 200, 255, 0.25);
     box-shadow: 0 0 60px rgba(0, 200, 255, 0.2);
     animation: slideDown 0.6s ease-out;
-    max-height: 80vh;
-    overflow-y: auto;
 }
 
 .login-form {
@@ -152,7 +147,7 @@ body {
 }
 
 .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
 }
@@ -188,136 +183,24 @@ body {
     color: rgba(154, 214, 255, 0.5);
 }
 
-/* ===== UID SECTION ===== */
-.uid-section {
-    background: rgba(0, 200, 255, 0.08);
-    padding: 18px;
-    border-radius: 14px;
-    margin-bottom: 18px;
-    border: 1.5px solid rgba(0, 200, 255, 0.2);
-}
-
-.uid-section-title {
-    font-size: 12px;
-    color: var(--primary);
-    font-weight: 700;
-    margin-bottom: 12px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.uid-buttons-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 12px;
-}
-
-.uid-btn {
-    padding: 12px 8px;
-    background: linear-gradient(135deg, rgba(138, 46, 255, 0.4), rgba(138, 46, 255, 0.1));
-    border: 1.5px solid rgba(138, 46, 255, 0.5);
-    color: #8a2eff;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 700;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.uid-btn:hover {
-    background: rgba(138, 46, 255, 0.5);
-    border-color: #8a2eff;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(138, 46, 255, 0.4);
-}
-
-.uid-btn:active {
-    transform: translateY(0);
-}
-
-.uid-result {
-    background: rgba(0, 255, 153, 0.15);
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid rgba(0, 255, 153, 0.4);
-    font-size: 12px;
-    color: var(--success);
-    text-align: center;
-    font-weight: 700;
-    animation: slideUp 0.3s ease;
-    line-height: 1.6;
-    display: none;
-}
-
-.uid-result.show {
-    display: block;
-}
-
-/* ===== DEVICE INFO BOX ===== */
-.device-info-box {
-    background: rgba(0, 200, 255, 0.08);
+.info-box {
+    background: rgba(0, 200, 255, 0.1);
     padding: 14px;
     border-radius: 12px;
-    margin-top: 12px;
+    margin-bottom: 18px;
     border: 1px solid rgba(0, 200, 255, 0.2);
     font-size: 11px;
     color: #9ad6ff;
     line-height: 1.8;
 }
 
-.device-info-box .info-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
-}
-
-.device-info-box .info-row span:last-child {
-    color: var(--success);
+.info-box .title {
+    color: var(--primary);
     font-weight: 700;
-}
-
-.device-info-box .info-row:last-child {
-    margin-bottom: 0;
-}
-
-/* ===== TOGGLE MODE ===== */
-.mode-toggle {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 12px;
-}
-
-.mode-btn {
-    flex: 1;
-    padding: 10px;
-    background: rgba(0, 200, 255, 0.15);
-    border: 1.5px solid rgba(0, 200, 255, 0.3);
-    color: #9ad6ff;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 700;
-    transition: all 0.3s ease;
+    margin-bottom: 8px;
     text-transform: uppercase;
 }
 
-.mode-btn.active {
-    background: linear-gradient(135deg, var(--secondary), var(--accent));
-    border-color: var(--secondary);
-    color: #fff;
-    box-shadow: 0 0 15px rgba(255, 0, 128, 0.4);
-}
-
-.mode-btn:hover:not(.active) {
-    background: rgba(0, 200, 255, 0.2);
-    border-color: var(--primary);
-}
-
-/* ===== LOGIN BUTTON ===== */
 .login-btn {
     width: 100%;
     padding: 14px;
@@ -361,7 +244,6 @@ body {
     transform: translateY(0);
 }
 
-/* ===== MESSAGE ===== */
 .login-msg {
     margin-top: 12px;
     min-height: 24px;
@@ -379,11 +261,6 @@ body {
 .login-msg.error {
     color: var(--secondary);
     text-shadow: 0 0 10px rgba(255, 45, 117, 0.5);
-}
-
-.login-msg.info {
-    color: var(--primary);
-    text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
 }
 
 .login-footer {
@@ -427,22 +304,11 @@ body {
     padding-top: 20px;
 }
 
-.side-menu::-webkit-scrollbar {
-    width: 6px;
-}
+.side-menu::-webkit-scrollbar { width: 6px; }
+.side-menu::-webkit-scrollbar-track { background: rgba(0, 200, 255, 0.05); }
+.side-menu::-webkit-scrollbar-thumb { background: rgba(0, 200, 255, 0.3); border-radius: 3px; }
 
-.side-menu::-webkit-scrollbar-track {
-    background: rgba(0, 200, 255, 0.05);
-}
-
-.side-menu::-webkit-scrollbar-thumb {
-    background: rgba(0, 200, 255, 0.3);
-    border-radius: 3px;
-}
-
-.side-menu.expanded {
-    width: 280px;
-}
+.side-menu.expanded { width: 280px; }
 
 .menu-item {
     padding: 18px 12px;
@@ -458,28 +324,11 @@ body {
     align-items: center;
     justify-content: center;
     gap: 12px;
-    position: relative;
-}
-
-.menu-item::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 4px;
-    background: var(--primary);
-    transform: scaleY(0);
-    transition: transform 0.3s ease;
 }
 
 .menu-item:hover {
     background: rgba(0, 200, 255, 0.12);
     border-left-color: var(--primary);
-}
-
-.menu-item:hover::before {
-    transform: scaleY(1);
 }
 
 .menu-item.active {
@@ -526,7 +375,6 @@ body {
 .menu-toggle:hover {
     box-shadow: 0 0 25px rgba(0, 200, 255, 0.5);
     transform: scale(1.1);
-    border-color: var(--primary);
 }
 
 /* ===== MAIN CONTENT ===== */
@@ -541,7 +389,6 @@ body {
     margin-left: 280px;
 }
 
-/* ===== HEADER ===== */
 .header {
     text-align: center;
     padding: 30px 0 15px;
@@ -579,7 +426,6 @@ body {
     font-size: 12px;
     flex-wrap: wrap;
     gap: 10px;
-    backdrop-filter: blur(5px);
 }
 
 .user-info-item {
@@ -598,7 +444,6 @@ body {
     font-weight: 700;
 }
 
-/* ===== TABS ===== */
 .tabs-container {
     display: flex;
     justify-content: center;
@@ -621,8 +466,6 @@ body {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-size: 12px;
     font-weight: 700;
-    position: relative;
-    overflow: hidden;
 }
 
 .tab-btn.active {
@@ -638,7 +481,6 @@ body {
     box-shadow: 0 4px 15px rgba(0, 200, 255, 0.3);
 }
 
-/* ===== CARD ===== */
 .card {
     margin: 12px 15px;
     padding: 18px;
@@ -651,7 +493,7 @@ body {
 
 .card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 0 40px rgba(255, 0, 150, 0.3), 0 0 15px rgba(0, 200, 255, 0.2);
+    box-shadow: 0 0 40px rgba(255, 0, 150, 0.3);
     border-color: rgba(0, 200, 255, 0.4);
 }
 
@@ -661,15 +503,10 @@ body {
     align-items: center;
 }
 
-.item-info {
-    flex: 1;
-}
-
 .title {
     font-size: 15px;
     font-weight: 700;
     color: #fff;
-    letter-spacing: 0.5px;
 }
 
 .desc {
@@ -678,14 +515,12 @@ body {
     margin-top: 6px;
 }
 
-/* ===== STATUS ===== */
 .status {
     font-size: 11px;
     padding: 6px 12px;
     border-radius: 18px;
     margin-right: 12px;
     font-weight: 700;
-    letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 
@@ -701,7 +536,6 @@ body {
     border: 1px solid #ff4d6d;
 }
 
-/* ===== SWITCH ===== */
 .switch {
     position: relative;
     width: 55px;
@@ -718,7 +552,7 @@ body {
     inset: 0;
     background: linear-gradient(135deg, #2a2a3a, #1a1a2a);
     border-radius: 28px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s;
     cursor: pointer;
     border: 2px solid rgba(100, 100, 120, 0.5);
 }
@@ -732,7 +566,7 @@ body {
     bottom: 2px;
     background: white;
     border-radius: 50%;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -744,10 +578,8 @@ input:checked + .slider {
 
 input:checked + .slider::before {
     transform: translateX(27px);
-    box-shadow: 0 2px 8px rgba(255, 0, 200, 0.4);
 }
 
-/* ===== BOTTOM NAV ===== */
 .nav {
     position: fixed;
     bottom: 0;
@@ -780,7 +612,6 @@ input:checked + .slider::before {
     transform: translateY(-2px);
 }
 
-/* ===== STATS GRID ===== */
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -817,7 +648,6 @@ input:checked + .slider::before {
     text-shadow: 0 0 15px rgba(0, 255, 153, 0.5);
 }
 
-/* ===== APP CONTENT ===== */
 .app-content {
     display: none;
 }
@@ -827,7 +657,6 @@ input:checked + .slider::before {
     animation: fadeIn 0.6s ease-out;
 }
 
-/* ===== LOADING ===== */
 .loading {
     position: fixed;
     inset: 0;
@@ -859,112 +688,30 @@ input:checked + .slider::before {
     to { transform: rotate(360deg); }
 }
 
-.loading-text {
-    font-size: 16px;
-    letter-spacing: 2px;
-    color: var(--primary);
-    text-transform: uppercase;
-}
-
-/* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     .login-container {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-
-    .login-visual {
-        order: 2;
-    }
-
-    .login-box {
-        order: 1;
-    }
-
-    .uid-buttons-group {
-        grid-template-columns: 1fr 1fr;
-    }
+    .login-visual { order: 2; }
+    .login-box { order: 1; }
 }
 
 @media (max-width: 768px) {
-    .login-box {
-        padding: 30px;
-        border-radius: 16px;
-        max-height: none;
-    }
-
-    .side-menu.expanded {
-        width: 240px;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .tabs-container {
-        gap: 6px;
-        padding: 12px 8px;
-    }
-
-    .tab-btn {
-        padding: 8px 12px;
-        font-size: 11px;
-    }
-
-    .uid-buttons-group {
-        grid-template-columns: 1fr;
-    }
+    .login-box { padding: 30px; }
+    .side-menu.expanded { width: 240px; }
+    .stats-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 480px) {
-    .login-modal {
-        padding: 20px;
-    }
-
-    .login-container {
-        width: 100%;
-        max-width: none;
-    }
-
-    .login-logo {
-        font-size: 80px;
-    }
-
-    .login-title h1 {
-        font-size: 24px;
-    }
-
-    .login-visual {
-        display: none;
-    }
-
-    .header h1 {
-        font-size: 22px;
-    }
-
-    .card {
-        margin: 10px 10px;
-        padding: 14px;
-    }
+    .login-container { width: 100%; }
+    .login-visual { display: none; }
+    .login-box { padding: 25px; }
 }
 
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(0, 200, 255, 0.05);
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(0, 200, 255, 0.3);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 200, 255, 0.5);
-}
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: rgba(0, 200, 255, 0.05); }
+::-webkit-scrollbar-thumb { background: rgba(0, 200, 255, 0.3); border-radius: 4px; }
 </style>
 </head>
 <body>
@@ -972,7 +719,6 @@ input:checked + .slider::before {
 <!-- LOGIN MODAL -->
 <div class="login-modal" id="loginModal">
     <div class="login-container">
-        <!-- LEFT SIDE - VISUAL -->
         <div class="login-visual">
             <div class="login-logo">💀</div>
             <div class="login-title">
@@ -999,75 +745,36 @@ input:checked + .slider::before {
             </div>
         </div>
 
-        <!-- RIGHT SIDE - LOGIN FORM -->
         <div class="login-box">
             <form class="login-form" onsubmit="checkLogin(event)">
-                <!-- MODE TOGGLE -->
-                <div class="mode-toggle">
-                    <button type="button" class="mode-btn active" id="autoMode" onclick="setMode('auto')">🔄 Auto</button>
-                    <button type="button" class="mode-btn" id="manualMode" onclick="setMode('manual')">✏️ Manual</button>
-                </div>
-
-                <!-- AUTO UID SECTION -->
-                <div class="uid-section" id="autoSection">
-                    <div class="uid-section-title">📱 Device UID Auto Detect</div>
-                    <div class="uid-buttons-group">
-                        <button type="button" class="uid-btn" onclick="getDeviceUID()">🔄 Get UID</button>
-                        <button type="button" class="uid-btn" onclick="autoRegisterUID()">✨ Register</button>
-                        <button type="button" class="uid-btn" onclick="generateCustomUID()">🎲 Random</button>
-                    </div>
-                    <div class="uid-result" id="uidStatus"></div>
-                    
-                    <!-- Device Info Box -->
-                    <div class="device-info-box" id="deviceInfo" style="display:none;">
-                        <div class="info-row">
-                            <span>📱 Resolution:</span>
-                            <span id="deviceRes">--</span>
-                        </div>
-                        <div class="info-row">
-                            <span>⚙️ CPU Cores:</span>
-                            <span id="deviceCores">--</span>
-                        </div>
-                        <div class="info-row">
-                            <span>🗣️ Language:</span>
-                            <span id="deviceLang">--</span>
-                        </div>
-                        <div class="info-row">
-                            <span>🔐 Device ID:</span>
-                            <span id="deviceID">--</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- MANUAL SECTION -->
-                <div id="manualSection" style="display:none;">
-                    <div class="uid-section">
-                        <div class="uid-section-title">✏️ Nhập Thông Tin Thủ Công</div>
-                        <div class="uid-result" id="manualMsg"></div>
-                    </div>
+                <div class="info-box">
+                    <div class="title">📝 Hướng Dẫn Đăng Nhập</div>
+                    ✓ Nhập UID bất kỳ (3-20 ký tự)<br>
+                    ✓ Nhập Key bất kỳ (tối thiểu 5 ký tự)<br>
+                    ✓ Key sẽ hết hạn sau 24 giờ
                 </div>
 
                 <div class="form-group">
-                    <label id="uidLabel">🔑 UID (User ID) - Auto</label>
-                    <input type="text" id="uidInput" placeholder="Auto-filled from device..." required>
+                    <label>🔑 UID (User ID)</label>
+                    <input type="text" id="uidInput" placeholder="Nhập UID bất kỳ..." required>
                 </div>
 
                 <div class="form-group">
                     <label>🛡️ Key (License)</label>
-                    <input type="text" id="keyInput" placeholder="Enter your license key..." required>
+                    <input type="text" id="keyInput" placeholder="Nhập Key bất kỳ..." required>
                 </div>
 
-                <button type="submit" class="login-btn">⚡ Login Now</button>
+                <button type="submit" class="login-btn">⚡ Đăng Nhập</button>
             </form>
 
             <div class="login-msg" id="loginMsg"></div>
 
             <div class="login-footer">
                 <div class="expiry-info">
-                    ⏰ Expires in: <span class="expiry-time" id="expiryTime">24h 0m</span>
+                    ⏰ Hết hạn trong: <span class="expiry-time" id="expiryTime">24h 0m</span>
                 </div>
-                <div style="font-size: 11px; color: #ff2d75;">
-                    ℹ️ Auto mode: Auto-detect device | Manual mode: Manual input any UID
+                <div style="font-size: 10px; color: #ff2d75; margin-top: 4px;">
+                    ℹ️ Không cần UID thực - nhập gì cũng được!
                 </div>
             </div>
         </div>
@@ -1076,12 +783,12 @@ input:checked + .slider::before {
 
 <!-- SIDE MENU -->
 <div class="side-menu" id="sideMenu">
-    <div class="menu-item active" onclick="switchTab(0)" title="Home"><div class="menu-icon">🏠</div><div class="menu-text">Home</div></div>
-    <div class="menu-item" onclick="switchTab(1)" title="Tools"><div class="menu-icon">⚡️</div><div class="menu-text">Tools</div></div>
-    <div class="menu-item" onclick="switchTab(2)" title="Optimize"><div class="menu-icon">🚀</div><div class="menu-text">Optimize</div></div>
-    <div class="menu-item" onclick="switchTab(3)" title="Stats"><div class="menu-icon">📊</div><div class="menu-text">Stats</div></div>
-    <div class="menu-item" onclick="switchTab(4)" title="Settings"><div class="menu-icon">⚙️</div><div class="menu-text">Settings</div></div>
-    <div class="menu-item" onclick="logout()" title="Logout"><div class="menu-icon">🚪</div><div class="menu-text">Logout</div></div>
+    <div class="menu-item active" onclick="switchTab(0)"><div class="menu-icon">🏠</div><div class="menu-text">Trang Chủ</div></div>
+    <div class="menu-item" onclick="switchTab(1)"><div class="menu-icon">⚡️</div><div class="menu-text">Công Cụ</div></div>
+    <div class="menu-item" onclick="switchTab(2)"><div class="menu-icon">🚀</div><div class="menu-text">Tối Ưu</div></div>
+    <div class="menu-item" onclick="switchTab(3)"><div class="menu-icon">📊</div><div class="menu-text">Thống Kê</div></div>
+    <div class="menu-item" onclick="switchTab(4)"><div class="menu-icon">⚙️</div><div class="menu-text">Cài Đặt</div></div>
+    <div class="menu-item" onclick="logout()"><div class="menu-icon">🚪</div><div class="menu-text">Đăng Xuất</div></div>
 </div>
 
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -1096,139 +803,139 @@ input:checked + .slider::before {
 
         <div class="user-info-bar">
             <div class="user-info-item"><span class="label">👤 UID:</span><span class="value" id="displayUID">N/A</span></div>
-            <div class="user-info-item"><span class="label">📅 Expires:</span><span class="value" id="displayExpiry">--:--</span></div>
-            <div class="user-info-item"><span class="label">⚡ Status:</span><span class="value">✓ Active</span></div>
+            <div class="user-info-item"><span class="label">📅 Hết hạn:</span><span class="value" id="displayExpiry">--:--</span></div>
+            <div class="user-info-item"><span class="label">⚡ Trạng thái:</span><span class="value">✓ Active</span></div>
         </div>
 
         <div class="tabs-container">
-            <button class="tab-btn active" onclick="switchTab(0)">🏠 Home</button>
-            <button class="tab-btn" onclick="switchTab(1)">⚡️ Tools</button>
-            <button class="tab-btn" onclick="switchTab(2)">🚀 Optimize</button>
-            <button class="tab-btn" onclick="switchTab(3)">📊 Stats</button>
-            <button class="tab-btn" onclick="switchTab(4)">⚙️ Settings</button>
+            <button class="tab-btn active" onclick="switchTab(0)">🏠 Trang Chủ</button>
+            <button class="tab-btn" onclick="switchTab(1)">⚡️ Công Cụ</button>
+            <button class="tab-btn" onclick="switchTab(2)">🚀 Tối Ưu</button>
+            <button class="tab-btn" onclick="switchTab(3)">📊 Thống Kê</button>
+            <button class="tab-btn" onclick="switchTab(4)">⚙️ Cài Đặt</button>
         </div>
 
-        <!-- TAB 0: HOME -->
+        <!-- TAB 0 -->
         <div class="tab-content" id="tab-0">
             <div class="card">
                 <div class="item">
-                    <div class="item-info">
+                    <div style="flex: 1;">
                         <div class="title">🎮 AIMLOCK</div>
-                        <div class="desc">Smart aiming technology</div>
+                        <div class="desc">Công nghệ định hướng thông minh</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" onchange="toggle(this,'AIMLOCK')"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="item">
-                    <div class="item-info">
+                    <div style="flex: 1;">
                         <div class="title">🎯 FEATHER AIM</div>
-                        <div class="desc">Precise targeting</div>
+                        <div class="desc">Mục tiêu chính xác</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" onchange="toggle(this,'FEATHER AIM')"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="item">
-                    <div class="item-info">
+                    <div style="flex: 1;">
                         <div class="title">⚡ QUICK SWIPE</div>
-                        <div class="desc">Fast smooth movement</div>
+                        <div class="desc">Vuốt nhanh mượt mà</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" onchange="toggle(this,'QUICK SWIPE')"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 1: TOOLS -->
+        <!-- TAB 1 -->
         <div class="tab-content" id="tab-1" style="display:none;">
             <div class="card">
                 <div class="item">
-                    <div class="item-info">
+                    <div style="flex: 1;">
                         <div class="title">🔧 RAM CLEANER</div>
-                        <div class="desc">Clear memory</div>
+                        <div class="desc">Dọn dẹp bộ nhớ</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" onchange="toggle(this,'RAM CLEANER')"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="item">
-                    <div class="item-info">
+                    <div style="flex: 1;">
                         <div class="title">🌡️ CPU COOLER</div>
-                        <div class="desc">Lower temperature</div>
+                        <div class="desc">Hạ nhiệt độ xử lý</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" onchange="toggle(this,'CPU COOLER')"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="item">
-                    <div class="item-info">
+                    <div style="flex: 1;">
                         <div class="title">📱 BATTERY SAVER</div>
-                        <div class="desc">Save battery</div>
+                        <div class="desc">Tiết kiệm pin</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" onchange="toggle(this,'BATTERY SAVER')"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 2: OPTIMIZE -->
+        <!-- TAB 2 -->
         <div class="tab-content" id="tab-2" style="display:none;">
             <div class="card">
                 <div class="item">
-                    <div class="item-info">
+                    <div style="flex: 1;">
                         <div class="title">🔒 STEADY HOLD</div>
-                        <div class="desc">Stable hand control</div>
+                        <div class="desc">Ổn định tay</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" onchange="toggle(this,'STEADY HOLD')"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="item">
-                    <div class="item-info">
+                    <div style="flex: 1;">
                         <div class="title">🚀 DRIFT FIX</div>
-                        <div class="desc">Fix drift issues</div>
+                        <div class="desc">Khắc phục lan trôi</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" onchange="toggle(this,'DRIFT FIX')"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="item">
-                    <div class="item-info">
+                    <div style="flex: 1;">
                         <div class="title">💨 SPEED BOOST</div>
-                        <div class="desc">Boost reaction time</div>
+                        <div class="desc">Tăng tốc độ phản ứng</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" onchange="toggle(this,'SPEED BOOST')"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 3: STATS -->
+        <!-- TAB 3 -->
         <div class="tab-content" id="tab-3" style="display:none;">
             <div class="stats-grid">
                 <div class="stat-item">
@@ -1250,16 +957,16 @@ input:checked + .slider::before {
             </div>
         </div>
 
-        <!-- TAB 4: SETTINGS -->
+        <!-- TAB 4 -->
         <div class="tab-content" id="tab-4" style="display:none;">
             <div class="card" style="margin-bottom:100px;">
-                <div style="color:var(--secondary);font-weight:bold;margin-bottom:15px;font-size:16px;">⚠️ Account Info</div>
+                <div style="color:var(--secondary);font-weight:bold;margin-bottom:15px;font-size:16px;">⚠️ Thông Tin Tài Khoản</div>
                 <div style="font-size:12px;color:#9ad6ff;line-height:2.2;">
                     <div>👤 UID: <span style="color:var(--success);font-weight:600;" id="accountUID">N/A</span></div>
                     <div>🔑 Key: <span style="color:var(--primary);font-weight:600;" id="accountKey">••••••••••</span></div>
-                    <div>📅 Expires: <span style="color:var(--secondary);font-weight:600;" id="accountExpiry">--:--</span></div>
+                    <div>📅 Hết hạn: <span style="color:var(--secondary);font-weight:600;" id="accountExpiry">--:--</span></div>
                 </div>
-                <button onclick="logout()" style="width:100%;padding:12px;background:linear-gradient(135deg,var(--secondary),var(--accent));color:white;border:none;border-radius:10px;cursor:pointer;font-weight:700;margin-top:15px;transition:all 0.3s;box-shadow:0 0 20px rgba(255,0,200,0.4);">🚪 LOGOUT</button>
+                <button onclick="logout()" style="width:100%;padding:12px;background:linear-gradient(135deg,var(--secondary),var(--accent));color:white;border:none;border-radius:10px;cursor:pointer;font-weight:700;margin-top:15px;transition:all 0.3s;">🚪 ĐĂNG XUẤT</button>
             </div>
         </div>
     </div>
@@ -1267,224 +974,45 @@ input:checked + .slider::before {
 
 <!-- BOTTOM NAV -->
 <div class="nav">
-    <div onclick="switchTab(0)">🏠 Home</div>
-    <div onclick="switchTab(3)">📊 Stats</div>
-    <div onclick="switchTab(4)">⚙️ Settings</div>
+    <div onclick="switchTab(0)">🏠 Trang Chủ</div>
+    <div onclick="switchTab(3)">📊 Thống Kê</div>
+    <div onclick="switchTab(4)">⚙️ Cài Đặt</div>
 </div>
 
 <!-- LOADING -->
 <div class="loading" id="loading">
     <div class="loading-spinner"></div>
-    <div class="loading-text">Processing...</div>
+    <div>ĐANG XỬ LÝ...</div>
 </div>
 
 <audio id="clickSound"><source src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
 
 <script>
-// ===== DATABASE =====
-let usersDatabase = JSON.parse(localStorage.getItem('usersDatabase')) || {};
 let expireTime = Date.now() + 24*60*60*1000;
 let currentUID = "";
 let currentKey = "";
-let currentMode = "auto";
 
-// ===== GET DEVICE INFO =====
-function getDeviceInfo() {
-    const userAgent = navigator.userAgent;
-    const screen_w = screen.width;
-    const screen_h = screen.height;
-    const language = navigator.language;
-    const cores = navigator.hardwareConcurrency || 1;
-    
-    return {
-        resolution: `${screen_w}x${screen_h}`,
-        cores: cores,
-        language: language,
-        userAgent: userAgent
-    };
-}
-
-function generateDeviceUID() {
-    const info = getDeviceInfo();
-    const deviceInfo = `${info.userAgent}-${info.resolution}-${info.language}-${info.cores}`;
-    let hash = 0;
-    
-    for (let i = 0; i < deviceInfo.length; i++) {
-        const char = deviceInfo.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash;
-    }
-    
-    return "DEV" + Math.abs(hash).toString(16).substring(0, 10).toUpperCase();
-}
-
-function generateRandomUID() {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let result = 'DEV';
-    for (let i = 0; i < 10; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-}
-
-// ===== DISPLAY DEVICE INFO =====
-function displayDeviceInfo(deviceUID) {
-    const info = getDeviceInfo();
-    
-    document.getElementById("deviceRes").textContent = info.resolution;
-    document.getElementById("deviceCores").textContent = info.cores;
-    document.getElementById("deviceLang").textContent = info.language;
-    document.getElementById("deviceID").textContent = deviceUID;
-    document.getElementById("deviceInfo").style.display = "block";
-}
-
-// ===== SET MODE =====
-function setMode(mode) {
-    currentMode = mode;
-    const autoMode = document.getElementById("autoMode");
-    const manualMode = document.getElementById("manualMode");
-    const autoSection = document.getElementById("autoSection");
-    const manualSection = document.getElementById("manualSection");
-    const uidLabel = document.getElementById("uidLabel");
-    const uidInput = document.getElementById("uidInput");
-
-    if (mode === "auto") {
-        autoMode.classList.add("active");
-        manualMode.classList.remove("active");
-        autoSection.style.display = "block";
-        manualSection.style.display = "none";
-        uidLabel.textContent = "🔑 UID (User ID) - Auto";
-        uidInput.placeholder = "Auto-filled from device...";
-        uidInput.disabled = true;
-    } else {
-        autoMode.classList.remove("active");
-        manualMode.classList.add("active");
-        autoSection.style.display = "none";
-        manualSection.style.display = "block";
-        uidLabel.textContent = "🔑 UID (User ID) - Manual";
-        uidInput.placeholder = "Enter any UID (at least 3 chars)...";
-        uidInput.disabled = false;
-        uidInput.value = "";
-        uidInput.focus();
-        showManualMsg("✓ Enter any UID with 3-20 characters");
-    }
-}
-
-function showManualMsg(message) {
-    const msg = document.getElementById("manualMsg");
-    msg.innerHTML = message;
-    msg.style.display = "block";
-}
-
-// ===== GET DEVICE UID =====
-function getDeviceUID() {
-    const deviceUID = generateDeviceUID();
-    document.getElementById("uidInput").value = deviceUID;
-    displayDeviceInfo(deviceUID);
-    showUIDStatus(`✓ Device UID detected successfully`);
-    playSound();
-}
-
-// ===== AUTO REGISTER =====
-function autoRegisterUID() {
-    const deviceUID = generateDeviceUID();
-    const newKey = "GIAKHANHSOTO-" + generateRandomString(18);
-    
-    usersDatabase[deviceUID] = { key: newKey, active: true };
-    localStorage.setItem('usersDatabase', JSON.stringify(usersDatabase));
-    
-    document.getElementById("uidInput").value = deviceUID;
-    document.getElementById("keyInput").value = newKey;
-    displayDeviceInfo(deviceUID);
-    
-    showUIDStatus(`✅ Account registered! UID: ${deviceUID}`);
-    playSound();
-}
-
-// ===== GENERATE RANDOM UID =====
-function generateCustomUID() {
-    const randomUID = generateRandomUID();
-    document.getElementById("uidInput").value = randomUID;
-    displayDeviceInfo(randomUID);
-    showUIDStatus(`✓ Random UID generated: ${randomUID}`);
-    playSound();
-}
-
-function generateRandomString(length) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let result = '';
-    for (let i = 0; i < length; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-}
-
-function showUIDStatus(message) {
-    const status = document.getElementById("uidStatus");
-    status.innerHTML = message;
-    status.classList.add("show");
-}
-
-// ===== LOGIN =====
 function checkLogin(e) {
     e.preventDefault();
-    const uid = document.getElementById("uidInput").value.trim().toUpperCase();
-    const key = document.getElementById("keyInput").value.trim().toUpperCase();
+    const uid = document.getElementById("uidInput").value.trim();
+    const key = document.getElementById("keyInput").value.trim();
     const msg = document.getElementById("loginMsg");
 
-    // Auto mode: Check in database
-    if (currentMode === "auto") {
-        if (!uid || uid.length < 5) {
-            msg.textContent = "❌ Invalid UID!";
-            msg.className = "login-msg error";
-            playSound();
-            return;
-        }
-
-        if (!key.startsWith("GIAKHANHSOTO-")) {
-            msg.textContent = "❌ Key must start with GIAKHANHSOTO-";
-            msg.className = "login-msg error";
-            playSound();
-            return;
-        }
-
-        const userData = usersDatabase[uid];
-        if (!userData) {
-            msg.textContent = "❌ UID not registered! Click Register.";
-            msg.className = "login-msg error";
-            playSound();
-            return;
-        }
-
-        if (userData.key !== key) {
-            msg.textContent = "❌ Key mismatch!";
-            msg.className = "login-msg error";
-            playSound();
-            return;
-        }
-    } 
-    // Manual mode: Accept any UID with any key
-    else {
-        if (!uid || uid.length < 3 || uid.length > 20) {
-            msg.textContent = "❌ UID must be 3-20 characters!";
-            msg.className = "login-msg error";
-            playSound();
-            return;
-        }
-
-        if (!key || key.length < 5) {
-            msg.textContent = "❌ Key must be at least 5 characters!";
-            msg.className = "login-msg error";
-            playSound();
-            return;
-        }
-
-        // Auto register in database
-        usersDatabase[uid] = { key: key, active: true };
-        localStorage.setItem('usersDatabase', JSON.stringify(usersDatabase));
+    if (!uid || uid.length < 3 || uid.length > 20) {
+        msg.textContent = "❌ UID phải từ 3-20 ký tự!";
+        msg.className = "login-msg error";
+        playSound();
+        return;
     }
 
-    msg.textContent = "✅ Login successful!";
+    if (!key || key.length < 5) {
+        msg.textContent = "❌ Key phải tối thiểu 5 ký tự!";
+        msg.className = "login-msg error";
+        playSound();
+        return;
+    }
+
+    msg.textContent = "✅ Đăng nhập thành công!";
     msg.className = "login-msg success";
     currentUID = uid;
     currentKey = key;
@@ -1504,13 +1032,12 @@ function checkLogin(e) {
 function updateUserDisplay() {
     document.getElementById("displayUID").textContent = currentUID;
     document.getElementById("accountUID").textContent = currentUID;
-    document.getElementById("accountKey").textContent = currentKey.substring(0, 14) + "...";
+    document.getElementById("accountKey").textContent = currentKey.substring(0, 8) + "...";
     const hours = Math.floor((expireTime - Date.now()) / 3600000);
     const minutes = Math.floor(((expireTime - Date.now()) % 3600000) / 60000);
     document.getElementById("displayExpiry").textContent = `${hours}:${String(minutes).padStart(2, '0')}`;
 }
 
-// ===== UI FUNCTIONS =====
 function toggleMenu() {
     document.getElementById("sideMenu").classList.toggle("expanded");
 }
@@ -1522,7 +1049,7 @@ function switchTab(num) {
     document.querySelectorAll(".tab-btn")[num].classList.add("active");
 }
 
-function toggle(el, name) {
+function toggle(el) {
     const status = el.parentElement.parentElement.querySelector(".status");
     if (el.checked) {
         status.textContent = "ON";
