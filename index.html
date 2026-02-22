@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PANEL IOS - HD FINAL</title>
+<title>PANEL IOS - HD COMPLETE</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -188,12 +188,6 @@ body {
     color: rgba(154, 214, 255, 0.5);
 }
 
-.form-group input:disabled {
-    background: rgba(30, 50, 85, 0.4);
-    color: var(--success);
-    cursor: not-allowed;
-}
-
 /* ===== UID SECTION ===== */
 .uid-section {
     background: rgba(0, 200, 255, 0.08);
@@ -214,19 +208,19 @@ body {
 
 .uid-buttons-group {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
     margin-bottom: 12px;
 }
 
 .uid-btn {
-    padding: 12px;
+    padding: 12px 8px;
     background: linear-gradient(135deg, rgba(138, 46, 255, 0.4), rgba(138, 46, 255, 0.1));
     border: 1.5px solid rgba(138, 46, 255, 0.5);
     color: #8a2eff;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     transition: all 0.3s ease;
     text-transform: uppercase;
@@ -288,6 +282,39 @@ body {
 
 .device-info-box .info-row:last-child {
     margin-bottom: 0;
+}
+
+/* ===== TOGGLE MODE ===== */
+.mode-toggle {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 10px;
+    background: rgba(0, 200, 255, 0.15);
+    border: 1.5px solid rgba(0, 200, 255, 0.3);
+    color: #9ad6ff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    border-color: var(--secondary);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 0, 128, 0.4);
+}
+
+.mode-btn:hover:not(.active) {
+    background: rgba(0, 200, 255, 0.2);
+    border-color: var(--primary);
 }
 
 /* ===== LOGIN BUTTON ===== */
@@ -352,6 +379,11 @@ body {
 .login-msg.error {
     color: var(--secondary);
     text-shadow: 0 0 10px rgba(255, 45, 117, 0.5);
+}
+
+.login-msg.info {
+    color: var(--primary);
+    text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
 }
 
 .login-footer {
@@ -848,6 +880,10 @@ input:checked + .slider::before {
     .login-box {
         order: 1;
     }
+
+    .uid-buttons-group {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (max-width: 768px) {
@@ -873,6 +909,10 @@ input:checked + .slider::before {
     .tab-btn {
         padding: 8px 12px;
         font-size: 11px;
+    }
+
+    .uid-buttons-group {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -962,12 +1002,19 @@ input:checked + .slider::before {
         <!-- RIGHT SIDE - LOGIN FORM -->
         <div class="login-box">
             <form class="login-form" onsubmit="checkLogin(event)">
+                <!-- MODE TOGGLE -->
+                <div class="mode-toggle">
+                    <button type="button" class="mode-btn active" id="autoMode" onclick="setMode('auto')">🔄 Auto</button>
+                    <button type="button" class="mode-btn" id="manualMode" onclick="setMode('manual')">✏️ Manual</button>
+                </div>
+
                 <!-- AUTO UID SECTION -->
-                <div class="uid-section">
+                <div class="uid-section" id="autoSection">
                     <div class="uid-section-title">📱 Device UID Auto Detect</div>
                     <div class="uid-buttons-group">
                         <button type="button" class="uid-btn" onclick="getDeviceUID()">🔄 Get UID</button>
                         <button type="button" class="uid-btn" onclick="autoRegisterUID()">✨ Register</button>
+                        <button type="button" class="uid-btn" onclick="generateCustomUID()">🎲 Random</button>
                     </div>
                     <div class="uid-result" id="uidStatus"></div>
                     
@@ -992,9 +1039,17 @@ input:checked + .slider::before {
                     </div>
                 </div>
 
+                <!-- MANUAL SECTION -->
+                <div id="manualSection" style="display:none;">
+                    <div class="uid-section">
+                        <div class="uid-section-title">✏️ Nhập Thông Tin Thủ Công</div>
+                        <div class="uid-result" id="manualMsg"></div>
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label>🔑 UID (User ID)</label>
-                    <input type="text" id="uidInput" placeholder="Auto-filled from device..." required disabled>
+                    <label id="uidLabel">🔑 UID (User ID) - Auto</label>
+                    <input type="text" id="uidInput" placeholder="Auto-filled from device..." required>
                 </div>
 
                 <div class="form-group">
@@ -1012,7 +1067,7 @@ input:checked + .slider::before {
                     ⏰ Expires in: <span class="expiry-time" id="expiryTime">24h 0m</span>
                 </div>
                 <div style="font-size: 11px; color: #ff2d75;">
-                    ℹ️ Click "Get UID" to auto-detect your device or "Register" for new account
+                    ℹ️ Auto mode: Auto-detect device | Manual mode: Manual input any UID
                 </div>
             </div>
         </div>
@@ -1231,7 +1286,7 @@ let usersDatabase = JSON.parse(localStorage.getItem('usersDatabase')) || {};
 let expireTime = Date.now() + 24*60*60*1000;
 let currentUID = "";
 let currentKey = "";
-let currentDeviceInfo = {};
+let currentMode = "auto";
 
 // ===== GET DEVICE INFO =====
 function getDeviceInfo() {
@@ -1263,16 +1318,62 @@ function generateDeviceUID() {
     return "DEV" + Math.abs(hash).toString(16).substring(0, 10).toUpperCase();
 }
 
+function generateRandomUID() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = 'DEV';
+    for (let i = 0; i < 10; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}
+
 // ===== DISPLAY DEVICE INFO =====
 function displayDeviceInfo(deviceUID) {
     const info = getDeviceInfo();
-    currentDeviceInfo = info;
     
     document.getElementById("deviceRes").textContent = info.resolution;
     document.getElementById("deviceCores").textContent = info.cores;
     document.getElementById("deviceLang").textContent = info.language;
     document.getElementById("deviceID").textContent = deviceUID;
     document.getElementById("deviceInfo").style.display = "block";
+}
+
+// ===== SET MODE =====
+function setMode(mode) {
+    currentMode = mode;
+    const autoMode = document.getElementById("autoMode");
+    const manualMode = document.getElementById("manualMode");
+    const autoSection = document.getElementById("autoSection");
+    const manualSection = document.getElementById("manualSection");
+    const uidLabel = document.getElementById("uidLabel");
+    const uidInput = document.getElementById("uidInput");
+
+    if (mode === "auto") {
+        autoMode.classList.add("active");
+        manualMode.classList.remove("active");
+        autoSection.style.display = "block";
+        manualSection.style.display = "none";
+        uidLabel.textContent = "🔑 UID (User ID) - Auto";
+        uidInput.placeholder = "Auto-filled from device...";
+        uidInput.disabled = true;
+    } else {
+        autoMode.classList.remove("active");
+        manualMode.classList.add("active");
+        autoSection.style.display = "none";
+        manualSection.style.display = "block";
+        uidLabel.textContent = "🔑 UID (User ID) - Manual";
+        uidInput.placeholder = "Enter any UID (at least 3 chars)...";
+        uidInput.disabled = false;
+        uidInput.value = "";
+        uidInput.focus();
+        showManualMsg("✓ Enter any UID with 3-20 characters");
+    }
+}
+
+function showManualMsg(message) {
+    const msg = document.getElementById("manualMsg");
+    msg.innerHTML = message;
+    msg.style.display = "block";
 }
 
 // ===== GET DEVICE UID =====
@@ -1296,7 +1397,16 @@ function autoRegisterUID() {
     document.getElementById("keyInput").value = newKey;
     displayDeviceInfo(deviceUID);
     
-    showUIDStatus(`✅ Account registered! Ready to login.`);
+    showUIDStatus(`✅ Account registered! UID: ${deviceUID}`);
+    playSound();
+}
+
+// ===== GENERATE RANDOM UID =====
+function generateCustomUID() {
+    const randomUID = generateRandomUID();
+    document.getElementById("uidInput").value = randomUID;
+    displayDeviceInfo(randomUID);
+    showUIDStatus(`✓ Random UID generated: ${randomUID}`);
     playSound();
 }
 
@@ -1322,33 +1432,56 @@ function checkLogin(e) {
     const key = document.getElementById("keyInput").value.trim().toUpperCase();
     const msg = document.getElementById("loginMsg");
 
-    if (!uid || uid.length < 5) {
-        msg.textContent = "❌ Invalid UID!";
-        msg.className = "login-msg error";
-        playSound();
-        return;
-    }
+    // Auto mode: Check in database
+    if (currentMode === "auto") {
+        if (!uid || uid.length < 5) {
+            msg.textContent = "❌ Invalid UID!";
+            msg.className = "login-msg error";
+            playSound();
+            return;
+        }
 
-    if (!key.startsWith("GIAKHANHSOTO-")) {
-        msg.textContent = "❌ Key must start with GIAKHANHSOTO-";
-        msg.className = "login-msg error";
-        playSound();
-        return;
-    }
+        if (!key.startsWith("GIAKHANHSOTO-")) {
+            msg.textContent = "❌ Key must start with GIAKHANHSOTO-";
+            msg.className = "login-msg error";
+            playSound();
+            return;
+        }
 
-    const userData = usersDatabase[uid];
-    if (!userData) {
-        msg.textContent = "❌ UID not registered! Click Register.";
-        msg.className = "login-msg error";
-        playSound();
-        return;
-    }
+        const userData = usersDatabase[uid];
+        if (!userData) {
+            msg.textContent = "❌ UID not registered! Click Register.";
+            msg.className = "login-msg error";
+            playSound();
+            return;
+        }
 
-    if (userData.key !== key) {
-        msg.textContent = "❌ Key mismatch!";
-        msg.className = "login-msg error";
-        playSound();
-        return;
+        if (userData.key !== key) {
+            msg.textContent = "❌ Key mismatch!";
+            msg.className = "login-msg error";
+            playSound();
+            return;
+        }
+    } 
+    // Manual mode: Accept any UID with any key
+    else {
+        if (!uid || uid.length < 3 || uid.length > 20) {
+            msg.textContent = "❌ UID must be 3-20 characters!";
+            msg.className = "login-msg error";
+            playSound();
+            return;
+        }
+
+        if (!key || key.length < 5) {
+            msg.textContent = "❌ Key must be at least 5 characters!";
+            msg.className = "login-msg error";
+            playSound();
+            return;
+        }
+
+        // Auto register in database
+        usersDatabase[uid] = { key: key, active: true };
+        localStorage.setItem('usersDatabase', JSON.stringify(usersDatabase));
     }
 
     msg.textContent = "✅ Login successful!";
