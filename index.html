@@ -124,9 +124,7 @@ body {
     animation: slideDown 0.6s ease-out;
 }
 
-.login-form {
-    width: 100%;
-}
+.login-form { width: 100%; }
 
 .form-group {
     margin-bottom: 18px;
@@ -257,14 +255,10 @@ body {
     padding-top: 20px;
 }
 
-.side-menu.admin {
-    border-right-color: var(--admin);
-}
-
+.side-menu.admin { border-right-color: var(--admin); }
 .side-menu::-webkit-scrollbar { width: 6px; }
 .side-menu::-webkit-scrollbar-track { background: rgba(0, 200, 255, 0.05); }
 .side-menu::-webkit-scrollbar-thumb { background: rgba(0, 200, 255, 0.3); border-radius: 3px; }
-
 .side-menu.expanded { width: 280px; }
 
 .menu-item {
@@ -347,7 +341,7 @@ body {
 
 .main-content {
     margin-left: 75px;
-    padding-bottom: 100px;
+    padding-bottom: 90px;
     transition: margin-left 0.4s;
     min-height: 100vh;
 }
@@ -720,7 +714,7 @@ input:checked + .slider::before {
             <div class="login-logo">💀</div>
             <div class="login-title">
                 <h1>PANEL IOS</h1>
-                <p>HD Clean Final</p>
+                <p>HD Clean</p>
             </div>
             <div class="login-stats">
                 <div class="stat-box"><div class="number">12K+</div><div class="label">Users</div></div>
@@ -871,13 +865,13 @@ input:checked + .slider::before {
             </div>
         </div>
 
-        <!-- TAB 2: OPTIMIZE -->
+        <!-- TAB 2: OPTIMIZATION -->
         <div class="tab-content" id="tab-2" style="display:none;">
             <div class="card">
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🔒 STEADY HOLD</div>
-                        <div class="desc">Ổn định tay</div>
+                        <div class="desc">Giữ tay ổn định</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
@@ -888,8 +882,8 @@ input:checked + .slider::before {
             <div class="card">
                 <div class="item">
                     <div style="flex: 1;">
-                        <div class="title">🚀 DRIFT FIX</div>
-                        <div class="desc">Khắc phục lan trôi</div>
+                        <div class="title">🎪 ANCHOR AIM</div>
+                        <div class="desc">Điểm neo cố định</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
@@ -926,8 +920,8 @@ input:checked + .slider::before {
             <div class="card">
                 <div class="item">
                     <div style="flex: 1;">
-                        <div class="title">🌙 Chế độ tối</div>
-                        <div class="desc">Giao diện tối giảm mỏi mắt</div>
+                        <div class="title">🔊 Âm thanh phản hồi</div>
+                        <div class="desc">Phát âm khi bật/tắt</div>
                     </div>
                     <label class="switch"><input type="checkbox" checked onchange="toggle(this)"><span class="slider"></span></label>
                 </div>
@@ -935,21 +929,18 @@ input:checked + .slider::before {
             <div class="card">
                 <div class="item">
                     <div style="flex: 1;">
-                        <div class="title">🔐 Bảo vệ mật khẩu</div>
-                        <div class="desc">Yêu cầu mật khẩu khi mở app</div>
+                        <div class="title">🌙 Chế độ tối</div>
+                        <div class="desc">Giao diện tối</div>
                     </div>
                     <label class="switch"><input type="checkbox" checked onchange="toggle(this)"><span class="slider"></span></label>
                 </div>
-            </div>
-            <div class="card" style="margin-top: 20px; text-align: center;">
-                <button onclick="logout()" style="width: 100%; padding: 12px; background: linear-gradient(135deg, var(--secondary), var(--accent)); border: none; border-radius: 10px; color: white; font-weight: 700; cursor: pointer;">🚪 ĐĂNG XUẤT</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- BOTTOM NAV -->
-<div class="nav" id="nav">
+<!-- NAV BAR -->
+<div class="nav" id="navBar">
     <div onclick="switchTab(0)">🏠 Trang Chủ</div>
     <div onclick="switchTab(3)">📊 Thống Kê</div>
     <div onclick="switchTab(4)">⚙️ Cài Đặt</div>
@@ -962,164 +953,121 @@ input:checked + .slider::before {
 </div>
 
 <script>
-// 20 Regular Keys (24H Expiry) + 1 Admin Key (Forever)
-const VALID_KEYS = [
-    "GIAKHANHSOTO-XRQGH87SHDUUWNSPQ",
-    "GIAKHANHSOTO-KJSJHD8392JKLQWJD",
-    "GIAKHANHSOTO-EIQPAJSZQKASQPJWW",
-    "GIAKHANHSOTO-ASKDJQWKKJQ8129ZP",
-    "GIAKHANHSOTO-PQOWIEJQPWQJHZKQN",
-    "GIAKHANHSOTO-ZXMNVQAPQWJQZXMNV",
-    "GIAKHANHSOTO-QWJKASJQPW284KJLN",
-    "GIAKHANHSOTO-MNBVASDQWEJKQWJ12",
-    "GIAKHANHSOTO-LKJQWPQJKQWNZXKJQ",
-    "GIAKHANHSOTO-KJQWJQPWQXZCVLKJA",
-    "GIAKHANHSOTO-QWEIUJASJKLQWJKJW",
-    "GIAKHANHSOTO-PLKJQWEJKLZXCMNVB",
-    "GIAKHANHSOTO-XJAKQWPQJKQZXMNVB",
-    "GIAKHANHSOTO-KJQWXZMNVBJKQWJQW",
-    "GIAKHANHSOTO-XDQWEJKLQWJKJWJKQ",
-    "GIAKHANHSOTO-LKJQWKJKQWJKJQWJK",
-    "GIAKHANHSOTO-PQJKZCMNBKJQWJQWJ",
-    "GIAKHANHSOTO-XQJKWJQPWJKQWJKQW",
-    "GIAKHANHSOTO-AKJQWJKQWJKQWJKJW",
-    "GIAKHANHSOTO-ZMNVBJKQWJKQWJKJV"
+// ===== 20 REGULAR KEYS (24H) + 1 ADMIN KEY ===== 
+const validKeys = [
+    "GIAKHANHSOTO-KEY001",
+    "GIAKHANHSOTO-KEY002",
+    "GIAKHANHSOTO-KEY003",
+    "GIAKHANHSOTO-KEY004",
+    "GIAKHANHSOTO-KEY005",
+    "GIAKHANHSOTO-KEY006",
+    "GIAKHANHSOTO-KEY007",
+    "GIAKHANHSOTO-KEY008",
+    "GIAKHANHSOTO-KEY009",
+    "GIAKHANHSOTO-KEY010",
+    "GIAKHANHSOTO-KEY011",
+    "GIAKHANHSOTO-KEY012",
+    "GIAKHANHSOTO-KEY013",
+    "GIAKHANHSOTO-KEY014",
+    "GIAKHANHSOTO-KEY015",
+    "GIAKHANHSOTO-KEY016",
+    "GIAKHANHSOTO-KEY017",
+    "GIAKHANHSOTO-KEY018",
+    "GIAKHANHSOTO-KEY019",
+    "GIAKHANHSOTO-KEY020"
 ];
 
-const ADMIN_KEY = "GIAKHANHSOTO-ADMIN-ULTIMATE-FOREVER";
+const adminKey = "GIAKHANHSOTO-ADMIN-FOREVER";
 
+let currentUser = null;
 let isAdmin = false;
-let currentUID = "";
-let expireTime = 0;
 
 function checkLogin(e) {
     e.preventDefault();
-    
     const uid = document.getElementById("uidInput").value.trim().toUpperCase();
     const key = document.getElementById("keyInput").value.trim().toUpperCase();
     const msg = document.getElementById("loginMsg");
-    
-    if (!uid || uid.length < 1) {
-        msg.textContent = "❌ UID không được để trống!";
+
+    if (!uid) {
+        msg.textContent = "❌ Vui lòng nhập UID!";
         msg.className = "login-msg error";
         return;
     }
-    
-    if (!key.startsWith("GIAKHANHSOTO-")) {
+
+    if (key === adminKey) {
+        isAdmin = true;
+        currentUser = { uid, key, expiry: "♾️ FOREVER" };
+        msg.textContent = "✅ Đăng nhập Admin thành công!";
+        msg.className = "login-msg admin";
+        setTimeout(() => login(), 500);
+    } else if (validKeys.includes(key)) {
+        isAdmin = false;
+        const expiryTime = new Date(Date.now() + 24 * 60 * 60 * 1000);
+        currentUser = { uid, key, expiry: expiryTime };
+        msg.textContent = "✅ Đăng nhập thành công!";
+        msg.className = "login-msg success";
+        setTimeout(() => login(), 500);
+    } else {
         msg.textContent = "❌ Key không hợp lệ!";
         msg.className = "login-msg error";
-        return;
     }
-    
-    // Check for Admin Key
-    if (key === ADMIN_KEY) {
-        msg.textContent = "✅ Đăng Nhập Admin Thành Công!";
-        msg.className = "login-msg admin";
-        isAdmin = true;
-        currentUID = uid;
-        expireTime = Date.now() + (999 * 365 * 24 * 60 * 60 * 1000); // Forever
-        
-        setTimeout(() => {
-            loginSuccess();
-        }, 800);
-        return;
-    }
-    
-    // Check for Regular Keys
-    if (VALID_KEYS.includes(key)) {
-        msg.textContent = "✅ Đăng Nhập Thành Công!";
-        msg.className = "login-msg success";
-        isAdmin = false;
-        currentUID = uid;
-        expireTime = Date.now() + (24 * 60 * 60 * 1000); // 24 Hours
-        
-        setTimeout(() => {
-            loginSuccess();
-        }, 800);
-        return;
-    }
-    
-    msg.textContent = "❌ Key Không Hợp Lệ!";
-    msg.className = "login-msg error";
 }
 
-function loginSuccess() {
+function login() {
     document.getElementById("loginModal").style.display = "none";
     document.getElementById("appContent").classList.add("visible");
-    updateUserDisplay();
-    applyAdminTheme();
+    updateUI();
 }
 
-function updateUserDisplay() {
-    document.getElementById("displayUID").textContent = currentUID;
-    
-    const hours = Math.floor((expireTime - Date.now()) / (1000 * 60 * 60));
-    const minutes = Math.floor(((expireTime - Date.now()) % (1000 * 60 * 60)) / (1000 * 60));
+function updateUI() {
+    document.getElementById("displayUID").textContent = currentUser.uid;
     
     if (isAdmin) {
+        document.getElementById("expiryTime").textContent = currentUser.expiry;
+        document.getElementById("expiryTime").classList.add("forever");
+        document.getElementById("statusValue").textContent = "⭐ Admin";
+        document.getElementById("statusValue").classList.add("admin");
+        document.getElementById("headerTitle").classList.add("admin");
+        document.getElementById("sideMenu").classList.add("admin");
+        document.getElementById("menuToggle").classList.add("admin");
+        document.getElementById("navBar").classList.add("admin");
+        document.getElementById("userInfoBar").classList.add("admin");
+        document.getElementById("tabsContainer").classList.add("admin");
+        document.querySelectorAll(".tab-btn").forEach(btn => btn.classList.add("admin"));
+        document.querySelectorAll(".tab-btn.active").forEach(btn => btn.classList.add("admin"));
         document.getElementById("displayExpiry").textContent = "♾️ FOREVER";
-        document.getElementById("statusValue").textContent = "⭐ ADMIN";
     } else {
-        document.getElementById("displayExpiry").textContent = `${hours}h ${minutes}m`;
-        document.getElementById("statusValue").textContent = "✓ User";
+        const hours = Math.floor((currentUser.expiry - Date.now()) / (1000 * 60 * 60));
+        document.getElementById("displayExpiry").textContent = `${hours}h`;
     }
 }
 
-function applyAdminTheme() {
-    if (isAdmin) {
-        const sideMenu = document.getElementById("sideMenu");
-        const menuToggle = document.getElementById("menuToggle");
-        const userInfoBar = document.getElementById("userInfoBar");
-        const tabsContainer = document.getElementById("tabsContainer");
-        const nav = document.getElementById("nav");
-        const headerH1 = document.querySelector(".header h1");
-        const headerSub = document.querySelector(".header .sub");
-        const appContent = document.getElementById("appContent");
-        
-        sideMenu.classList.add("admin");
-        menuToggle.classList.add("admin");
-        userInfoBar.classList.add("admin");
-        tabsContainer.classList.add("admin");
-        nav.classList.add("admin");
-        headerH1.classList.add("admin");
-        headerSub.classList.add("admin");
-        appContent.classList.add("admin");
-    }
+function switchTab(n) {
+    document.querySelectorAll(".tab-content").forEach(t => t.style.display = "none");
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.getElementById(`tab-${n}`).style.display = "block";
+    document.querySelectorAll(".tab-btn")[n].classList.add("active");
+}
+
+function toggle(element) {
+    const item = element.closest(".item");
+    const status = item.querySelector(".status");
+    status.textContent = element.checked ? "ON" : "OFF";
+    status.className = element.checked ? "status on" : "status off";
 }
 
 function toggleMenu() {
     document.getElementById("sideMenu").classList.toggle("expanded");
 }
 
-function switchTab(num) {
-    const tabs = document.querySelectorAll(".tab-content");
-    const btns = document.querySelectorAll(".tab-btn");
-    const menuItems = document.querySelectorAll(".menu-item");
-    
-    tabs.forEach(t => t.style.display = "none");
-    btns.forEach(b => b.classList.remove("active"));
-    menuItems.forEach(m => m.classList.remove("active"));
-    
-    document.getElementById("tab-" + num).style.display = "block";
-    if (btns[num]) btns[num].classList.add("active");
-    if (menuItems[num]) menuItems[num].classList.add("active");
-}
-
-function toggle(el) {
-    const status = el.closest(".item").querySelector(".status");
-    const isChecked = el.checked;
-    status.textContent = isChecked ? "ON" : "OFF";
-    status.className = isChecked ? "status on" : "status off";
-}
-
 function logout() {
-    if (confirm("Bạn có chắc muốn đăng xuất?")) {
-        location.reload();
-    }
+    document.getElementById("appContent").classList.remove("visible");
+    document.getElementById("loginModal").style.display = "flex";
+    document.getElementById("uidInput").value = "";
+    document.getElementById("keyInput").value = "";
+    currentUser = null;
+    isAdmin = false;
 }
-
-// Update timer every minute
-setInterval(updateUserDisplay, 60000);
 </script>
 </body>
 </html>
