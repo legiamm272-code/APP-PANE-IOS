@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PANEL IOS - HD ULTIMATE ADMIN</title>
+<title>PANEL IOS - HD ULTIMATE</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -13,17 +13,13 @@
     --accent: #8a2eff;
     --success: #00ff99;
     --admin: #ffa500;
-    --admin-light: #ffb84d;
     --dark: #0a0e27;
-    --darker: #061320;
-    --card: rgba(10, 25, 50, 0.95);
-    --blur: rgba(10, 14, 39, 0.98);
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-    background: linear-gradient(135deg, var(--dark) 0%, #1a1f3a 50%, var(--darker) 100%);
+    background: linear-gradient(135deg, var(--dark) 0%, #1a1f3a 50%, #061320 100%);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: white;
     overflow-x: hidden;
@@ -34,30 +30,28 @@ body {
 @keyframes slideDown { from { transform: translateY(-100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes pulse-star { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
-@keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(255, 165, 0, 0.5), inset 0 0 20px rgba(255, 165, 0, 0.2); } 50% { box-shadow: 0 0 40px rgba(255, 165, 0, 0.8), inset 0 0 30px rgba(255, 165, 0, 0.4); } }
-@keyframes shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(255, 165, 0, 0.5); } 50% { box-shadow: 0 0 40px rgba(255, 165, 0, 0.8); } }
 
-/* ===== LOGIN MODAL ===== */
 .login-modal {
     position: fixed;
     inset: 0;
-    background: var(--blur);
+    background: rgba(10, 14, 39, 0.98);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 2000;
-    backdrop-filter: blur(12px);
-    animation: fadeIn 0.6s ease-out;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-out;
 }
 
 .login-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    max-width: 1100px;
-    width: 92%;
-    animation: slideUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+    gap: 40px;
+    max-width: 1000px;
+    width: 90%;
+    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .login-visual {
@@ -65,13 +59,12 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 35px;
+    gap: 30px;
 }
 
 .login-logo {
-    font-size: 140px;
+    font-size: 120px;
     animation: float 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 30px rgba(255, 165, 0, 0.6));
 }
 
 .login-title {
@@ -79,258 +72,311 @@ body {
 }
 
 .login-title h1 {
-    font-size: 42px;
-    background: linear-gradient(135deg, var(--admin), #ffff00, var(--admin));
+    font-size: 36px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     font-weight: 900;
-    letter-spacing: 3px;
-    text-shadow: 0 0 30px rgba(255, 165, 0, 0.4);
+    letter-spacing: 2px;
 }
 
 .login-title p {
-    color: var(--admin);
-    font-size: 16px;
-    letter-spacing: 4px;
+    color: var(--primary);
+    font-size: 14px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    font-weight: 700;
-    text-shadow: 0 0 15px rgba(255, 165, 0, 0.5);
-}
-
-.admin-badge {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--admin), var(--admin-light));
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 800;
-    margin-top: 10px;
-    box-shadow: 0 0 20px rgba(255, 165, 0, 0.6);
 }
 
 .login-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    gap: 15px;
     width: 100%;
 }
 
 .stat-box {
-    background: linear-gradient(135deg, rgba(255, 165, 0, 0.15), rgba(255, 165, 0, 0.05));
-    border: 2px solid rgba(255, 165, 0, 0.3);
-    border-radius: 16px;
-    padding: 20px;
+    background: rgba(0, 200, 255, 0.1);
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    border-radius: 12px;
+    padding: 15px;
     text-align: center;
-    box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
 }
 
 .stat-box .number {
-    font-size: 28px;
-    color: var(--admin);
+    font-size: 24px;
+    color: var(--success);
     font-weight: 900;
-    text-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
 }
 
 .stat-box .label {
-    font-size: 13px;
-    color: var(--admin);
-    margin-top: 8px;
+    font-size: 12px;
+    color: var(--primary);
+    margin-top: 6px;
     text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 1px;
 }
 
 .login-box {
-    background: linear-gradient(145deg, #2a1900, #1a0f00);
-    border-radius: 24px;
-    padding: 45px;
-    border: 3px solid var(--admin);
-    box-shadow: 0 0 80px rgba(255, 165, 0, 0.4), inset 0 0 40px rgba(255, 165, 0, 0.1);
-    animation: slideDown 0.7s ease-out;
+    background: linear-gradient(145deg, #1a2647 0%, #0f1a2e 50%, #1d2f47 100%);
+    border-radius: 20px;
+    padding: 40px;
+    border: 2px solid rgba(0, 200, 255, 0.25);
+    box-shadow: 0 0 60px rgba(0, 200, 255, 0.2);
+    animation: slideDown 0.6s ease-out;
+}
+
+.login-box.admin-mode {
+    border-color: var(--admin);
+    box-shadow: 0 0 60px rgba(255, 165, 0, 0.4);
+    background: linear-gradient(145deg, #2a1900 0%, #1a0f00 50%, #2d1a00 100%);
 }
 
 .login-form {
     width: 100%;
 }
 
+.mode-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 10px;
+    background: rgba(0, 200, 255, 0.15);
+    border: 1.5px solid rgba(0, 200, 255, 0.3);
+    color: #9ad6ff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.mode-btn.active {
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    border-color: var(--secondary);
+    color: #fff;
+}
+
+.mode-btn.admin {
+    background: rgba(255, 165, 0, 0.15);
+    border-color: rgba(255, 165, 0, 0.4);
+    color: var(--admin);
+}
+
+.mode-btn.admin.active {
+    background: linear-gradient(135deg, var(--admin), #ffff00);
+    border-color: var(--admin);
+    color: #000;
+}
+
 .form-group {
-    margin-bottom: 22px;
+    margin-bottom: 18px;
     display: flex;
     flex-direction: column;
 }
 
 .form-group label {
-    font-size: 13px;
-    color: var(--admin);
-    margin-bottom: 10px;
-    font-weight: 800;
-    letter-spacing: 1.5px;
+    font-size: 12px;
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(255, 165, 0, 0.4);
 }
 
-.form-group input {
+.form-group label.admin {
+    color: var(--admin);
+}
+
+.form-group input, .form-group select {
     width: 100%;
-    padding: 15px 18px;
-    border-radius: 14px;
-    border: 2px solid var(--admin);
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(0, 200, 255, 0.3);
     outline: none;
     font-size: 15px;
-    background: linear-gradient(135deg, rgba(50, 25, 0, 0.8), rgba(50, 25, 0, 0.6));
-    color: var(--admin);
+    background: rgba(30, 50, 85, 0.6);
+    color: #fff;
     transition: all 0.3s ease;
-    font-weight: 600;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
+    background: rgba(30, 50, 85, 0.9);
 }
 
 .form-group input::placeholder {
-    color: rgba(255, 165, 0, 0.5);
+    color: rgba(154, 214, 255, 0.5);
 }
 
-.form-group input:focus {
-    border-color: #ffff00;
-    box-shadow: 0 0 30px rgba(255, 165, 0, 0.6), inset 0 0 15px rgba(255, 165, 0, 0.1);
-    background: linear-gradient(135deg, rgba(50, 25, 0, 1), rgba(50, 25, 0, 0.8));
+.form-group select {
+    background: rgba(30, 50, 85, 0.6);
+    color: #fff;
+}
+
+.form-group select option {
+    background: #1a2647;
+    color: #fff;
 }
 
 .login-btn {
     width: 100%;
-    padding: 16px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, var(--admin) 0%, #ffff00 50%, var(--admin) 100%);
-    background-size: 200% 200%;
-    color: #000;
-    font-weight: 800;
-    border: 3px solid var(--admin);
-    font-size: 16px;
+    padding: 14px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    font-size: 15px;
     cursor: pointer;
-    box-shadow: 0 0 40px rgba(255, 165, 0, 0.8);
+    box-shadow: 0 0 25px rgba(255, 0, 200, 0.4);
     transition: all 0.3s ease;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    margin-top: 15px;
+    margin-top: 10px;
     position: relative;
     overflow: hidden;
-    animation: shimmer 3s ease-in-out infinite;
+}
+
+.login-btn.admin-btn {
+    background: linear-gradient(135deg, var(--admin), #ffff00);
+    color: #000;
+    box-shadow: 0 0 30px rgba(255, 165, 0, 0.6);
+    animation: glow 2s ease-in-out infinite;
 }
 
 .login-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 60px rgba(255, 165, 0, 1);
+    transform: translateY(-2px);
 }
 
 .login-msg {
-    margin-top: 15px;
-    min-height: 26px;
-    font-size: 14px;
+    margin-top: 12px;
+    min-height: 24px;
+    font-size: 13px;
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
     animation: slideUp 0.3s ease;
-    text-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
 }
 
 .login-msg.success {
-    color: #00ff99;
+    color: var(--success);
 }
 
 .login-msg.error {
-    color: #ff2d75;
+    color: var(--secondary);
 }
 
 .login-msg.admin {
     color: var(--admin);
-    font-size: 15px;
 }
 
 .login-footer {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 2px solid var(--admin);
-    font-size: 12px;
-    color: var(--admin);
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(0, 200, 255, 0.15);
+    font-size: 11px;
+    color: #9ad6ff;
     text-align: center;
     line-height: 1.8;
-    font-weight: 600;
 }
 
 .expiry-info {
-    background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 165, 0, 0.1));
-    padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    border: 1px solid var(--admin);
+    background: rgba(0, 200, 255, 0.15);
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
 }
 
 .expiry-time {
-    color: #ffff00;
-    font-weight: 800;
+    color: var(--success);
+    font-weight: 700;
 }
 
-/* ===== SIDE MENU ===== */
+.expiry-time.forever {
+    color: var(--admin);
+    font-weight: 700;
+}
+
+/* SIDE MENU */
 .side-menu {
     position: fixed;
     left: 0;
     top: 0;
     height: 100vh;
     width: 75px;
-    background: linear-gradient(180deg, #1a0f00 0%, #2a1900 50%, #1a0f00 100%);
-    box-shadow: 3px 0 40px rgba(255, 165, 0, 0.3);
+    background: linear-gradient(180deg, #0a1428 0%, #0f1a2e 50%, #061320 100%);
+    box-shadow: 3px 0 30px rgba(0, 122, 255, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 900;
     transition: all 0.4s;
-    border-right: 3px solid var(--admin);
+    border-right: 2px solid rgba(0, 200, 255, 0.15);
     overflow-y: auto;
     padding-top: 20px;
 }
 
-.side-menu::-webkit-scrollbar { width: 8px; }
-.side-menu::-webkit-scrollbar-track { background: rgba(255, 165, 0, 0.05); }
-.side-menu::-webkit-scrollbar-thumb { background: var(--admin); border-radius: 4px; }
+.side-menu.admin {
+    border-right-color: var(--admin);
+}
+
+.side-menu::-webkit-scrollbar { width: 6px; }
+.side-menu::-webkit-scrollbar-track { background: rgba(0, 200, 255, 0.05); }
+.side-menu::-webkit-scrollbar-thumb { background: rgba(0, 200, 255, 0.3); border-radius: 3px; }
 
 .side-menu.expanded { width: 280px; }
 
 .menu-item {
-    padding: 18px 12px;
-    color: var(--admin);
+    padding: 16px 10px;
+    color: #9ad6ff;
     width: 100%;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s;
     border-left: 4px solid transparent;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .menu-item:hover {
-    background: rgba(255, 165, 0, 0.15);
-    border-left-color: var(--admin);
+    background: rgba(0, 200, 255, 0.12);
+    border-left-color: var(--primary);
 }
 
 .menu-item.active {
-    background: linear-gradient(90deg, rgba(255, 165, 0, 0.3), transparent);
-    color: #ffff00;
+    background: linear-gradient(90deg, rgba(255, 0, 128, 0.25), transparent);
+    color: var(--secondary);
+    border-left-color: var(--secondary);
+}
+
+.menu-item.admin.active {
+    background: linear-gradient(90deg, rgba(255, 165, 0, 0.25), transparent);
+    color: var(--admin);
     border-left-color: var(--admin);
 }
 
 .menu-icon {
-    font-size: 20px;
+    font-size: 18px;
     transition: transform 0.3s;
 }
 
 .menu-item:hover .menu-icon {
-    transform: scale(1.25) rotate(8deg);
+    transform: scale(1.2) rotate(5deg);
 }
 
 .menu-text {
     display: none;
-    font-size: 12px;
+    font-size: 11px;
     white-space: nowrap;
 }
 
@@ -340,29 +386,33 @@ body {
 
 .menu-toggle {
     position: fixed;
-    left: 16px;
-    top: 16px;
-    font-size: 28px;
-    color: var(--admin);
-    background: linear-gradient(135deg, rgba(50, 25, 0, 0.95), rgba(50, 25, 0, 0.85));
-    padding: 12px 16px;
-    border-radius: 12px;
+    left: 14px;
+    top: 14px;
+    font-size: 26px;
+    color: var(--primary);
+    background: rgba(8, 26, 51, 0.95);
+    padding: 10px 13px;
+    border-radius: 10px;
     cursor: pointer;
     z-index: 950;
-    border: 2px solid var(--admin);
+    border: 1.5px solid rgba(0, 200, 255, 0.4);
     transition: all 0.3s;
-    box-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
+}
+
+.menu-toggle.admin {
+    color: var(--admin);
+    border-color: var(--admin);
 }
 
 .menu-toggle:hover {
-    box-shadow: 0 0 30px rgba(255, 165, 0, 0.7);
-    transform: scale(1.12);
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
+    transform: scale(1.1);
 }
 
-/* ===== MAIN CONTENT ===== */
+/* MAIN CONTENT */
 .main-content {
     margin-left: 75px;
-    padding-bottom: 100px;
+    padding-bottom: 90px;
     transition: margin-left 0.4s;
     min-height: 100vh;
 }
@@ -373,111 +423,146 @@ body {
 
 .header {
     text-align: center;
-    padding: 30px 0 15px;
-    margin-top: 8px;
-    background: linear-gradient(180deg, rgba(255, 165, 0, 0.1), transparent);
+    padding: 25px 0 10px;
+    margin-top: 5px;
 }
 
 .header h1 {
-    font-size: 32px;
+    font-size: 28px;
     letter-spacing: 2px;
     font-weight: 900;
-    background: linear-gradient(135deg, var(--admin), #ffff00);
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 8px;
-    text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+    margin-bottom: 6px;
+}
+
+.header h1.admin {
+    background: linear-gradient(135deg, var(--admin), #ffff00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .header .sub {
+    color: var(--primary);
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.header .sub.admin {
     color: var(--admin);
-    font-size: 13px;
-    letter-spacing: 4px;
-    font-weight: 700;
 }
 
 .user-info-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    margin: 15px 15px 0;
-    background: linear-gradient(135deg, rgba(255, 165, 0, 0.15), rgba(255, 165, 0, 0.05));
-    border-radius: 14px;
-    border: 2px solid var(--admin);
-    font-size: 12px;
+    padding: 12px 16px;
+    margin: 12px 12px 0;
+    background: linear-gradient(135deg, rgba(0, 200, 255, 0.1), rgba(0, 200, 255, 0.05));
+    border-radius: 12px;
+    border: 1.5px solid rgba(0, 200, 255, 0.2);
+    font-size: 11px;
     flex-wrap: wrap;
-    gap: 10px;
-    box-shadow: 0 0 15px rgba(255, 165, 0, 0.2);
+    gap: 8px;
+}
+
+.user-info-bar.admin {
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.15), rgba(255, 165, 0, 0.05));
+    border-color: rgba(255, 165, 0, 0.4);
 }
 
 .user-info-item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
 }
 
 .user-info-item .label {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.user-info-item .label.admin {
     color: var(--admin);
-    font-weight: 800;
 }
 
 .user-info-item .value {
-    color: #ffff00;
-    font-weight: 800;
+    color: var(--success);
+    font-weight: 700;
+}
+
+.user-info-item .value.admin {
+    color: var(--admin);
 }
 
 .tabs-container {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    padding: 16px 12px;
+    gap: 6px;
+    padding: 12px 10px;
     flex-wrap: wrap;
+    background: rgba(0, 200, 255, 0.05);
+    margin: 12px 10px 0;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 200, 255, 0.1);
+}
+
+.tabs-container.admin {
     background: rgba(255, 165, 0, 0.05);
-    margin: 15px 12px 0;
-    border-radius: 16px;
-    border: 2px solid var(--admin);
+    border-color: rgba(255, 165, 0, 0.2);
 }
 
 .tab-btn {
-    padding: 10px 18px;
-    border-radius: 20px;
-    border: 2px solid var(--admin);
+    padding: 8px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 200, 255, 0.3);
     background: transparent;
-    color: var(--admin);
+    color: #9ad6ff;
     cursor: pointer;
     transition: all 0.3s;
-    font-size: 12px;
-    font-weight: 800;
+    font-size: 11px;
+    font-weight: 700;
 }
 
 .tab-btn.active {
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    border-color: var(--secondary);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 0, 128, 0.4);
+}
+
+.tab-btn.active.admin {
     background: linear-gradient(135deg, var(--admin), #ffff00);
-    border-color: #ffff00;
+    border-color: var(--admin);
     color: #000;
-    box-shadow: 0 0 20px rgba(255, 165, 0, 0.7);
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.6);
 }
 
 .tab-btn:hover:not(.active) {
-    border-color: #ffff00;
+    border-color: var(--primary);
     transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(255, 165, 0, 0.5);
 }
 
 .card {
-    margin: 12px 15px;
-    padding: 16px;
-    border-radius: 16px;
-    background: linear-gradient(135deg, var(--card), rgba(15, 35, 65, 0.95));
-    border: 2px solid var(--admin);
-    box-shadow: 0 0 25px rgba(255, 165, 0, 0.15);
+    margin: 10px 12px;
+    padding: 14px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(10, 25, 50, 0.9), rgba(15, 35, 65, 0.9));
+    border: 1px solid rgba(0, 180, 255, 0.25);
+    box-shadow: 0 0 20px rgba(0, 150, 255, 0.1);
     transition: all 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 35px rgba(255, 165, 0, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(255, 0, 150, 0.25);
+}
+
+.card.admin {
+    border-color: var(--admin);
 }
 
 .item {
@@ -487,43 +572,43 @@ body {
 }
 
 .title {
-    font-size: 15px;
-    font-weight: 800;
+    font-size: 14px;
+    font-weight: 700;
     color: #fff;
 }
 
 .desc {
-    font-size: 12px;
+    font-size: 11px;
     color: #9ad6ff;
-    margin-top: 6px;
+    margin-top: 4px;
 }
 
 .status {
-    font-size: 11px;
-    padding: 6px 12px;
-    border-radius: 18px;
-    margin-right: 12px;
-    font-weight: 800;
+    font-size: 9px;
+    padding: 4px 8px;
+    border-radius: 14px;
+    margin-right: 8px;
+    font-weight: 700;
     text-transform: uppercase;
 }
 
 .on {
-    background: linear-gradient(135deg, rgba(0, 255, 150, 0.3), rgba(0, 200, 200, 0.2));
+    background: linear-gradient(135deg, rgba(0, 255, 150, 0.2), rgba(0, 200, 200, 0.2));
     color: var(--success);
-    border: 2px solid var(--success);
+    border: 1px solid var(--success);
 }
 
 .off {
-    background: linear-gradient(135deg, rgba(255, 0, 80, 0.3), rgba(200, 0, 100, 0.2));
+    background: linear-gradient(135deg, rgba(255, 0, 80, 0.2), rgba(200, 0, 100, 0.2));
     color: #ff4d6d;
-    border: 2px solid #ff4d6d;
+    border: 1px solid #ff4d6d;
 }
 
 .switch {
     position: relative;
-    width: 55px;
-    height: 30px;
-    margin-left: 10px;
+    width: 48px;
+    height: 24px;
+    margin-left: 8px;
 }
 
 .switch input { display: none; }
@@ -532,132 +617,133 @@ body {
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, #2a2a3a, #1a1a2a);
-    border-radius: 30px;
-    transition: all 0.4s;
+    border-radius: 24px;
+    transition: all 0.3s;
     cursor: pointer;
-    border: 2px solid var(--admin);
+    border: 1.5px solid rgba(100, 100, 120, 0.5);
 }
 
 .slider::before {
     content: "";
     position: absolute;
-    height: 24px;
-    width: 24px;
+    height: 20px;
+    width: 20px;
     left: 2px;
     bottom: 2px;
     background: white;
     border-radius: 50%;
-    transition: all 0.4s;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 input:checked + .slider {
-    background: linear-gradient(135deg, var(--admin), #ffff00);
-    border-color: #ffff00;
-    box-shadow: 0 0 20px rgba(255, 165, 0, 0.6);
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    border-color: var(--secondary);
+    box-shadow: 0 0 15px rgba(255, 0, 200, 0.4);
 }
 
 input:checked + .slider::before {
-    transform: translateX(25px);
-    box-shadow: 0 2px 8px rgba(255, 165, 0, 0.5);
+    transform: translateX(24px);
 }
 
-/* ===== ON ALL BUTTON ===== */
+/* ON ALL BUTTON */
 .on-all-button {
     position: fixed;
-    bottom: 110px;
+    bottom: 100px;
     right: 20px;
-    width: 75px;
-    height: 75px;
+    width: 70px;
+    height: 70px;
     background: linear-gradient(135deg, var(--admin), #ffff00);
     border-radius: 50%;
-    border: 3px solid #ffff00;
+    border: 3px solid var(--admin);
     font-size: 36px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 40px rgba(255, 165, 0, 0.8);
-    animation: pulse-star 2s ease-in-out infinite, glow 2s ease-in-out infinite;
+    box-shadow: 0 0 30px rgba(255, 165, 0, 0.6);
+    animation: pulse 2s ease-in-out infinite, glow 2s ease-in-out infinite;
     transition: all 0.3s;
     z-index: 500;
 }
 
 .on-all-button:hover {
-    transform: scale(1.2);
-    box-shadow: 0 0 60px rgba(255, 165, 0, 1);
+    transform: scale(1.15);
+    box-shadow: 0 0 50px rgba(255, 165, 0, 0.8);
 }
 
 .on-all-button:active {
-    transform: scale(0.9);
+    transform: scale(0.95);
 }
 
-/* ===== NAV ===== */
+/* NAV */
 .nav {
     position: fixed;
     bottom: 0;
     width: 100%;
     left: 0;
-    background: linear-gradient(180deg, rgba(50, 25, 0, 0.98), rgba(50, 25, 0, 1));
+    background: linear-gradient(180deg, rgba(7, 20, 34, 0.95), rgba(7, 20, 34, 1));
     display: flex;
     justify-content: space-around;
-    padding: 14px 10px;
-    border-top: 3px solid var(--admin);
+    padding: 10px 8px;
+    border-top: 2px solid rgba(0, 150, 255, 0.25);
     z-index: 800;
-    box-shadow: 0 -2px 20px rgba(255, 165, 0, 0.3);
+}
+
+.nav.admin {
+    border-top-color: var(--admin);
 }
 
 .nav div {
-    font-size: 12px;
-    color: var(--admin);
+    font-size: 10px;
+    color: #9ad6ff;
     cursor: pointer;
-    padding: 10px 14px;
-    border-radius: 12px;
+    padding: 8px 10px;
+    border-radius: 10px;
     transition: all 0.3s;
-    font-weight: 700;
+    font-weight: 600;
     flex: 1;
     text-align: center;
 }
 
 .nav div:hover {
-    background: rgba(255, 165, 0, 0.2);
-    color: #ffff00;
-    transform: translateY(-2px);
+    background: rgba(0, 200, 255, 0.15);
+    color: var(--primary);
+    transform: translateY(-1px);
 }
 
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 12px 15px;
+    gap: 10px;
+    margin: 10px 12px;
 }
 
 .stat-item {
-    background: linear-gradient(135deg, rgba(255, 165, 0, 0.15), rgba(255, 165, 0, 0.05));
-    border: 2px solid var(--admin);
-    border-radius: 16px;
-    padding: 18px;
+    background: linear-gradient(135deg, rgba(0, 200, 255, 0.15), rgba(138, 46, 255, 0.15));
+    border: 1px solid rgba(0, 200, 255, 0.25);
+    border-radius: 12px;
+    padding: 14px;
     text-align: center;
     transition: all 0.3s;
 }
 
 .stat-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 25px rgba(255, 165, 0, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 200, 255, 0.25);
 }
 
 .stat-label {
-    font-size: 12px;
-    color: var(--admin);
-    margin-bottom: 8px;
-    font-weight: 700;
+    font-size: 10px;
+    color: #9ad6ff;
+    margin-bottom: 6px;
+    font-weight: 600;
 }
 
 .stat-value {
-    font-size: 26px;
-    color: #ffff00;
+    font-size: 20px;
+    color: var(--success);
     font-weight: 900;
-    text-shadow: 0 0 15px rgba(255, 165, 0, 0.6);
 }
 
 .app-content {
@@ -672,14 +758,13 @@ input:checked + .slider::before {
 .loading {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.85);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 3000;
     flex-direction: column;
-    gap: 20px;
-    backdrop-filter: blur(5px);
+    gap: 15px;
 }
 
 .loading.active {
@@ -687,38 +772,30 @@ input:checked + .slider::before {
 }
 
 .loading-spinner {
-    width: 60px;
-    height: 60px;
-    border: 4px solid rgba(255, 165, 0, 0.2);
-    border-top-color: var(--admin);
-    border-right-color: #ffff00;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 200, 255, 0.2);
+    border-top-color: var(--primary);
+    border-right-color: var(--secondary);
     border-radius: 50%;
-    animation: spin 1.2s linear infinite;
+    animation: spin 1s linear infinite;
 }
 
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 
-.loading-text {
-    font-size: 16px;
-    letter-spacing: 2px;
-    color: var(--admin);
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
 @media (max-width: 1024px) {
-    .login-container { grid-template-columns: 1fr; gap: 30px; }
+    .login-container { grid-template-columns: 1fr; gap: 20px; }
     .login-visual { order: 2; }
     .login-box { order: 1; }
 }
 
 @media (max-width: 768px) {
-    .login-box { padding: 30px; }
+    .login-box { padding: 25px; }
     .side-menu.expanded { width: 240px; }
     .stats-grid { grid-template-columns: 1fr; }
-    .on-all-button { width: 65px; height: 65px; font-size: 28px; }
+    .on-all-button { width: 60px; height: 60px; font-size: 30px; }
 }
 
 @media (max-width: 480px) {
@@ -727,9 +804,9 @@ input:checked + .slider::before {
     .login-box { padding: 20px; }
 }
 
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: rgba(255, 165, 0, 0.05); }
-::-webkit-scrollbar-thumb { background: var(--admin); border-radius: 4px; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: rgba(0, 200, 255, 0.05); }
+::-webkit-scrollbar-thumb { background: rgba(0, 200, 255, 0.25); border-radius: 3px; }
 </style>
 </head>
 <body>
@@ -737,45 +814,88 @@ input:checked + .slider::before {
 <!-- LOGIN MODAL -->
 <div class="login-modal" id="loginModal">
     <div class="login-container">
-        <!-- LEFT SIDE -->
         <div class="login-visual">
-            <div class="login-logo">⭐</div>
+            <div class="login-logo">💀</div>
             <div class="login-title">
-                <h1>ADMIN PANEL</h1>
-                <p>IOS HD ULTIMATE</p>
-                <div class="admin-badge">🔐 ADMIN ACCESS</div>
+                <h1>PANEL IOS</h1>
+                <p>HD Ultimate</p>
             </div>
             <div class="login-stats">
-                <div class="stat-box"><div class="number">∞</div><div class="label">Unlimited</div></div>
-                <div class="stat-box"><div class="number">♾️</div><div class="label">Forever</div></div>
-                <div class="stat-box"><div class="number">⭐</div><div class="label">VIP</div></div>
-                <div class="stat-box"><div class="number">🚀</div><div class="label">Premium</div></div>
+                <div class="stat-box"><div class="number">12K+</div><div class="label">Users</div></div>
+                <div class="stat-box"><div class="number">99.9%</div><div class="label">Uptime</div></div>
+                <div class="stat-box"><div class="number">24H</div><div class="label">Expiry</div></div>
+                <div class="stat-box"><div class="number">v2.5</div><div class="label">Latest</div></div>
             </div>
         </div>
 
-        <!-- RIGHT SIDE -->
         <div class="login-box" id="loginBox">
             <form class="login-form" onsubmit="checkLogin(event)">
-                <div class="form-group">
-                    <label>👤 ADMIN UID</label>
-                    <input type="text" id="uidInput" placeholder="Nhập Admin UID..." value="ADMIN-ULTIMATE-2026" required>
+                <!-- MODE TOGGLE -->
+                <div class="mode-toggle">
+                    <button type="button" class="mode-btn active" id="userMode" onclick="setMode('user')">👤 USER</button>
+                    <button type="button" class="mode-btn admin" id="adminMode" onclick="setMode('admin')">⭐ ADMIN</button>
                 </div>
 
-                <div class="form-group">
-                    <label>🔑 ADMIN KEY (PERMANENT)</label>
-                    <input type="text" id="keyInput" placeholder="Admin Key..." value="GIAKHANHSOTO-ADMIN-ULTIMATE-FOREVER" readonly>
+                <!-- USER MODE -->
+                <div id="userFormSection">
+                    <div class="form-group">
+                        <label>🔑 UID (Nhập Tự Do)</label>
+                        <input type="text" id="uidInput" placeholder="Nhập UID..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>🛡️ Key (Chọn từ danh sách)</label>
+                        <select id="keyInput" required>
+                            <option value="">-- Chọn Key --</option>
+                            <option value="GIAKHANHSOTO-XRQGH87SHDUUWNSPQ">Key 1</option>
+                            <option value="GIAKHANHSOTO-KJSJHD8392JKLQWJD">Key 2</option>
+                            <option value="GIAKHANHSOTO-EIQPAJSZQKASQPJWW">Key 3</option>
+                            <option value="GIAKHANHSOTO-ASKDJQWKKJQ8129ZP">Key 4</option>
+                            <option value="GIAKHANHSOTO-PQOWIEJQPWQJHZKQN">Key 5</option>
+                            <option value="GIAKHANHSOTO-ZXMNVQAPQWJQZXMNV">Key 6</option>
+                            <option value="GIAKHANHSOTO-QWJKASJQPW284KJLN">Key 7</option>
+                            <option value="GIAKHANHSOTO-MNBVASDQWEJKQWJ12">Key 8</option>
+                            <option value="GIAKHANHSOTO-LKJQWPQJKQWNZXKJQ">Key 9</option>
+                            <option value="GIAKHANHSOTO-KJQWJQPWQXZCVLKJA">Key 10</option>
+                            <option value="GIAKHANHSOTO-QWEIUJASJKLQWJKJW">Key 11</option>
+                            <option value="GIAKHANHSOTO-PLKJQWEJKLZXCMNVB">Key 12</option>
+                            <option value="GIAKHANHSOTO-XJAKQWPQJKQZXMNVB">Key 13</option>
+                            <option value="GIAKHANHSOTO-KJQWXZMNVBJKQWJQW">Key 14</option>
+                            <option value="GIAKHANHSOTO-XDQWEJKLQWJKJWJKQ">Key 15</option>
+                            <option value="GIAKHANHSOTO-LKJQWKJKQWJKJQWJK">Key 16</option>
+                            <option value="GIAKHANHSOTO-PQJKZCMNBKJQWJQWJ">Key 17</option>
+                            <option value="GIAKHANHSOTO-XQJKWJQPWJKQWJKQW">Key 18</option>
+                            <option value="GIAKHANHSOTO-AKJQWJKQWJKQWJKJW">Key 19</option>
+                            <option value="GIAKHANHSOTO-ZMNVBJKQWJKQWJKJV">Key 20</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="login-btn">⚡ Đăng Nhập</button>
                 </div>
 
-                <button type="submit" class="login-btn" id="loginBtn">⭐ ADMIN LOGIN ⭐</button>
+                <!-- ADMIN MODE -->
+                <div id="adminFormSection" style="display:none;">
+                    <div class="form-group">
+                        <label class="admin">👤 ADMIN UID</label>
+                        <input type="text" id="adminUidInput" placeholder="Admin UID..." value="ADMIN-ULTIMATE-2026" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="admin">🔑 ADMIN KEY (PERMANENT)</label>
+                        <input type="text" id="adminKeyInput" placeholder="Admin Key..." value="GIAKHANHSOTO-ADMIN-ULTIMATE-FOREVER" readonly>
+                    </div>
+
+                    <button type="submit" class="login-btn admin-btn">⭐ ADMIN LOGIN ⭐</button>
+                </div>
             </form>
 
             <div class="login-msg" id="loginMsg"></div>
 
             <div class="login-footer">
                 <div class="expiry-info">
-                    ⏰ Thời hạn: <span class="expiry-time">♾️ FOREVER</span>
+                    ⏰ Hết hạn: <span class="expiry-time" id="expiryTime">24h 0m</span>
                 </div>
-                <div>✨ Admin Account | No Expiry | Full Features ✨</div>
+                <div id="footerText">✨ Free Login | 24H Expiry</div>
             </div>
         </div>
     </div>
@@ -783,39 +903,39 @@ input:checked + .slider::before {
 
 <!-- SIDE MENU -->
 <div class="side-menu" id="sideMenu">
-    <div class="menu-item active" onclick="switchTab(0)"><div class="menu-icon">🏠</div><div class="menu-text">Home</div></div>
-    <div class="menu-item" onclick="switchTab(1)"><div class="menu-icon">⚡️</div><div class="menu-text">Tools</div></div>
-    <div class="menu-item" onclick="switchTab(2)"><div class="menu-icon">🚀</div><div class="menu-text">Optimize</div></div>
-    <div class="menu-item" onclick="switchTab(3)"><div class="menu-icon">📊</div><div class="menu-text">Stats</div></div>
-    <div class="menu-item" onclick="switchTab(4)"><div class="menu-icon">⚙️</div><div class="menu-text">Settings</div></div>
-    <div class="menu-item" onclick="logout()"><div class="menu-icon">🚪</div><div class="menu-text">Exit</div></div>
+    <div class="menu-item active" onclick="switchTab(0)"><div class="menu-icon">🏠</div><div class="menu-text">Trang Chủ</div></div>
+    <div class="menu-item" onclick="switchTab(1)"><div class="menu-icon">⚡️</div><div class="menu-text">Công Cụ</div></div>
+    <div class="menu-item" onclick="switchTab(2)"><div class="menu-icon">🚀</div><div class="menu-text">Tối Ưu</div></div>
+    <div class="menu-item" onclick="switchTab(3)"><div class="menu-icon">📊</div><div class="menu-text">Thống Kê</div></div>
+    <div class="menu-item" onclick="switchTab(4)"><div class="menu-icon">⚙️</div><div class="menu-text">Cài Đặt</div></div>
+    <div class="menu-item" onclick="logout()"><div class="menu-icon">🚪</div><div class="menu-text">Đăng Xuất</div></div>
 </div>
 
 <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
 
-<!-- ON ALL BUTTON -->
-<div class="on-all-button" id="onAllButton" onclick="activateAllFeatures()">ON ALL</div>
+<!-- ON ALL BUTTON (ADMIN ONLY) -->
+<div class="on-all-button" id="onAllButton" style="display:none;" onclick="activateAllFeatures()">ON ALL</div>
 
 <!-- MAIN APP -->
 <div class="app-content" id="appContent">
     <div class="main-content">
         <div class="header">
-            <h1 id="headerTitle">⭐ ADMIN PANEL IOS HD</h1>
-            <div class="sub" id="headerSub">Ultimate Gaming Optimizer</div>
+            <h1 id="headerTitle">💀 PANEL IOS HD</h1>
+            <div class="sub" id="headerSub">Advanced Gaming Optimizer</div>
         </div>
 
         <div class="user-info-bar" id="userInfoBar">
             <div class="user-info-item"><span class="label">👤 UID:</span><span class="value" id="displayUID">N/A</span></div>
-            <div class="user-info-item"><span class="label">📅 Hết hạn:</span><span class="value" id="displayExpiry">♾️ FOREVER</span></div>
-            <div class="user-info-item"><span class="label">⚡ Role:</span><span class="value" id="userRole">⭐ ADMIN</span></div>
+            <div class="user-info-item"><span class="label">📅 Hết hạn:</span><span class="value" id="displayExpiry">--:--</span></div>
+            <div class="user-info-item"><span class="label">⚡ Role:</span><span class="value" id="userRole">User</span></div>
         </div>
 
         <div class="tabs-container" id="tabsContainer">
-            <button class="tab-btn active" onclick="switchTab(0)">🏠 Home</button>
-            <button class="tab-btn" onclick="switchTab(1)">⚡️ Tools</button>
-            <button class="tab-btn" onclick="switchTab(2)">🚀 Optimize</button>
-            <button class="tab-btn" onclick="switchTab(3)">📊 Stats</button>
-            <button class="tab-btn" onclick="switchTab(4)">⚙️ Settings</button>
+            <button class="tab-btn active" onclick="switchTab(0)">🏠 Trang Chủ</button>
+            <button class="tab-btn" onclick="switchTab(1)">⚡️ Công Cụ</button>
+            <button class="tab-btn" onclick="switchTab(2)">🚀 Tối Ưu</button>
+            <button class="tab-btn" onclick="switchTab(3)">📊 Thống Kê</button>
+            <button class="tab-btn" onclick="switchTab(4)">⚙️ Cài Đặt</button>
         </div>
 
         <!-- TAB 0 -->
@@ -824,11 +944,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🎮 AIMLOCK</div>
-                        <div class="desc">Smart Targeting System</div>
+                        <div class="desc">Công nghệ định hướng thông minh</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -836,11 +956,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🎯 FEATHER AIM</div>
-                        <div class="desc">Precision Targeting</div>
+                        <div class="desc">Mục tiêu chính xác</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -848,11 +968,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">⚡ QUICK SWIPE</div>
-                        <div class="desc">Fast Reaction Boost</div>
+                        <div class="desc">Vuốt nhanh mượt mà</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -864,11 +984,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🔧 RAM CLEANER</div>
-                        <div class="desc">Memory Optimization</div>
+                        <div class="desc">Dọn dẹp bộ nhớ</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -876,11 +996,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🌡️ CPU COOLER</div>
-                        <div class="desc">CPU Temperature Control</div>
+                        <div class="desc">Hạ nhiệt độ xử lý</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -888,11 +1008,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">📱 BATTERY SAVER</div>
-                        <div class="desc">Power Management</div>
+                        <div class="desc">Tiết kiệm pin</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -904,11 +1024,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🔒 STEADY HOLD</div>
-                        <div class="desc">Hand Stability</div>
+                        <div class="desc">Ổn định tay</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -916,11 +1036,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🚀 DRIFT FIX</div>
-                        <div class="desc">Drift Correction</div>
+                        <div class="desc">Khắc phục lan trôi</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -928,11 +1048,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">💨 SPEED BOOST</div>
-                        <div class="desc">Response Speed</div>
+                        <div class="desc">Tăng tốc độ phản ứng</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -942,20 +1062,20 @@ input:checked + .slider::before {
         <div class="tab-content" id="tab-3" style="display:none;">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-label">📈 CPU USAGE</div>
+                    <div class="stat-label">📈 CPU</div>
                     <div class="stat-value" id="cpuUsage">45%</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">🧠 RAM USAGE</div>
+                    <div class="stat-label">🧠 RAM</div>
                     <div class="stat-value" id="ramUsage">62%</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">🎮 FPS RATE</div>
-                    <div class="stat-value" id="fpsUsage">120 FPS</div>
+                    <div class="stat-label">🎮 FPS</div>
+                    <div class="stat-value" id="fpsUsage">120</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">⏱️ PING</div>
-                    <div class="stat-value" id="pingUsage">12ms</div>
+                    <div class="stat-label">🌡️ TEMP</div>
+                    <div class="stat-value" id="tempUsage">38°C</div>
                 </div>
             </div>
         </div>
@@ -963,11 +1083,30 @@ input:checked + .slider::before {
         <!-- TAB 4 -->
         <div class="tab-content" id="tab-4" style="display:none;">
             <div class="card">
-                <div class="title" style="color: var(--admin); margin-bottom: 15px;">⭐ ADMIN SETTINGS</div>
-                <div style="font-size: 12px; color: var(--admin); line-height: 2;">
-                    <div>✓ Status: <span style="color: #ffff00; font-weight: bold;">ADMIN ACTIVE</span></div>
-                    <div>✓ Expiry: <span style="color: #ffff00; font-weight: bold;">NEVER</span></div>
-                    <div>✓ Features: <span style="color: #ffff00; font-weight: bold;">ALL UNLOCKED</span></div>
+                <div class="item">
+                    <div style="flex: 1;">
+                        <div class="title">🔊 Âm thanh</div>
+                        <div class="desc">Phản hồi âm thanh</div>
+                    </div>
+                    <label class="switch"><input type="checkbox" checked onchange="toggle(this)"><span class="slider"></span></label>
+                </div>
+            </div>
+            <div class="card">
+                <div class="item">
+                    <div style="flex: 1;">
+                        <div class="title">📳 Rung tay</div>
+                        <div class="desc">Phản hồi rung</div>
+                    </div>
+                    <label class="switch"><input type="checkbox" checked onchange="toggle(this)"><span class="slider"></span></label>
+                </div>
+            </div>
+            <div class="card">
+                <div class="item">
+                    <div style="flex: 1;">
+                        <div class="title">🌙 Chế độ tối</div>
+                        <div class="desc">Giao diện tối</div>
+                    </div>
+                    <label class="switch"><input type="checkbox" checked onchange="toggle(this)"><span class="slider"></span></label>
                 </div>
             </div>
         </div>
@@ -975,180 +1114,215 @@ input:checked + .slider::before {
 </div>
 
 <!-- BOTTOM NAV -->
-<div class="nav">
-    <div onclick="switchTab(0)">🏠 Home</div>
-    <div onclick="switchTab(3)">📊 Stats</div>
-    <div onclick="switchTab(4)">⚙️ Settings</div>
+<div class="nav" id="nav">
+    <div onclick="switchTab(0)">🏠 Trang Chủ</div>
+    <div onclick="switchTab(3)">📊 Thống Kê</div>
+    <div onclick="switchTab(4)">⚙️ Cài Đặt</div>
 </div>
 
 <!-- LOADING -->
 <div class="loading" id="loading">
     <div class="loading-spinner"></div>
-    <div class="loading-text">PROCESSING...</div>
+    <div>ĐANG XỬ LÝ...</div>
 </div>
 
-<audio id="clickSound">
-<source src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg">
-</audio>
-
 <script>
-// Global Variables
+// ===== GLOBAL STATE =====
 let isAdmin = false;
-let isLoggedIn = false;
-let currentUID = "";
+let currentMode = 'user';
+let currentUID = '';
+let expireTime = Date.now() + 24*60*60*1000;
 
-// Admin Key - Never Expires
-const ADMIN_KEY = "GIAKHANHSOTO-ADMIN-ULTIMATE-FOREVER";
-const ADMIN_UID = "ADMIN-ULTIMATE-2026";
+const validKeys = [
+    "GIAKHANHSOTO-XRQGH87SHDUUWNSPQ",
+    "GIAKHANHSOTO-KJSJHD8392JKLQWJD",
+    "GIAKHANHSOTO-EIQPAJSZQKASQPJWW",
+    "GIAKHANHSOTO-ASKDJQWKKJQ8129ZP",
+    "GIAKHANHSOTO-PQOWIEJQPWQJHZKQN",
+    "GIAKHANHSOTO-ZXMNVQAPQWJQZXMNV",
+    "GIAKHANHSOTO-QWJKASJQPW284KJLN",
+    "GIAKHANHSOTO-MNBVASDQWEJKQWJ12",
+    "GIAKHANHSOTO-LKJQWPQJKQWNZXKJQ",
+    "GIAKHANHSOTO-KJQWJQPWQXZCVLKJA",
+    "GIAKHANHSOTO-QWEIUJASJKLQWJKJW",
+    "GIAKHANHSOTO-PLKJQWEJKLZXCMNVB",
+    "GIAKHANHSOTO-XJAKQWPQJKQZXMNVB",
+    "GIAKHANHSOTO-KJQWXZMNVBJKQWJQW",
+    "GIAKHANHSOTO-XDQWEJKLQWJKJWJKQ",
+    "GIAKHANHSOTO-LKJQWKJKQWJKJQWJK",
+    "GIAKHANHSOTO-PQJKZCMNBKJQWJQWJ",
+    "GIAKHANHSOTO-XQJKWJQPWJKQWJKQW",
+    "GIAKHANHSOTO-AKJQWJKQWJKQWJKJW",
+    "GIAKHANHSOTO-ZMNVBJKQWJKQWJKJV"
+];
 
-// Update Expiry Display
-function updateExpiryDisplay() {
-    if (isAdmin) {
-        document.getElementById("expiryTime").textContent = "♾️ FOREVER";
-        document.getElementById("displayExpiry").textContent = "♾️ FOREVER";
-    }
+// ===== SET MODE =====
+function setMode(mode) {
+    currentMode = mode;
+    document.getElementById('userMode').classList.toggle('active', mode === 'user');
+    document.getElementById('adminMode').classList.toggle('active', mode === 'admin');
+    document.getElementById('userFormSection').style.display = mode === 'user' ? 'block' : 'none';
+    document.getElementById('adminFormSection').style.display = mode === 'admin' ? 'block' : 'none';
 }
 
-// Login Function
+// ===== LOGIN FUNCTION =====
 function checkLogin(e) {
     e.preventDefault();
-    
-    const uid = document.getElementById("uidInput").value.trim();
-    const key = document.getElementById("keyInput").value.trim();
-    const msg = document.getElementById("loginMsg");
-    
+
+    if (currentMode === 'user') {
+        loginUser();
+    } else {
+        loginAdmin();
+    }
+}
+
+function loginUser() {
+    const uid = document.getElementById('uidInput').value.trim();
+    const key = document.getElementById('keyInput').value.trim();
+    const msg = document.getElementById('loginMsg');
+
     if (!uid) {
-        msg.textContent = "❌ UID is required!";
+        msg.textContent = "❌ Vui lòng nhập UID!";
         msg.className = "login-msg error";
-        playSound();
         return;
     }
-    
+
     if (!key) {
-        msg.textContent = "❌ Key is required!";
+        msg.textContent = "❌ Vui lòng chọn Key!";
         msg.className = "login-msg error";
-        playSound();
         return;
     }
-    
-    // Check if Admin
-    if (key === ADMIN_KEY) {
-        isAdmin = true;
-        msg.textContent = "✅ ADMIN LOGIN SUCCESSFUL!";
-        msg.className = "login-msg admin";
-        currentUID = "⭐ " + uid;
-        localStorage.setItem("panelLogin", "true");
-        localStorage.setItem("panelUID", uid);
-        localStorage.setItem("panelAdmin", "true");
-        playSound();
-        
-        setTimeout(() => {
-            document.getElementById("loginModal").style.display = "none";
-            document.getElementById("appContent").classList.add("visible");
-            updateAdminUI();
-            isLoggedIn = true;
-        }, 1000);
-    } else {
-        msg.textContent = "❌ Invalid Key!";
+
+    if (validKeys.indexOf(key) === -1) {
+        msg.textContent = "❌ Key không hợp lệ!";
         msg.className = "login-msg error";
-        playSound();
+        return;
     }
-}
 
-// Update Admin UI
-function updateAdminUI() {
-    document.getElementById("displayUID").textContent = currentUID;
-    document.getElementById("userRole").textContent = "⭐ ADMIN";
-    document.getElementById("onAllButton").style.display = "flex";
-    updateExpiryDisplay();
-}
-
-// Toggle Menu
-function toggleMenu() {
-    document.getElementById("sideMenu").classList.toggle("expanded");
-}
-
-// Switch Tab
-function switchTab(tabNum) {
-    const tabs = document.querySelectorAll(".tab-content");
-    const btns = document.querySelectorAll(".tab-btn");
-    const menuItems = document.querySelectorAll(".side-menu .menu-item");
+    msg.textContent = "✓ Đăng nhập thành công!";
+    msg.className = "login-msg success";
     
-    tabs.forEach(tab => tab.style.display = "none");
-    btns.forEach(btn => btn.classList.remove("active"));
-    menuItems.forEach(item => item.classList.remove("active"));
-    
-    document.getElementById("tab-" + tabNum).style.display = "block";
-    if (btns[tabNum]) btns[tabNum].classList.add("active");
-    if (menuItems[tabNum]) menuItems[tabNum].classList.add("active");
+    isAdmin = false;
+    currentUID = uid;
+    expireTime = Date.now() + 24*60*60*1000;
+
+    setTimeout(() => {
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('appContent').classList.add('visible');
+        updateUserDisplay();
+    }, 800);
 }
 
-// Toggle Feature
+function loginAdmin() {
+    const uid = document.getElementById('adminUidInput').value.trim();
+    const key = document.getElementById('adminKeyInput').value.trim();
+    const msg = document.getElementById('loginMsg');
+
+    if (uid !== 'ADMIN-ULTIMATE-2026') {
+        msg.textContent = "❌ Admin UID không đúng!";
+        msg.className = "login-msg error";
+        return;
+    }
+
+    msg.textContent = "✓ Admin Login Thành Công!";
+    msg.className = "login-msg admin";
+    
+    isAdmin = true;
+    currentUID = uid;
+    expireTime = null; // Không hết hạn
+
+    setTimeout(() => {
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('appContent').classList.add('visible');
+        updateAdminDisplay();
+    }, 800);
+}
+
+// ===== UPDATE DISPLAY =====
+function updateUserDisplay() {
+    document.getElementById('displayUID').textContent = currentUID;
+    document.getElementById('userRole').textContent = 'User';
+    
+    const hours = Math.floor((expireTime - Date.now()) / (1000 * 60 * 60));
+    const minutes = Math.floor(((expireTime - Date.Now()) % (1000 * 60 * 60)) / (1000 * 60));
+    document.getElementById('displayExpiry').textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+}
+
+function updateAdminDisplay() {
+    document.getElementById('loginBox').classList.add('admin-mode');
+    document.getElementById('headerTitle').classList.add('admin');
+    document.getElementById('headerSub').classList.add('admin');
+    document.getElementById('userInfoBar').classList.add('admin');
+    document.getElementById('tabsContainer').classList.add('admin');
+    document.getElementById('sideMenu').classList.add('admin');
+    document.getElementById('menuToggle').classList.add('admin');
+    document.getElementById('nav').classList.add('admin');
+    
+    document.getElementById('displayUID').textContent = currentUID;
+    document.getElementById('displayUID').classList.add('admin');
+    document.getElementById('userRole').textContent = '⭐ ADMIN';
+    document.getElementById('userRole').classList.add('admin');
+    document.getElementById('displayExpiry').textContent = '♾️ FOREVER';
+    document.getElementById('displayExpiry').classList.add('forever');
+    
+    document.getElementById('onAllButton').style.display = 'flex';
+}
+
+// ===== TOGGLE FUNCTION =====
 function toggle(el) {
-    const status = el.parentElement.parentElement.querySelector(".status");
-    playSound();
-    
+    const status = el.closest('.item').querySelector('.status');
     if (el.checked) {
-        status.textContent = "ON";
-        status.className = "status on";
+        status.textContent = 'ON';
+        status.classList.remove('off');
+        status.classList.add('on');
     } else {
-        status.textContent = "OFF";
-        status.className = "status off";
+        status.textContent = 'OFF';
+        status.classList.remove('on');
+        status.classList.add('off');
     }
 }
 
-// Activate All Features
+// ===== ON ALL FEATURES =====
 function activateAllFeatures() {
-    if (!isAdmin) return;
-    
-    const features = document.querySelectorAll(".feature-toggle");
-    features.forEach(feature => {
-        feature.checked = true;
-        const status = feature.parentElement.parentElement.querySelector(".status");
-        status.textContent = "ON";
-        status.className = "status on";
+    const allChecks = document.querySelectorAll('.switch input[type="checkbox"]');
+    allChecks.forEach(checkbox => {
+        if (!checkbox.checked) {
+            checkbox.checked = true;
+            toggle(checkbox);
+        }
     });
-    
-    playSound();
-    alert("✅ ALL FEATURES ACTIVATED! Opening Free Fire...");
-    window.location.href = "intent://com.dts.freefireth#Intent;scheme=freefire;package=com.dts.freefireth;end;";
+    alert('✨ Tất cả chức năng đã bật! Nhấn vào Free Fire để chơi game!');
+    window.location.href = 'https://play.google.com/store/apps/details?id=com.dts.freefireth';
 }
 
-// Logout
+// ===== SWITCH TAB =====
+function switchTab(num) {
+    const tabs = document.querySelectorAll('.tab-content');
+    const btns = document.querySelectorAll('.tab-btn');
+    
+    tabs.forEach(t => t.style.display = 'none');
+    btns.forEach(b => b.classList.remove('active'));
+    
+    document.getElementById('tab-' + num).style.display = 'block';
+    if (btns[num]) btns[num].classList.add('active');
+}
+
+// ===== TOGGLE MENU =====
+function toggleMenu() {
+    document.getElementById('sideMenu').classList.toggle('expanded');
+}
+
+// ===== LOGOUT =====
 function logout() {
-    if (confirm("Logout?")) {
-        localStorage.removeItem("panelLogin");
+    if (confirm('Bạn chắc chắn muốn đăng xuất?')) {
         location.reload();
     }
 }
 
-// Play Sound
-function playSound() {
-    const audio = document.getElementById("clickSound");
-    audio.currentTime = 0;
-    audio.play().catch(() => {});
-}
-
-// Initialize
+// ===== INIT =====
 window.onload = () => {
-    if (localStorage.getItem("panelLogin") === "true" && localStorage.getItem("panelAdmin") === "true") {
-        document.getElementById("loginModal").style.display = "none";
-        document.getElementById("appContent").classList.add("visible");
-        isAdmin = true;
-        isLoggedIn = true;
-        currentUID = "⭐ " + (localStorage.getItem("panelUID") || "ADMIN");
-        updateAdminUI();
-    }
-    
-    // Update stats every 3 seconds
-    setInterval(() => {
-        document.getElementById("cpuUsage").textContent = Math.floor(Math.random() * 40 + 25) + "%";
-        document.getElementById("ramUsage").textContent = Math.floor(Math.random() * 30 + 50) + "%";
-        document.getElementById("fpsUsage").textContent = Math.floor(Math.random() * 30 + 90) + " FPS";
-        document.getElementById("pingUsage").textContent = Math.floor(Math.random() * 20 + 8) + "ms";
-    }, 3000);
+    setMode('user');
 };
 </script>
-
 </body>
 </html>
