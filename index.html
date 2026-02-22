@@ -178,34 +178,6 @@ body {
     color: rgba(154, 214, 255, 0.5);
 }
 
-.info-box {
-    background: rgba(0, 200, 255, 0.1);
-    padding: 14px;
-    border-radius: 12px;
-    margin-bottom: 18px;
-    border: 1px solid rgba(0, 200, 255, 0.2);
-    font-size: 11px;
-    color: #9ad6ff;
-    line-height: 1.8;
-}
-
-.info-box.admin-box {
-    background: rgba(255, 165, 0, 0.1);
-    border-color: rgba(255, 165, 0, 0.3);
-    color: #ffd700;
-}
-
-.info-box .title {
-    color: var(--primary);
-    font-weight: 700;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-}
-
-.info-box.admin-box .title {
-    color: var(--admin);
-}
-
 .login-btn {
     width: 100%;
     padding: 14px;
@@ -737,7 +709,6 @@ input:checked + .slider::before {
 
 .app-content.admin {
     --secondary: var(--admin);
-    --primary: var(--admin);
 }
 
 .loading {
@@ -816,21 +787,14 @@ input:checked + .slider::before {
 
         <div class="login-box" id="loginBox">
             <form class="login-form" onsubmit="checkLogin(event)">
-                <div class="info-box" id="infoBox">
-                    <div class="title">📝 Hướng Dẫn Đăng Nhập</div>
-                    ✓ UID: Nhập tự do (bất kỳ gì)<br>
-                    ✓ Key: Nhập bất kỳ hoặc dùng Admin<br>
-                    ✓ Hết hạn: 24h kể từ đăng nhập
-                </div>
-
                 <div class="form-group">
                     <label>🔑 UID (Nhập Tự Do)</label>
-                    <input type="text" id="uidInput" placeholder="Nhập UID bất kỳ..." required>
+                    <input type="text" id="uidInput" placeholder="Nhập UID..." required>
                 </div>
 
                 <div class="form-group">
                     <label>🛡️ Key (License)</label>
-                    <input type="text" id="keyInput" placeholder="Nhập Key..." value="GIAKHANHSOTO-ADMIN2026KEY" required>
+                    <input type="text" id="keyInput" placeholder="Nhập Key hoặc dùng Admin..." value="GIAKHANHSOTO-ADMIN2026KEY" required>
                 </div>
 
                 <button type="submit" class="login-btn" id="loginBtn">⚡ Đăng Nhập</button>
@@ -1031,20 +995,19 @@ input:checked + .slider::before {
         <div class="tab-content" id="tab-4" style="display:none;">
             <div class="card" style="margin-bottom:100px;">
                 <div style="color:var(--secondary);font-weight:bold;margin-bottom:12px;font-size:14px;">⚠️ Thông Tin Tài Khoản</div>
-                <div style="font-size:11px;color:#9ad6ff;line-height:1.9;">
+                <div style="font-size:12px;color:#9ad6ff;line-height:2;">
                     <div>👤 UID: <span style="color:var(--success);font-weight:600;" id="accountUID">N/A</span></div>
                     <div>🔑 Key: <span style="color:var(--primary);font-weight:600;" id="accountKey">••••••••••</span></div>
-                    <div>👑 Role: <span style="color:var(--primary);font-weight:600;" id="accountRole">User</span></div>
                     <div>📅 Hết hạn: <span style="color:var(--secondary);font-weight:600;" id="accountExpiry">--:--</span></div>
+                    <div>⚡ Role: <span style="color:var(--success);font-weight:600;" id="accountRole">User</span></div>
                 </div>
-                <button onclick="logout()" style="width:100%;padding:10px;background:linear-gradient(135deg,var(--secondary),var(--accent));color:white;border:none;border-radius:8px;cursor:pointer;font-weight:700;margin-top:12px;transition:all 0.3s;font-size:11px;text-transform:uppercase;letter-spacing:0.5px;">🚪 ĐĂNG XUẤT</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- BOTTOM NAV -->
-<div class="nav" id="bottomNav">
+<div class="nav" id="nav">
     <div onclick="switchTab(0)">🏠 Trang Chủ</div>
     <div onclick="switchTab(3)">📊 Thống Kê</div>
     <div onclick="switchTab(4)">⚙️ Cài Đặt</div>
@@ -1053,133 +1016,174 @@ input:checked + .slider::before {
 <!-- LOADING -->
 <div class="loading" id="loading">
     <div class="loading-spinner"></div>
-    <div style="font-size:14px;letter-spacing:1px;">ĐANG KÍCH HOẠT...</div>
+    <div>ĐANG XỬ LÝ...</div>
 </div>
 
-<audio id="clickSound"><source src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
+<audio id="clickSound">
+<source src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg">
+</audio>
 
 <script>
 // ===== ADMIN KEY =====
 const ADMIN_KEY = "GIAKHANHSOTO-ADMIN2026KEY";
+const VALID_KEYS = [
+    "GIAKHANHSOTO-KEY001FREE24H",
+    "GIAKHANHSOTO-KEY002FREE24H",
+    "GIAKHANHSOTO-KEY003FREE24H",
+    "GIAKHANHSOTO-KEY004FREE24H",
+    "GIAKHANHSOTO-KEY005FREE24H",
+    "GIAKHANHSOTO-KEY006FREE24H",
+    "GIAKHANHSOTO-KEY007FREE24H",
+    "GIAKHANHSOTO-KEY008FREE24H",
+    "GIAKHANHSOTO-KEY009FREE24H",
+    "GIAKHANHSOTO-KEY010FREE24H",
+    "GIAKHANHSOTO-KEY011FREE24H",
+    "GIAKHANHSOTO-KEY012FREE24H",
+    "GIAKHANHSOTO-KEY013FREE24H",
+    "GIAKHANHSOTO-KEY014FREE24H",
+    "GIAKHANHSOTO-KEY015FREE24H",
+    "GIAKHANHSOTO-KEY016FREE24H",
+    "GIAKHANHSOTO-KEY017FREE24H",
+    "GIAKHANHSOTO-KEY018FREE24H",
+    "GIAKHANHSOTO-KEY019FREE24H",
+    "GIAKHANHSOTO-KEY020FREE24H",
+    ADMIN_KEY
+];
 
 let expireTime = Date.now() + 24*60*60*1000;
 let currentUID = "";
 let currentKey = "";
 let isAdmin = false;
 
+// ===== LOGIN FUNCTION =====
 function checkLogin(e) {
     e.preventDefault();
+    
     const uid = document.getElementById("uidInput").value.trim();
-    const key = document.getElementById("keyInput").value.trim();
+    const key = document.getElementById("keyInput").value.trim().toUpperCase();
     const msg = document.getElementById("loginMsg");
 
     if (!uid) {
-        msg.textContent = "❌ UID không được để trống!";
+        msg.textContent = "❌ Vui lòng nhập UID!";
         msg.className = "login-msg error";
         playSound();
         return;
     }
 
-    if (!key) {
-        msg.textContent = "❌ Key không được để trống!";
+    if (!VALID_KEYS.includes(key)) {
+        msg.textContent = "❌ Key không hợp lệ!";
         msg.className = "login-msg error";
         playSound();
         return;
     }
 
-    // Kiểm tra Admin
-    if (key === ADMIN_KEY) {
-        isAdmin = true;
-        msg.textContent = "✅ Đăng nhập Admin thành công!";
-    } else {
-        isAdmin = false;
-        msg.textContent = "✅ Đăng nhập thành công!";
-    }
-    
+    msg.textContent = "✅ Đăng nhập thành công!";
     msg.className = "login-msg success";
+
     currentUID = uid;
     currentKey = key;
-    localStorage.setItem("panelHDLogin", "true");
-    localStorage.setItem("panelHDUID", uid);
-    localStorage.setItem("panelHDKey", key);
-    localStorage.setItem("panelHDAdmin", isAdmin);
-    localStorage.setItem("panelHDExpiry", expireTime);
+    isAdmin = (key === ADMIN_KEY);
+
+    localStorage.setItem("panelLogin", "true");
+    localStorage.setItem("panelUID", uid);
+    localStorage.setItem("panelKey", key);
+    localStorage.setItem("panelExpiry", expireTime);
+    localStorage.setItem("panelIsAdmin", isAdmin);
+
     playSound();
 
     setTimeout(() => {
         document.getElementById("loginModal").style.display = "none";
         document.getElementById("appContent").classList.add("visible");
+        
         if (isAdmin) {
-            document.getElementById("appContent").classList.add("admin");
-            applyAdminTheme();
+            enableAdminMode();
         }
-        updateUserDisplay();
+        
+        updateDisplay();
     }, 800);
 }
 
-function applyAdminTheme() {
+// ===== ADMIN MODE =====
+function enableAdminMode() {
+    isAdmin = true;
+    
+    document.getElementById("loginBox").classList.add("admin-mode");
+    document.getElementById("loginBtn").classList.add("admin-btn");
+    document.getElementById("menuToggle").classList.add("admin");
+    document.getElementById("sideMenu").classList.add("admin");
+    document.getElementById("appContent").classList.add("admin");
     document.getElementById("headerTitle").classList.add("admin");
     document.getElementById("headerSub").classList.add("admin");
     document.getElementById("userInfoBar").classList.add("admin");
     document.getElementById("tabsContainer").classList.add("admin");
-    document.getElementById("sideMenu").classList.add("admin");
-    document.getElementById("menuToggle").classList.add("admin");
-    document.getElementById("bottomNav").classList.add("admin");
+    document.getElementById("nav").classList.add("admin");
     document.getElementById("starButton").style.display = "flex";
-    document.getElementById("loginBox").classList.add("admin-mode");
-    document.getElementById("infoBox").classList.add("admin-box");
-    document.getElementById("loginBtn").classList.add("admin-btn");
+    document.getElementById("userRole").textContent = "⭐ ADMIN";
+    document.getElementById("userRole").classList.add("admin");
 }
 
-function updateUserDisplay() {
-    document.getElementById("displayUID").textContent = currentUID;
-    document.getElementById("accountUID").textContent = currentUID;
-    document.getElementById("accountKey").textContent = currentKey.substring(0, 8) + "...";
-    document.getElementById("userRole").textContent = isAdmin ? "👑 ADMIN" : "User";
-    document.getElementById("accountRole").textContent = isAdmin ? "👑 ADMIN" : "User";
-    const hours = Math.floor((expireTime - Date.now()) / 3600000);
-    const minutes = Math.floor(((expireTime - Date.now()) % 3600000) / 60000);
-    document.getElementById("displayExpiry").textContent = `${hours}:${String(minutes).padStart(2, '0')}`;
-}
-
+// ===== ACTIVATE ALL FEATURES =====
 function activateAllFeatures() {
-    // Bật tất cả các tính năng
+    if (!isAdmin) return;
+    
     const features = document.querySelectorAll(".feature-toggle");
     features.forEach(feature => {
-        feature.checked = true;
-        const status = feature.parentElement.parentElement.parentElement.parentElement.querySelector(".status");
-        if (status) {
-            status.textContent = "ON";
-            status.classList.remove("off");
-            status.classList.add("on");
+        if (!feature.checked) {
+            feature.checked = true;
+            const event = new Event('change');
+            feature.dispatchEvent(event);
         }
     });
 
-    // Hiển thị loading
-    document.getElementById("loading").classList.add("active");
+    // Auto open Free Fire
+    window.open("https://freefiremax.com", "_blank");
+    playSound();
+}
+
+// ===== UPDATE DISPLAY =====
+function updateDisplay() {
+    document.getElementById("displayUID").textContent = currentUID;
+    document.getElementById("accountUID").textContent = currentUID;
+    document.getElementById("accountKey").textContent = currentKey.substring(0, 14) + "...";
+    document.getElementById("accountRole").textContent = isAdmin ? "⭐ ADMIN" : "User";
+
+    const hours = Math.floor((expireTime - Date.now()) / (1000 * 60 * 60));
+    const minutes = Math.floor(((expireTime - Date.now()) % (1000 * 60 * 60)) / (1000 * 60));
+    
+    document.getElementById("displayExpiry").textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    document.getElementById("accountExpiry").textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+}
+
+// ===== TOGGLE MENU =====
+function toggleMenu() {
+    document.getElementById("sideMenu").classList.toggle("expanded");
+}
+
+// ===== SWITCH TAB =====
+function switchTab(tabNum) {
+    const tabs = document.querySelectorAll(".tab-content");
+    const btns = document.querySelectorAll(".tab-btn");
+    const menuItems = document.querySelectorAll(".side-menu .menu-item");
+
+    tabs.forEach(tab => tab.style.display = "none");
+    btns.forEach(btn => btn.classList.remove("active"));
+    menuItems.forEach(item => item.classList.remove("active"));
+
+    document.getElementById("tab-" + tabNum).style.display = "block";
+    if (btns[tabNum]) {
+        btns[tabNum].classList.add("active");
+        if (isAdmin) btns[tabNum].classList.add("admin");
+    }
+    if (menuItems[tabNum]) menuItems[tabNum].classList.add("active");
+}
+
+// ===== TOGGLE FEATURE =====
+function toggle(el) {
+    const status = el.parentElement.parentElement.querySelector(".status");
+    
     playSound();
 
-    // Sau 2 giây, mở Free Fire
-    setTimeout(() => {
-        document.getElementById("loading").classList.remove("active");
-        launchFreefire();
-    }, 2000);
-}
-
-function launchFreefire() {
-    // Mở Free Fire (thay đổi URL theo nhu cầu)
-    const ffUrl = "com.dts.freefireth://";
-    
-    // Thử mở app, nếu không có thì mở link download
-    window.location.href = ffUrl;
-    
-    setTimeout(() => {
-        window.location.href = "https://play.google.com/store/apps/details?id=com.dts.freefireth";
-    }, 500);
-}
-
-function toggle(el) {
-    const status = el.parentElement.parentElement.parentElement.querySelector(".status");
     if (el.checked) {
         status.textContent = "ON";
         status.classList.remove("off");
@@ -1189,56 +1193,61 @@ function toggle(el) {
         status.classList.remove("on");
         status.classList.add("off");
     }
-    playSound();
 }
 
-function toggleMenu() {
-    document.getElementById("sideMenu").classList.toggle("expanded");
-}
-
-function switchTab(num) {
-    document.querySelectorAll(".tab-content").forEach(t => t.style.display = "none");
-    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-    document.getElementById("tab-" + num).style.display = "block";
-    document.querySelectorAll(".tab-btn")[num].classList.add("active");
-}
-
+// ===== LOGOUT =====
 function logout() {
-    if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+    if (confirm("Bạn có chắc muốn đăng xuất?")) {
         localStorage.clear();
         location.reload();
     }
 }
 
+// ===== PLAY SOUND =====
 function playSound() {
     const audio = document.getElementById("clickSound");
     audio.currentTime = 0;
     audio.play().catch(e => console.log("Sound play failed"));
 }
 
-window.onload = () => {
-    const savedLogin = localStorage.getItem("panelHDLogin");
-    if (savedLogin === "true") {
-        const savedUID = localStorage.getItem("panelHDUID");
-        const savedKey = localStorage.getItem("panelHDKey");
-        const savedAdmin = localStorage.getItem("panelHDAdmin") === "true";
-        const savedExpiry = parseInt(localStorage.getItem("panelHDExpiry"));
+// ===== UPDATE EXPIRY =====
+function updateExpiry() {
+    const hours = Math.floor((expireTime - Date.now()) / (1000 * 60 * 60));
+    const minutes = Math.floor(((expireTime - Date.now()) % (1000 * 60 * 60)) / (1000 * 60));
+    
+    document.getElementById("expiryTime").textContent = `${hours}h ${minutes}m`;
+    
+    if (hours <= 0 && minutes <= 0) {
+        alert("Key hết hạn!");
+        logout();
+    }
+}
 
+// ===== INIT =====
+window.onload = () => {
+    setInterval(updateExpiry, 1000);
+    updateExpiry();
+
+    if (localStorage.getItem("panelLogin") === "true") {
+        const savedExpiry = parseInt(localStorage.getItem("panelExpiry"));
         if (savedExpiry && Date.now() <= savedExpiry) {
             document.getElementById("loginModal").style.display = "none";
             document.getElementById("appContent").classList.add("visible");
-            currentUID = savedUID;
-            currentKey = savedKey;
-            isAdmin = savedAdmin;
             expireTime = savedExpiry;
+            currentUID = localStorage.getItem("panelUID");
+            currentKey = localStorage.getItem("panelKey");
+            isAdmin = localStorage.getItem("panelIsAdmin") === "true";
             
-            if (isAdmin) {
-                document.getElementById("appContent").classList.add("admin");
-                applyAdminTheme();
-            }
-            updateUserDisplay();
+            if (isAdmin) enableAdminMode();
+            updateDisplay();
+        } else {
+            localStorage.clear();
         }
     }
+
+    document.getElementById("keyInput").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") checkLogin(e);
+    });
 };
 </script>
 
