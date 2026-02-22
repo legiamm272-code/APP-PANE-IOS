@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PANEL IOS - HD ADMIN ENHANCED</title>
+<title>PANEL IOS - HD ULTIMATE ADMIN</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -13,7 +13,7 @@
     --accent: #8a2eff;
     --success: #00ff99;
     --admin: #ffa500;
-    --admin-light: #ff8c00;
+    --admin-light: #ffb84d;
     --dark: #0a0e27;
     --darker: #061320;
     --card: rgba(10, 25, 50, 0.95);
@@ -34,8 +34,9 @@ body {
 @keyframes slideDown { from { transform: translateY(-100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes pulse-star { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-@keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(255, 165, 0, 0.5); } 50% { box-shadow: 0 0 40px rgba(255, 165, 0, 0.8); } }
+@keyframes pulse-star { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.12); } }
+@keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(255, 165, 0, 0.5), inset 0 0 20px rgba(255, 165, 0, 0.2); } 50% { box-shadow: 0 0 40px rgba(255, 165, 0, 0.8), inset 0 0 30px rgba(255, 165, 0, 0.4); } }
+@keyframes shimmer { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
 /* ===== LOGIN MODAL ===== */
 .login-modal {
@@ -46,17 +47,17 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 2000;
-    backdrop-filter: blur(10px);
-    animation: fadeIn 0.5s ease-out;
+    backdrop-filter: blur(12px);
+    animation: fadeIn 0.6s ease-out;
 }
 
 .login-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    max-width: 1000px;
-    width: 90%;
-    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    gap: 50px;
+    max-width: 1100px;
+    width: 92%;
+    animation: slideUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .login-visual {
@@ -64,12 +65,13 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 35px;
 }
 
 .login-logo {
-    font-size: 120px;
+    font-size: 140px;
     animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(255, 165, 0, 0.6));
 }
 
 .login-title {
@@ -77,64 +79,76 @@ body {
 }
 
 .login-title h1 {
-    font-size: 36px;
-    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    font-size: 42px;
+    background: linear-gradient(135deg, var(--admin), #ffff00, var(--admin));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-weight: 900;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    text-shadow: 0 0 30px rgba(255, 165, 0, 0.4);
 }
 
 .login-title p {
-    color: var(--primary);
-    font-size: 14px;
-    letter-spacing: 3px;
+    color: var(--admin);
+    font-size: 16px;
+    letter-spacing: 4px;
     text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 165, 0, 0.5);
+}
+
+.admin-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--admin), var(--admin-light));
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    margin-top: 10px;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.6);
 }
 
 .login-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 18px;
     width: 100%;
 }
 
 .stat-box {
-    background: rgba(0, 200, 255, 0.1);
-    border: 1px solid rgba(0, 200, 255, 0.2);
-    border-radius: 12px;
-    padding: 15px;
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.15), rgba(255, 165, 0, 0.05));
+    border: 2px solid rgba(255, 165, 0, 0.3);
+    border-radius: 16px;
+    padding: 20px;
     text-align: center;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
 }
 
 .stat-box .number {
-    font-size: 24px;
-    color: var(--success);
+    font-size: 28px;
+    color: var(--admin);
     font-weight: 900;
+    text-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
 }
 
 .stat-box .label {
-    font-size: 12px;
-    color: var(--primary);
-    margin-top: 6px;
+    font-size: 13px;
+    color: var(--admin);
+    margin-top: 8px;
     text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 .login-box {
-    background: linear-gradient(145deg, #1a2647 0%, #0f1a2e 50%, #1d2f47 100%);
-    border-radius: 20px;
-    padding: 40px;
-    border: 2px solid rgba(0, 200, 255, 0.25);
-    box-shadow: 0 0 60px rgba(0, 200, 255, 0.2);
-    animation: slideDown 0.6s ease-out;
-}
-
-.login-box.admin-mode {
-    border-color: var(--admin);
-    box-shadow: 0 0 60px rgba(255, 165, 0, 0.4);
-    background: linear-gradient(145deg, #2a1900 0%, #1a0f00 50%, #2d1a00 100%);
+    background: linear-gradient(145deg, #2a1900, #1a0f00);
+    border-radius: 24px;
+    padding: 45px;
+    border: 3px solid var(--admin);
+    box-shadow: 0 0 80px rgba(255, 165, 0, 0.4), inset 0 0 40px rgba(255, 165, 0, 0.1);
+    animation: slideDown 0.7s ease-out;
 }
 
 .login-form {
@@ -142,130 +156,115 @@ body {
 }
 
 .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 22px;
     display: flex;
     flex-direction: column;
 }
 
 .form-group label {
-    font-size: 12px;
-    color: var(--primary);
-    margin-bottom: 8px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-size: 13px;
+    color: var(--admin);
+    margin-bottom: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 165, 0, 0.4);
 }
 
 .form-group input {
     width: 100%;
-    padding: 14px 16px;
-    border-radius: 12px;
-    border: 1.5px solid rgba(0, 200, 255, 0.3);
+    padding: 15px 18px;
+    border-radius: 14px;
+    border: 2px solid var(--admin);
     outline: none;
     font-size: 15px;
-    background: rgba(30, 50, 85, 0.6);
-    color: #fff;
+    background: linear-gradient(135deg, rgba(50, 25, 0, 0.8), rgba(50, 25, 0, 0.6));
+    color: var(--admin);
     transition: all 0.3s ease;
-}
-
-.form-group input:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
-    background: rgba(30, 50, 85, 0.9);
+    font-weight: 600;
 }
 
 .form-group input::placeholder {
-    color: rgba(154, 214, 255, 0.5);
+    color: rgba(255, 165, 0, 0.5);
+}
+
+.form-group input:focus {
+    border-color: #ffff00;
+    box-shadow: 0 0 30px rgba(255, 165, 0, 0.6), inset 0 0 15px rgba(255, 165, 0, 0.1);
+    background: linear-gradient(135deg, rgba(50, 25, 0, 1), rgba(50, 25, 0, 0.8));
 }
 
 .login-btn {
     width: 100%;
-    padding: 14px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-    color: #fff;
-    font-weight: 700;
-    border: none;
-    font-size: 15px;
+    padding: 16px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--admin) 0%, #ffff00 50%, var(--admin) 100%);
+    background-size: 200% 200%;
+    color: #000;
+    font-weight: 800;
+    border: 3px solid var(--admin);
+    font-size: 16px;
     cursor: pointer;
-    box-shadow: 0 0 25px rgba(255, 0, 200, 0.4);
+    box-shadow: 0 0 40px rgba(255, 165, 0, 0.8);
     transition: all 0.3s ease;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-top: 10px;
+    margin-top: 15px;
     position: relative;
     overflow: hidden;
-}
-
-.login-btn.admin-btn {
-    background: linear-gradient(135deg, var(--admin) 0%, var(--admin-light) 100%);
-    box-shadow: 0 0 30px rgba(255, 165, 0, 0.6);
-    animation: glow 2s ease-in-out infinite;
-}
-
-.login-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
-}
-
-.login-btn:hover::before {
-    left: 100%;
+    animation: shimmer 3s ease-in-out infinite;
 }
 
 .login-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 35px rgba(255, 0, 200, 0.6);
-}
-
-.login-btn.admin-btn:hover {
-    box-shadow: 0 12px 35px rgba(255, 165, 0, 0.8);
+    transform: translateY(-3px);
+    box-shadow: 0 0 60px rgba(255, 165, 0, 1);
 }
 
 .login-msg {
-    margin-top: 12px;
-    min-height: 24px;
-    font-size: 13px;
+    margin-top: 15px;
+    min-height: 26px;
+    font-size: 14px;
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
     animation: slideUp 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 165, 0, 0.6);
 }
 
 .login-msg.success {
-    color: var(--success);
-    text-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
+    color: #00ff99;
 }
 
 .login-msg.error {
-    color: var(--secondary);
-    text-shadow: 0 0 10px rgba(255, 45, 117, 0.5);
+    color: #ff2d75;
+}
+
+.login-msg.admin {
+    color: var(--admin);
+    font-size: 15px;
 }
 
 .login-footer {
-    margin-top: 18px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(0, 200, 255, 0.15);
-    font-size: 11px;
-    color: #9ad6ff;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid var(--admin);
+    font-size: 12px;
+    color: var(--admin);
     text-align: center;
     line-height: 1.8;
+    font-weight: 600;
 }
 
 .expiry-info {
-    background: rgba(0, 200, 255, 0.15);
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 8px;
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.2), rgba(255, 165, 0, 0.1));
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--admin);
 }
 
 .expiry-time {
-    color: var(--success);
-    font-weight: 700;
+    color: #ffff00;
+    font-weight: 800;
 }
 
 /* ===== SIDE MENU ===== */
@@ -275,67 +274,63 @@ body {
     top: 0;
     height: 100vh;
     width: 75px;
-    background: linear-gradient(180deg, #0a1428 0%, #0f1a2e 50%, var(--darker) 100%);
-    box-shadow: 3px 0 30px rgba(0, 122, 255, 0.2);
+    background: linear-gradient(180deg, #1a0f00 0%, #2a1900 50%, #1a0f00 100%);
+    box-shadow: 3px 0 40px rgba(255, 165, 0, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 900;
     transition: all 0.4s;
-    border-right: 2px solid rgba(0, 200, 255, 0.15);
+    border-right: 3px solid var(--admin);
     overflow-y: auto;
     padding-top: 20px;
 }
 
-.side-menu.admin {
-    border-right-color: var(--admin);
-}
-
-.side-menu::-webkit-scrollbar { width: 6px; }
-.side-menu::-webkit-scrollbar-track { background: rgba(0, 200, 255, 0.05); }
-.side-menu::-webkit-scrollbar-thumb { background: rgba(0, 200, 255, 0.3); border-radius: 3px; }
+.side-menu::-webkit-scrollbar { width: 8px; }
+.side-menu::-webkit-scrollbar-track { background: rgba(255, 165, 0, 0.05); }
+.side-menu::-webkit-scrollbar-thumb { background: var(--admin); border-radius: 4px; }
 
 .side-menu.expanded { width: 280px; }
 
 .menu-item {
-    padding: 16px 10px;
-    color: #9ad6ff;
+    padding: 18px 12px;
+    color: var(--admin);
     width: 100%;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s;
     border-left: 4px solid transparent;
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .menu-item:hover {
-    background: rgba(0, 200, 255, 0.12);
-    border-left-color: var(--primary);
+    background: rgba(255, 165, 0, 0.15);
+    border-left-color: var(--admin);
 }
 
 .menu-item.active {
-    background: linear-gradient(90deg, rgba(255, 0, 128, 0.25), transparent);
-    color: var(--secondary);
-    border-left-color: var(--secondary);
+    background: linear-gradient(90deg, rgba(255, 165, 0, 0.3), transparent);
+    color: #ffff00;
+    border-left-color: var(--admin);
 }
 
 .menu-icon {
-    font-size: 18px;
+    font-size: 20px;
     transition: transform 0.3s;
 }
 
 .menu-item:hover .menu-icon {
-    transform: scale(1.2) rotate(5deg);
+    transform: scale(1.25) rotate(8deg);
 }
 
 .menu-text {
     display: none;
-    font-size: 11px;
+    font-size: 12px;
     white-space: nowrap;
 }
 
@@ -345,34 +340,29 @@ body {
 
 .menu-toggle {
     position: fixed;
-    left: 14px;
-    top: 14px;
-    font-size: 26px;
-    color: var(--primary);
-    background: rgba(8, 26, 51, 0.95);
-    padding: 10px 13px;
-    border-radius: 10px;
+    left: 16px;
+    top: 16px;
+    font-size: 28px;
+    color: var(--admin);
+    background: linear-gradient(135deg, rgba(50, 25, 0, 0.95), rgba(50, 25, 0, 0.85));
+    padding: 12px 16px;
+    border-radius: 12px;
     cursor: pointer;
     z-index: 950;
-    border: 1.5px solid rgba(0, 200, 255, 0.4);
+    border: 2px solid var(--admin);
     transition: all 0.3s;
-}
-
-.menu-toggle.admin {
-    color: var(--admin);
-    border-color: var(--admin);
-    box-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
 }
 
 .menu-toggle:hover {
-    box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
-    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 165, 0, 0.7);
+    transform: scale(1.12);
 }
 
 /* ===== MAIN CONTENT ===== */
 .main-content {
     margin-left: 75px;
-    padding-bottom: 90px;
+    padding-bottom: 100px;
     transition: margin-left 0.4s;
     min-height: 100vh;
 }
@@ -383,137 +373,111 @@ body {
 
 .header {
     text-align: center;
-    padding: 25px 0 10px;
-    margin-top: 5px;
+    padding: 30px 0 15px;
+    margin-top: 8px;
+    background: linear-gradient(180deg, rgba(255, 165, 0, 0.1), transparent);
 }
 
 .header h1 {
-    font-size: 28px;
+    font-size: 32px;
     letter-spacing: 2px;
     font-weight: 900;
-    background: linear-gradient(135deg, var(--secondary), var(--primary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 6px;
-}
-
-.header h1.admin {
     background: linear-gradient(135deg, var(--admin), #ffff00);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
 }
 
 .header .sub {
-    color: var(--primary);
-    font-size: 12px;
-    letter-spacing: 3px;
-    font-weight: 600;
-}
-
-.header .sub.admin {
     color: var(--admin);
+    font-size: 13px;
+    letter-spacing: 4px;
+    font-weight: 700;
 }
 
 .user-info-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
-    margin: 12px 12px 0;
-    background: linear-gradient(135deg, rgba(0, 200, 255, 0.1), rgba(0, 200, 255, 0.05));
-    border-radius: 12px;
-    border: 1.5px solid rgba(0, 200, 255, 0.2);
-    font-size: 11px;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.user-info-bar.admin {
+    padding: 15px 20px;
+    margin: 15px 15px 0;
     background: linear-gradient(135deg, rgba(255, 165, 0, 0.15), rgba(255, 165, 0, 0.05));
-    border-color: rgba(255, 165, 0, 0.4);
+    border-radius: 14px;
+    border: 2px solid var(--admin);
+    font-size: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.2);
 }
 
 .user-info-item {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
 }
 
 .user-info-item .label {
-    color: var(--primary);
-    font-weight: 700;
+    color: var(--admin);
+    font-weight: 800;
 }
 
 .user-info-item .value {
-    color: var(--success);
-    font-weight: 700;
-}
-
-.user-info-item .value.admin {
-    color: var(--admin);
+    color: #ffff00;
+    font-weight: 800;
 }
 
 .tabs-container {
     display: flex;
     justify-content: center;
-    gap: 6px;
-    padding: 12px 10px;
+    gap: 8px;
+    padding: 16px 12px;
     flex-wrap: wrap;
-    background: rgba(0, 200, 255, 0.05);
-    margin: 12px 10px 0;
-    border-radius: 14px;
-    border: 1px solid rgba(0, 200, 255, 0.1);
-}
-
-.tabs-container.admin {
     background: rgba(255, 165, 0, 0.05);
-    border-color: rgba(255, 165, 0, 0.2);
+    margin: 15px 12px 0;
+    border-radius: 16px;
+    border: 2px solid var(--admin);
 }
 
 .tab-btn {
-    padding: 8px 14px;
-    border-radius: 16px;
-    border: 1px solid rgba(0, 200, 255, 0.3);
+    padding: 10px 18px;
+    border-radius: 20px;
+    border: 2px solid var(--admin);
     background: transparent;
-    color: #9ad6ff;
+    color: var(--admin);
     cursor: pointer;
     transition: all 0.3s;
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 800;
 }
 
 .tab-btn.active {
-    background: linear-gradient(135deg, var(--secondary), var(--accent));
-    border-color: var(--secondary);
-    color: #fff;
-    box-shadow: 0 0 15px rgba(255, 0, 128, 0.4);
-}
-
-.tab-btn.active.admin {
-    background: linear-gradient(135deg, var(--admin), var(--admin-light));
-    border-color: var(--admin);
-    box-shadow: 0 0 15px rgba(255, 165, 0, 0.6);
+    background: linear-gradient(135deg, var(--admin), #ffff00);
+    border-color: #ffff00;
+    color: #000;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.7);
 }
 
 .tab-btn:hover:not(.active) {
-    border-color: var(--primary);
+    border-color: #ffff00;
     transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(255, 165, 0, 0.5);
 }
 
 .card {
-    margin: 10px 12px;
-    padding: 14px;
-    border-radius: 14px;
+    margin: 12px 15px;
+    padding: 16px;
+    border-radius: 16px;
     background: linear-gradient(135deg, var(--card), rgba(15, 35, 65, 0.95));
-    border: 1px solid rgba(0, 180, 255, 0.25);
-    box-shadow: 0 0 20px rgba(0, 150, 255, 0.1);
+    border: 2px solid var(--admin);
+    box-shadow: 0 0 25px rgba(255, 165, 0, 0.15);
     transition: all 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 0 30px rgba(255, 0, 150, 0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 0 35px rgba(255, 165, 0, 0.3);
 }
 
 .item {
@@ -523,43 +487,43 @@ body {
 }
 
 .title {
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 15px;
+    font-weight: 800;
     color: #fff;
 }
 
 .desc {
-    font-size: 11px;
+    font-size: 12px;
     color: #9ad6ff;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 
 .status {
-    font-size: 9px;
-    padding: 4px 8px;
-    border-radius: 14px;
-    margin-right: 8px;
-    font-weight: 700;
+    font-size: 11px;
+    padding: 6px 12px;
+    border-radius: 18px;
+    margin-right: 12px;
+    font-weight: 800;
     text-transform: uppercase;
 }
 
 .on {
-    background: linear-gradient(135deg, rgba(0, 255, 150, 0.2), rgba(0, 200, 200, 0.2));
+    background: linear-gradient(135deg, rgba(0, 255, 150, 0.3), rgba(0, 200, 200, 0.2));
     color: var(--success);
-    border: 1px solid var(--success);
+    border: 2px solid var(--success);
 }
 
 .off {
-    background: linear-gradient(135deg, rgba(255, 0, 80, 0.2), rgba(200, 0, 100, 0.2));
+    background: linear-gradient(135deg, rgba(255, 0, 80, 0.3), rgba(200, 0, 100, 0.2));
     color: #ff4d6d;
-    border: 1px solid #ff4d6d;
+    border: 2px solid #ff4d6d;
 }
 
 .switch {
     position: relative;
-    width: 48px;
-    height: 24px;
-    margin-left: 8px;
+    width: 55px;
+    height: 30px;
+    margin-left: 10px;
 }
 
 .switch input { display: none; }
@@ -568,63 +532,64 @@ body {
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, #2a2a3a, #1a1a2a);
-    border-radius: 24px;
-    transition: all 0.3s;
+    border-radius: 30px;
+    transition: all 0.4s;
     cursor: pointer;
-    border: 1.5px solid rgba(100, 100, 120, 0.5);
+    border: 2px solid var(--admin);
 }
 
 .slider::before {
     content: "";
     position: absolute;
-    height: 20px;
-    width: 20px;
+    height: 24px;
+    width: 24px;
     left: 2px;
     bottom: 2px;
     background: white;
     border-radius: 50%;
-    transition: all 0.3s;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 input:checked + .slider {
-    background: linear-gradient(135deg, var(--secondary), var(--accent));
-    border-color: var(--secondary);
-    box-shadow: 0 0 15px rgba(255, 0, 200, 0.4);
+    background: linear-gradient(135deg, var(--admin), #ffff00);
+    border-color: #ffff00;
+    box-shadow: 0 0 20px rgba(255, 165, 0, 0.6);
 }
 
 input:checked + .slider::before {
-    transform: translateX(24px);
+    transform: translateX(25px);
+    box-shadow: 0 2px 8px rgba(255, 165, 0, 0.5);
 }
 
-/* ===== STAR BUTTON ===== */
-.star-button {
+/* ===== ON ALL BUTTON ===== */
+.on-all-button {
     position: fixed;
-    bottom: 100px;
+    bottom: 110px;
     right: 20px;
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--admin), var(--admin-light));
+    width: 75px;
+    height: 75px;
+    background: linear-gradient(135deg, var(--admin), #ffff00);
     border-radius: 50%;
-    border: 3px solid var(--admin);
-    font-size: 40px;
+    border: 3px solid #ffff00;
+    font-size: 36px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 30px rgba(255, 165, 0, 0.6);
+    box-shadow: 0 0 40px rgba(255, 165, 0, 0.8);
     animation: pulse-star 2s ease-in-out infinite, glow 2s ease-in-out infinite;
     transition: all 0.3s;
     z-index: 500;
 }
 
-.star-button:hover {
-    transform: scale(1.15);
-    box-shadow: 0 0 50px rgba(255, 165, 0, 0.8);
+.on-all-button:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 60px rgba(255, 165, 0, 1);
 }
 
-.star-button:active {
-    transform: scale(0.95);
+.on-all-button:active {
+    transform: scale(0.9);
 }
 
 /* ===== NAV ===== */
@@ -633,69 +598,66 @@ input:checked + .slider::before {
     bottom: 0;
     width: 100%;
     left: 0;
-    background: linear-gradient(180deg, rgba(7, 20, 34, 0.95), rgba(7, 20, 34, 1));
+    background: linear-gradient(180deg, rgba(50, 25, 0, 0.98), rgba(50, 25, 0, 1));
     display: flex;
     justify-content: space-around;
-    padding: 10px 8px;
-    border-top: 2px solid rgba(0, 150, 255, 0.25);
+    padding: 14px 10px;
+    border-top: 3px solid var(--admin);
     z-index: 800;
-}
-
-.nav.admin {
-    border-top-color: var(--admin);
+    box-shadow: 0 -2px 20px rgba(255, 165, 0, 0.3);
 }
 
 .nav div {
-    font-size: 10px;
-    color: #9ad6ff;
+    font-size: 12px;
+    color: var(--admin);
     cursor: pointer;
-    padding: 8px 10px;
-    border-radius: 10px;
+    padding: 10px 14px;
+    border-radius: 12px;
     transition: all 0.3s;
-    font-weight: 600;
+    font-weight: 700;
     flex: 1;
     text-align: center;
 }
 
 .nav div:hover {
-    background: rgba(0, 200, 255, 0.15);
-    color: var(--primary);
-    transform: translateY(-1px);
+    background: rgba(255, 165, 0, 0.2);
+    color: #ffff00;
+    transform: translateY(-2px);
 }
 
 .stats-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 10px 12px;
+    gap: 12px;
+    margin: 12px 15px;
 }
 
 .stat-item {
-    background: linear-gradient(135deg, rgba(0, 200, 255, 0.15), rgba(138, 46, 255, 0.15));
-    border: 1px solid rgba(0, 200, 255, 0.25);
-    border-radius: 12px;
-    padding: 14px;
+    background: linear-gradient(135deg, rgba(255, 165, 0, 0.15), rgba(255, 165, 0, 0.05));
+    border: 2px solid var(--admin);
+    border-radius: 16px;
+    padding: 18px;
     text-align: center;
     transition: all 0.3s;
 }
 
 .stat-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(0, 200, 255, 0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(255, 165, 0, 0.4);
 }
 
 .stat-label {
-    font-size: 10px;
-    color: #9ad6ff;
-    margin-bottom: 6px;
-    font-weight: 600;
+    font-size: 12px;
+    color: var(--admin);
+    margin-bottom: 8px;
+    font-weight: 700;
 }
 
 .stat-value {
-    font-size: 20px;
-    color: var(--success);
+    font-size: 26px;
+    color: #ffff00;
     font-weight: 900;
-    text-shadow: 0 0 10px rgba(0, 255, 153, 0.4);
+    text-shadow: 0 0 15px rgba(255, 165, 0, 0.6);
 }
 
 .app-content {
@@ -707,20 +669,16 @@ input:checked + .slider::before {
     animation: fadeIn 0.6s;
 }
 
-.app-content.admin {
-    --secondary: var(--admin);
-}
-
 .loading {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.9);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 3000;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     backdrop-filter: blur(5px);
 }
 
@@ -729,30 +687,38 @@ input:checked + .slider::before {
 }
 
 .loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(0, 200, 255, 0.2);
-    border-top-color: var(--primary);
-    border-right-color: var(--secondary);
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(255, 165, 0, 0.2);
+    border-top-color: var(--admin);
+    border-right-color: #ffff00;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin 1.2s linear infinite;
 }
 
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 
+.loading-text {
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--admin);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
 @media (max-width: 1024px) {
-    .login-container { grid-template-columns: 1fr; gap: 20px; }
+    .login-container { grid-template-columns: 1fr; gap: 30px; }
     .login-visual { order: 2; }
     .login-box { order: 1; }
 }
 
 @media (max-width: 768px) {
-    .login-box { padding: 25px; }
+    .login-box { padding: 30px; }
     .side-menu.expanded { width: 240px; }
     .stats-grid { grid-template-columns: 1fr; }
-    .star-button { bottom: 80px; width: 60px; height: 60px; font-size: 30px; }
+    .on-all-button { width: 65px; height: 65px; font-size: 28px; }
 }
 
 @media (max-width: 480px) {
@@ -761,9 +727,9 @@ input:checked + .slider::before {
     .login-box { padding: 20px; }
 }
 
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: rgba(0, 200, 255, 0.05); }
-::-webkit-scrollbar-thumb { background: rgba(0, 200, 255, 0.25); border-radius: 3px; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: rgba(255, 165, 0, 0.05); }
+::-webkit-scrollbar-thumb { background: var(--admin); border-radius: 4px; }
 </style>
 </head>
 <body>
@@ -771,42 +737,45 @@ input:checked + .slider::before {
 <!-- LOGIN MODAL -->
 <div class="login-modal" id="loginModal">
     <div class="login-container">
+        <!-- LEFT SIDE -->
         <div class="login-visual">
-            <div class="login-logo">💀</div>
+            <div class="login-logo">⭐</div>
             <div class="login-title">
-                <h1>PANEL IOS</h1>
-                <p>HD Advanced</p>
+                <h1>ADMIN PANEL</h1>
+                <p>IOS HD ULTIMATE</p>
+                <div class="admin-badge">🔐 ADMIN ACCESS</div>
             </div>
             <div class="login-stats">
-                <div class="stat-box"><div class="number">12K+</div><div class="label">Users</div></div>
-                <div class="stat-box"><div class="number">99.9%</div><div class="label">Uptime</div></div>
-                <div class="stat-box"><div class="number">24H</div><div class="label">Expiry</div></div>
-                <div class="stat-box"><div class="number">v2.5</div><div class="label">Latest</div></div>
+                <div class="stat-box"><div class="number">∞</div><div class="label">Unlimited</div></div>
+                <div class="stat-box"><div class="number">♾️</div><div class="label">Forever</div></div>
+                <div class="stat-box"><div class="number">⭐</div><div class="label">VIP</div></div>
+                <div class="stat-box"><div class="number">🚀</div><div class="label">Premium</div></div>
             </div>
         </div>
 
+        <!-- RIGHT SIDE -->
         <div class="login-box" id="loginBox">
             <form class="login-form" onsubmit="checkLogin(event)">
                 <div class="form-group">
-                    <label>🔑 UID (Nhập Tự Do)</label>
-                    <input type="text" id="uidInput" placeholder="Nhập UID..." required>
+                    <label>👤 ADMIN UID</label>
+                    <input type="text" id="uidInput" placeholder="Nhập Admin UID..." value="ADMIN-ULTIMATE-2026" required>
                 </div>
 
                 <div class="form-group">
-                    <label>🛡️ Key (License)</label>
-                    <input type="text" id="keyInput" placeholder="Nhập Key hoặc dùng Admin..." value="GIAKHANHSOTO-ADMIN2026KEY" required>
+                    <label>🔑 ADMIN KEY (PERMANENT)</label>
+                    <input type="text" id="keyInput" placeholder="Admin Key..." value="GIAKHANHSOTO-ADMIN-ULTIMATE-FOREVER" readonly>
                 </div>
 
-                <button type="submit" class="login-btn" id="loginBtn">⚡ Đăng Nhập</button>
+                <button type="submit" class="login-btn" id="loginBtn">⭐ ADMIN LOGIN ⭐</button>
             </form>
 
             <div class="login-msg" id="loginMsg"></div>
 
             <div class="login-footer">
                 <div class="expiry-info">
-                    ⏰ Hết hạn: <span class="expiry-time" id="expiryTime">24h 0m</span>
+                    ⏰ Thời hạn: <span class="expiry-time">♾️ FOREVER</span>
                 </div>
-                <div id="footerText">✨ Free Login | 24H Expiry</div>
+                <div>✨ Admin Account | No Expiry | Full Features ✨</div>
             </div>
         </div>
     </div>
@@ -814,39 +783,39 @@ input:checked + .slider::before {
 
 <!-- SIDE MENU -->
 <div class="side-menu" id="sideMenu">
-    <div class="menu-item active" onclick="switchTab(0)"><div class="menu-icon">🏠</div><div class="menu-text">Trang Chủ</div></div>
-    <div class="menu-item" onclick="switchTab(1)"><div class="menu-icon">⚡️</div><div class="menu-text">Công Cụ</div></div>
-    <div class="menu-item" onclick="switchTab(2)"><div class="menu-icon">🚀</div><div class="menu-text">Tối Ưu</div></div>
-    <div class="menu-item" onclick="switchTab(3)"><div class="menu-icon">📊</div><div class="menu-text">Thống Kê</div></div>
-    <div class="menu-item" onclick="switchTab(4)"><div class="menu-icon">⚙️</div><div class="menu-text">Cài Đặt</div></div>
-    <div class="menu-item" onclick="logout()"><div class="menu-icon">🚪</div><div class="menu-text">Đăng Xuất</div></div>
+    <div class="menu-item active" onclick="switchTab(0)"><div class="menu-icon">🏠</div><div class="menu-text">Home</div></div>
+    <div class="menu-item" onclick="switchTab(1)"><div class="menu-icon">⚡️</div><div class="menu-text">Tools</div></div>
+    <div class="menu-item" onclick="switchTab(2)"><div class="menu-icon">🚀</div><div class="menu-text">Optimize</div></div>
+    <div class="menu-item" onclick="switchTab(3)"><div class="menu-icon">📊</div><div class="menu-text">Stats</div></div>
+    <div class="menu-item" onclick="switchTab(4)"><div class="menu-icon">⚙️</div><div class="menu-text">Settings</div></div>
+    <div class="menu-item" onclick="logout()"><div class="menu-icon">🚪</div><div class="menu-text">Exit</div></div>
 </div>
 
 <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
 
-<!-- STAR BUTTON (ADMIN ONLY) -->
-<div class="star-button" id="starButton" style="display:none;" onclick="activateAllFeatures()">⭐</div>
+<!-- ON ALL BUTTON -->
+<div class="on-all-button" id="onAllButton" onclick="activateAllFeatures()">ON ALL</div>
 
 <!-- MAIN APP -->
 <div class="app-content" id="appContent">
     <div class="main-content">
         <div class="header">
-            <h1 id="headerTitle">💀 PANEL IOS HD</h1>
-            <div class="sub" id="headerSub">Advanced Gaming Optimizer</div>
+            <h1 id="headerTitle">⭐ ADMIN PANEL IOS HD</h1>
+            <div class="sub" id="headerSub">Ultimate Gaming Optimizer</div>
         </div>
 
         <div class="user-info-bar" id="userInfoBar">
             <div class="user-info-item"><span class="label">👤 UID:</span><span class="value" id="displayUID">N/A</span></div>
-            <div class="user-info-item"><span class="label">📅 Hết hạn:</span><span class="value" id="displayExpiry">--:--</span></div>
-            <div class="user-info-item"><span class="label">⚡ Role:</span><span class="value" id="userRole">User</span></div>
+            <div class="user-info-item"><span class="label">📅 Hết hạn:</span><span class="value" id="displayExpiry">♾️ FOREVER</span></div>
+            <div class="user-info-item"><span class="label">⚡ Role:</span><span class="value" id="userRole">⭐ ADMIN</span></div>
         </div>
 
         <div class="tabs-container" id="tabsContainer">
-            <button class="tab-btn active" onclick="switchTab(0)">🏠 Trang Chủ</button>
-            <button class="tab-btn" onclick="switchTab(1)">⚡️ Công Cụ</button>
-            <button class="tab-btn" onclick="switchTab(2)">🚀 Tối Ưu</button>
-            <button class="tab-btn" onclick="switchTab(3)">📊 Thống Kê</button>
-            <button class="tab-btn" onclick="switchTab(4)">⚙️ Cài Đặt</button>
+            <button class="tab-btn active" onclick="switchTab(0)">🏠 Home</button>
+            <button class="tab-btn" onclick="switchTab(1)">⚡️ Tools</button>
+            <button class="tab-btn" onclick="switchTab(2)">🚀 Optimize</button>
+            <button class="tab-btn" onclick="switchTab(3)">📊 Stats</button>
+            <button class="tab-btn" onclick="switchTab(4)">⚙️ Settings</button>
         </div>
 
         <!-- TAB 0 -->
@@ -855,11 +824,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🎮 AIMLOCK</div>
-                        <div class="desc">Công nghệ định hướng thông minh</div>
+                        <div class="desc">Smart Targeting System</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" data-feature="aimlock" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -867,11 +836,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🎯 FEATHER AIM</div>
-                        <div class="desc">Mục tiêu chính xác</div>
+                        <div class="desc">Precision Targeting</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" data-feature="featheraim" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -879,11 +848,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">⚡ QUICK SWIPE</div>
-                        <div class="desc">Vuốt nhanh mượt mà</div>
+                        <div class="desc">Fast Reaction Boost</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" data-feature="quickswipe" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -895,11 +864,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🔧 RAM CLEANER</div>
-                        <div class="desc">Dọn dẹp bộ nhớ</div>
+                        <div class="desc">Memory Optimization</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" data-feature="ramcleaner" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -907,11 +876,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🌡️ CPU COOLER</div>
-                        <div class="desc">Hạ nhiệt độ xử lý</div>
+                        <div class="desc">CPU Temperature Control</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" data-feature="cpucooler" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -919,11 +888,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">📱 BATTERY SAVER</div>
-                        <div class="desc">Tiết kiệm pin</div>
+                        <div class="desc">Power Management</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" data-feature="batterysaver" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -935,11 +904,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🔒 STEADY HOLD</div>
-                        <div class="desc">Ổn định tay</div>
+                        <div class="desc">Hand Stability</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" data-feature="steadyhold" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -947,11 +916,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">🚀 DRIFT FIX</div>
-                        <div class="desc">Khắc phục lan trôi</div>
+                        <div class="desc">Drift Correction</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" data-feature="driftfix" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -959,11 +928,11 @@ input:checked + .slider::before {
                 <div class="item">
                     <div style="flex: 1;">
                         <div class="title">💨 SPEED BOOST</div>
-                        <div class="desc">Tăng tốc độ phản ứng</div>
+                        <div class="desc">Response Speed</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
-                        <label class="switch"><input type="checkbox" class="feature-toggle" data-feature="speedboost" onchange="toggle(this)"><span class="slider"></span></label>
+                        <label class="switch"><input type="checkbox" class="feature-toggle" onchange="toggle(this)"><span class="slider"></span></label>
                     </div>
                 </div>
             </div>
@@ -973,19 +942,19 @@ input:checked + .slider::before {
         <div class="tab-content" id="tab-3" style="display:none;">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-label">📈 CPU Usage</div>
+                    <div class="stat-label">📈 CPU USAGE</div>
                     <div class="stat-value" id="cpuUsage">45%</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">🧠 RAM Usage</div>
+                    <div class="stat-label">🧠 RAM USAGE</div>
                     <div class="stat-value" id="ramUsage">62%</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">🎮 FPS Rate</div>
-                    <div class="stat-value" id="fpsUsage">120</div>
+                    <div class="stat-label">🎮 FPS RATE</div>
+                    <div class="stat-value" id="fpsUsage">120 FPS</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">⏱️ Ping</div>
+                    <div class="stat-label">⏱️ PING</div>
                     <div class="stat-value" id="pingUsage">12ms</div>
                 </div>
             </div>
@@ -993,13 +962,12 @@ input:checked + .slider::before {
 
         <!-- TAB 4 -->
         <div class="tab-content" id="tab-4" style="display:none;">
-            <div class="card" style="margin-bottom:100px;">
-                <div style="color:var(--secondary);font-weight:bold;margin-bottom:12px;font-size:14px;">⚠️ Thông Tin Tài Khoản</div>
-                <div style="font-size:12px;color:#9ad6ff;line-height:2;">
-                    <div>👤 UID: <span style="color:var(--success);font-weight:600;" id="accountUID">N/A</span></div>
-                    <div>🔑 Key: <span style="color:var(--primary);font-weight:600;" id="accountKey">••••••••••</span></div>
-                    <div>📅 Hết hạn: <span style="color:var(--secondary);font-weight:600;" id="accountExpiry">--:--</span></div>
-                    <div>⚡ Role: <span style="color:var(--success);font-weight:600;" id="accountRole">User</span></div>
+            <div class="card">
+                <div class="title" style="color: var(--admin); margin-bottom: 15px;">⭐ ADMIN SETTINGS</div>
+                <div style="font-size: 12px; color: var(--admin); line-height: 2;">
+                    <div>✓ Status: <span style="color: #ffff00; font-weight: bold;">ADMIN ACTIVE</span></div>
+                    <div>✓ Expiry: <span style="color: #ffff00; font-weight: bold;">NEVER</span></div>
+                    <div>✓ Features: <span style="color: #ffff00; font-weight: bold;">ALL UNLOCKED</span></div>
                 </div>
             </div>
         </div>
@@ -1007,16 +975,16 @@ input:checked + .slider::before {
 </div>
 
 <!-- BOTTOM NAV -->
-<div class="nav" id="nav">
-    <div onclick="switchTab(0)">🏠 Trang Chủ</div>
-    <div onclick="switchTab(3)">📊 Thống Kê</div>
-    <div onclick="switchTab(4)">⚙️ Cài Đặt</div>
+<div class="nav">
+    <div onclick="switchTab(0)">🏠 Home</div>
+    <div onclick="switchTab(3)">📊 Stats</div>
+    <div onclick="switchTab(4)">⚙️ Settings</div>
 </div>
 
 <!-- LOADING -->
 <div class="loading" id="loading">
     <div class="loading-spinner"></div>
-    <div>ĐANG XỬ LÝ...</div>
+    <div class="loading-text">PROCESSING...</div>
 </div>
 
 <audio id="clickSound">
@@ -1024,230 +992,161 @@ input:checked + .slider::before {
 </audio>
 
 <script>
-// ===== ADMIN KEY =====
-const ADMIN_KEY = "GIAKHANHSOTO-ADMIN2026KEY";
-const VALID_KEYS = [
-    "GIAKHANHSOTO-KEY001FREE24H",
-    "GIAKHANHSOTO-KEY002FREE24H",
-    "GIAKHANHSOTO-KEY003FREE24H",
-    "GIAKHANHSOTO-KEY004FREE24H",
-    "GIAKHANHSOTO-KEY005FREE24H",
-    "GIAKHANHSOTO-KEY006FREE24H",
-    "GIAKHANHSOTO-KEY007FREE24H",
-    "GIAKHANHSOTO-KEY008FREE24H",
-    "GIAKHANHSOTO-KEY009FREE24H",
-    "GIAKHANHSOTO-KEY010FREE24H",
-    "GIAKHANHSOTO-KEY011FREE24H",
-    "GIAKHANHSOTO-KEY012FREE24H",
-    "GIAKHANHSOTO-KEY013FREE24H",
-    "GIAKHANHSOTO-KEY014FREE24H",
-    "GIAKHANHSOTO-KEY015FREE24H",
-    "GIAKHANHSOTO-KEY016FREE24H",
-    "GIAKHANHSOTO-KEY017FREE24H",
-    "GIAKHANHSOTO-KEY018FREE24H",
-    "GIAKHANHSOTO-KEY019FREE24H",
-    "GIAKHANHSOTO-KEY020FREE24H",
-    ADMIN_KEY
-];
-
-let expireTime = Date.now() + 24*60*60*1000;
-let currentUID = "";
-let currentKey = "";
+// Global Variables
 let isAdmin = false;
+let isLoggedIn = false;
+let currentUID = "";
 
-// ===== LOGIN FUNCTION =====
+// Admin Key - Never Expires
+const ADMIN_KEY = "GIAKHANHSOTO-ADMIN-ULTIMATE-FOREVER";
+const ADMIN_UID = "ADMIN-ULTIMATE-2026";
+
+// Update Expiry Display
+function updateExpiryDisplay() {
+    if (isAdmin) {
+        document.getElementById("expiryTime").textContent = "♾️ FOREVER";
+        document.getElementById("displayExpiry").textContent = "♾️ FOREVER";
+    }
+}
+
+// Login Function
 function checkLogin(e) {
     e.preventDefault();
     
     const uid = document.getElementById("uidInput").value.trim();
-    const key = document.getElementById("keyInput").value.trim().toUpperCase();
+    const key = document.getElementById("keyInput").value.trim();
     const msg = document.getElementById("loginMsg");
-
-    if (!uid) {
-        msg.textContent = "❌ Vui lòng nhập UID!";
-        msg.className = "login-msg error";
-        playSound();
-        return;
-    }
-
-    if (!VALID_KEYS.includes(key)) {
-        msg.textContent = "❌ Key không hợp lệ!";
-        msg.className = "login-msg error";
-        playSound();
-        return;
-    }
-
-    msg.textContent = "✅ Đăng nhập thành công!";
-    msg.className = "login-msg success";
-
-    currentUID = uid;
-    currentKey = key;
-    isAdmin = (key === ADMIN_KEY);
-
-    localStorage.setItem("panelLogin", "true");
-    localStorage.setItem("panelUID", uid);
-    localStorage.setItem("panelKey", key);
-    localStorage.setItem("panelExpiry", expireTime);
-    localStorage.setItem("panelIsAdmin", isAdmin);
-
-    playSound();
-
-    setTimeout(() => {
-        document.getElementById("loginModal").style.display = "none";
-        document.getElementById("appContent").classList.add("visible");
-        
-        if (isAdmin) {
-            enableAdminMode();
-        }
-        
-        updateDisplay();
-    }, 800);
-}
-
-// ===== ADMIN MODE =====
-function enableAdminMode() {
-    isAdmin = true;
     
-    document.getElementById("loginBox").classList.add("admin-mode");
-    document.getElementById("loginBtn").classList.add("admin-btn");
-    document.getElementById("menuToggle").classList.add("admin");
-    document.getElementById("sideMenu").classList.add("admin");
-    document.getElementById("appContent").classList.add("admin");
-    document.getElementById("headerTitle").classList.add("admin");
-    document.getElementById("headerSub").classList.add("admin");
-    document.getElementById("userInfoBar").classList.add("admin");
-    document.getElementById("tabsContainer").classList.add("admin");
-    document.getElementById("nav").classList.add("admin");
-    document.getElementById("starButton").style.display = "flex";
-    document.getElementById("userRole").textContent = "⭐ ADMIN";
-    document.getElementById("userRole").classList.add("admin");
+    if (!uid) {
+        msg.textContent = "❌ UID is required!";
+        msg.className = "login-msg error";
+        playSound();
+        return;
+    }
+    
+    if (!key) {
+        msg.textContent = "❌ Key is required!";
+        msg.className = "login-msg error";
+        playSound();
+        return;
+    }
+    
+    // Check if Admin
+    if (key === ADMIN_KEY) {
+        isAdmin = true;
+        msg.textContent = "✅ ADMIN LOGIN SUCCESSFUL!";
+        msg.className = "login-msg admin";
+        currentUID = "⭐ " + uid;
+        localStorage.setItem("panelLogin", "true");
+        localStorage.setItem("panelUID", uid);
+        localStorage.setItem("panelAdmin", "true");
+        playSound();
+        
+        setTimeout(() => {
+            document.getElementById("loginModal").style.display = "none";
+            document.getElementById("appContent").classList.add("visible");
+            updateAdminUI();
+            isLoggedIn = true;
+        }, 1000);
+    } else {
+        msg.textContent = "❌ Invalid Key!";
+        msg.className = "login-msg error";
+        playSound();
+    }
 }
 
-// ===== ACTIVATE ALL FEATURES =====
+// Update Admin UI
+function updateAdminUI() {
+    document.getElementById("displayUID").textContent = currentUID;
+    document.getElementById("userRole").textContent = "⭐ ADMIN";
+    document.getElementById("onAllButton").style.display = "flex";
+    updateExpiryDisplay();
+}
+
+// Toggle Menu
+function toggleMenu() {
+    document.getElementById("sideMenu").classList.toggle("expanded");
+}
+
+// Switch Tab
+function switchTab(tabNum) {
+    const tabs = document.querySelectorAll(".tab-content");
+    const btns = document.querySelectorAll(".tab-btn");
+    const menuItems = document.querySelectorAll(".side-menu .menu-item");
+    
+    tabs.forEach(tab => tab.style.display = "none");
+    btns.forEach(btn => btn.classList.remove("active"));
+    menuItems.forEach(item => item.classList.remove("active"));
+    
+    document.getElementById("tab-" + tabNum).style.display = "block";
+    if (btns[tabNum]) btns[tabNum].classList.add("active");
+    if (menuItems[tabNum]) menuItems[tabNum].classList.add("active");
+}
+
+// Toggle Feature
+function toggle(el) {
+    const status = el.parentElement.parentElement.querySelector(".status");
+    playSound();
+    
+    if (el.checked) {
+        status.textContent = "ON";
+        status.className = "status on";
+    } else {
+        status.textContent = "OFF";
+        status.className = "status off";
+    }
+}
+
+// Activate All Features
 function activateAllFeatures() {
     if (!isAdmin) return;
     
     const features = document.querySelectorAll(".feature-toggle");
     features.forEach(feature => {
-        if (!feature.checked) {
-            feature.checked = true;
-            const event = new Event('change');
-            feature.dispatchEvent(event);
-        }
-    });
-
-    // Auto open Free Fire
-    window.open("https://freefiremax.com", "_blank");
-    playSound();
-}
-
-// ===== UPDATE DISPLAY =====
-function updateDisplay() {
-    document.getElementById("displayUID").textContent = currentUID;
-    document.getElementById("accountUID").textContent = currentUID;
-    document.getElementById("accountKey").textContent = currentKey.substring(0, 14) + "...";
-    document.getElementById("accountRole").textContent = isAdmin ? "⭐ ADMIN" : "User";
-
-    const hours = Math.floor((expireTime - Date.now()) / (1000 * 60 * 60));
-    const minutes = Math.floor(((expireTime - Date.now()) % (1000 * 60 * 60)) / (1000 * 60));
-    
-    document.getElementById("displayExpiry").textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-    document.getElementById("accountExpiry").textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-}
-
-// ===== TOGGLE MENU =====
-function toggleMenu() {
-    document.getElementById("sideMenu").classList.toggle("expanded");
-}
-
-// ===== SWITCH TAB =====
-function switchTab(tabNum) {
-    const tabs = document.querySelectorAll(".tab-content");
-    const btns = document.querySelectorAll(".tab-btn");
-    const menuItems = document.querySelectorAll(".side-menu .menu-item");
-
-    tabs.forEach(tab => tab.style.display = "none");
-    btns.forEach(btn => btn.classList.remove("active"));
-    menuItems.forEach(item => item.classList.remove("active"));
-
-    document.getElementById("tab-" + tabNum).style.display = "block";
-    if (btns[tabNum]) {
-        btns[tabNum].classList.add("active");
-        if (isAdmin) btns[tabNum].classList.add("admin");
-    }
-    if (menuItems[tabNum]) menuItems[tabNum].classList.add("active");
-}
-
-// ===== TOGGLE FEATURE =====
-function toggle(el) {
-    const status = el.parentElement.parentElement.querySelector(".status");
-    
-    playSound();
-
-    if (el.checked) {
+        feature.checked = true;
+        const status = feature.parentElement.parentElement.querySelector(".status");
         status.textContent = "ON";
-        status.classList.remove("off");
-        status.classList.add("on");
-    } else {
-        status.textContent = "OFF";
-        status.classList.remove("on");
-        status.classList.add("off");
-    }
+        status.className = "status on";
+    });
+    
+    playSound();
+    alert("✅ ALL FEATURES ACTIVATED! Opening Free Fire...");
+    window.location.href = "intent://com.dts.freefireth#Intent;scheme=freefire;package=com.dts.freefireth;end;";
 }
 
-// ===== LOGOUT =====
+// Logout
 function logout() {
-    if (confirm("Bạn có chắc muốn đăng xuất?")) {
-        localStorage.clear();
+    if (confirm("Logout?")) {
+        localStorage.removeItem("panelLogin");
         location.reload();
     }
 }
 
-// ===== PLAY SOUND =====
+// Play Sound
 function playSound() {
     const audio = document.getElementById("clickSound");
     audio.currentTime = 0;
-    audio.play().catch(e => console.log("Sound play failed"));
+    audio.play().catch(() => {});
 }
 
-// ===== UPDATE EXPIRY =====
-function updateExpiry() {
-    const hours = Math.floor((expireTime - Date.now()) / (1000 * 60 * 60));
-    const minutes = Math.floor(((expireTime - Date.now()) % (1000 * 60 * 60)) / (1000 * 60));
-    
-    document.getElementById("expiryTime").textContent = `${hours}h ${minutes}m`;
-    
-    if (hours <= 0 && minutes <= 0) {
-        alert("Key hết hạn!");
-        logout();
-    }
-}
-
-// ===== INIT =====
+// Initialize
 window.onload = () => {
-    setInterval(updateExpiry, 1000);
-    updateExpiry();
-
-    if (localStorage.getItem("panelLogin") === "true") {
-        const savedExpiry = parseInt(localStorage.getItem("panelExpiry"));
-        if (savedExpiry && Date.now() <= savedExpiry) {
-            document.getElementById("loginModal").style.display = "none";
-            document.getElementById("appContent").classList.add("visible");
-            expireTime = savedExpiry;
-            currentUID = localStorage.getItem("panelUID");
-            currentKey = localStorage.getItem("panelKey");
-            isAdmin = localStorage.getItem("panelIsAdmin") === "true";
-            
-            if (isAdmin) enableAdminMode();
-            updateDisplay();
-        } else {
-            localStorage.clear();
-        }
+    if (localStorage.getItem("panelLogin") === "true" && localStorage.getItem("panelAdmin") === "true") {
+        document.getElementById("loginModal").style.display = "none";
+        document.getElementById("appContent").classList.add("visible");
+        isAdmin = true;
+        isLoggedIn = true;
+        currentUID = "⭐ " + (localStorage.getItem("panelUID") || "ADMIN");
+        updateAdminUI();
     }
-
-    document.getElementById("keyInput").addEventListener("keypress", (e) => {
-        if (e.key === "Enter") checkLogin(e);
-    });
+    
+    // Update stats every 3 seconds
+    setInterval(() => {
+        document.getElementById("cpuUsage").textContent = Math.floor(Math.random() * 40 + 25) + "%";
+        document.getElementById("ramUsage").textContent = Math.floor(Math.random() * 30 + 50) + "%";
+        document.getElementById("fpsUsage").textContent = Math.floor(Math.random() * 30 + 90) + " FPS";
+        document.getElementById("pingUsage").textContent = Math.floor(Math.random() * 20 + 8) + "ms";
+    }, 3000);
 };
 </script>
 
