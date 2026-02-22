@@ -3,49 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PANEL IOS - HD DEVICE UID</title>
+<title>PANEL IOS - HD FINAL</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+:root {
+    --primary: #00c8ff;
+    --secondary: #ff2d75;
+    --accent: #8a2eff;
+    --success: #00ff99;
+    --dark: #0a0e27;
+    --darker: #061320;
+    --card: rgba(10, 25, 50, 0.95);
+    --blur: rgba(10, 14, 39, 0.98);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1428 100%);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, var(--dark) 0%, #1a1f3a 50%, var(--darker) 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color: white;
     overflow-x: hidden;
     min-height: 100vh;
 }
 
-/* ===== LOGIN MODAL ===== */
-.login-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(10, 14, 39, 0.98);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    backdrop-filter: blur(8px);
-    animation: fadeIn 0.5s ease-out;
+/* ===== ANIMATIONS ===== */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.login-box {
-    background: linear-gradient(145deg, #1a2647 0%, #0f1a2e 50%, #1d2f47 100%);
-    border-radius: 28px;
-    padding: 45px 40px;
-    box-shadow: 0 0 60px rgba(0, 200, 255, 0.3), 0 0 20px rgba(255, 45, 117, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid rgba(0, 200, 255, 0.25);
-    min-width: 360px;
-    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    max-height: 90vh;
-    overflow-y: auto;
+@keyframes slideDown {
+    from { transform: translateY(-100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes slideUp {
@@ -53,36 +46,105 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-.login-header {
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ===== LOGIN MODAL ===== */
+.login-modal {
+    position: fixed;
+    inset: 0;
+    background: var(--blur);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    width: 90%;
+    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.login-visual {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.login-logo {
+    font-size: 120px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.login-title {
     text-align: center;
-    margin-bottom: 25px;
 }
 
-.login-header .logo {
-    font-size: 48px;
+.login-title h1 {
+    font-size: 36px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 10px;
-    animation: bounce 2s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-.login-header h1 {
-    color: #00c8ff;
-    font-size: 28px;
+    font-weight: 900;
     letter-spacing: 2px;
-    text-shadow: 0 0 15px rgba(0, 200, 255, 0.6);
-    margin-bottom: 8px;
-    font-weight: 800;
 }
 
-.login-header .subtitle {
-    color: #ff2d75;
-    font-size: 13px;
-    letter-spacing: 4px;
-    font-weight: 600;
+.login-title p {
+    color: var(--primary);
+    font-size: 14px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.login-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    width: 100%;
+}
+
+.stat-box {
+    background: rgba(0, 200, 255, 0.1);
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+}
+
+.stat-box .number {
+    font-size: 24px;
+    color: var(--success);
+    font-weight: 900;
+}
+
+.stat-box .label {
+    font-size: 12px;
+    color: var(--primary);
+    margin-top: 6px;
+    text-transform: uppercase;
+}
+
+.login-box {
+    background: linear-gradient(145deg, #1a2647 0%, #0f1a2e 50%, #1d2f47 100%);
+    border-radius: 20px;
+    padding: 40px;
+    border: 2px solid rgba(0, 200, 255, 0.25);
+    box-shadow: 0 0 60px rgba(0, 200, 255, 0.2);
+    animation: slideDown 0.6s ease-out;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .login-form {
@@ -90,35 +152,34 @@ body {
 }
 
 .form-group {
-    margin-bottom: 14px;
+    margin-bottom: 18px;
     display: flex;
     flex-direction: column;
 }
 
 .form-group label {
     font-size: 12px;
-    color: #00c8ff;
-    margin-bottom: 6px;
-    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 8px;
+    font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
 .form-group input {
     width: 100%;
-    padding: 12px 14px;
+    padding: 14px 16px;
     border-radius: 12px;
     border: 1.5px solid rgba(0, 200, 255, 0.3);
     outline: none;
-    font-size: 14px;
+    font-size: 15px;
     background: rgba(30, 50, 85, 0.6);
     color: #fff;
     transition: all 0.3s ease;
-    font-weight: 500;
 }
 
 .form-group input:focus {
-    border-color: #00c8ff;
+    border-color: var(--primary);
     box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
     background: rgba(30, 50, 85, 0.9);
 }
@@ -129,37 +190,43 @@ body {
 
 .form-group input:disabled {
     background: rgba(30, 50, 85, 0.4);
-    color: #00ff99;
+    color: var(--success);
     cursor: not-allowed;
 }
 
-/* ===== AUTO UID SECTION ===== */
-.auto-uid-section {
-    background: rgba(0, 200, 255, 0.1);
-    padding: 14px;
-    border-radius: 12px;
-    margin-bottom: 14px;
-    border: 1.5px solid rgba(0, 200, 255, 0.25);
+/* ===== UID SECTION ===== */
+.uid-section {
+    background: rgba(0, 200, 255, 0.08);
+    padding: 18px;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    border: 1.5px solid rgba(0, 200, 255, 0.2);
 }
 
-.auto-uid-title {
-    font-size: 11px;
-    color: #00c8ff;
+.uid-section-title {
+    font-size: 12px;
+    color: var(--primary);
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
+.uid-buttons-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
 .uid-btn {
-    width: 100%;
-    padding: 11px;
-    background: linear-gradient(135deg, rgba(138, 46, 255, 0.3), rgba(138, 46, 255, 0.1));
-    border: 1.5px solid rgba(138, 46, 255, 0.4);
+    padding: 12px;
+    background: linear-gradient(135deg, rgba(138, 46, 255, 0.4), rgba(138, 46, 255, 0.1));
+    border: 1.5px solid rgba(138, 46, 255, 0.5);
     color: #8a2eff;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     transition: all 0.3s ease;
     text-transform: uppercase;
@@ -167,10 +234,10 @@ body {
 }
 
 .uid-btn:hover {
-    background: rgba(138, 46, 255, 0.4);
+    background: rgba(138, 46, 255, 0.5);
     border-color: #8a2eff;
-    transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(138, 46, 255, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(138, 46, 255, 0.4);
 }
 
 .uid-btn:active {
@@ -179,87 +246,134 @@ body {
 
 .uid-result {
     background: rgba(0, 255, 153, 0.15);
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid rgba(0, 255, 153, 0.3);
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 153, 0.4);
     font-size: 12px;
-    color: #00ff99;
+    color: var(--success);
     text-align: center;
     font-weight: 700;
-    margin-top: 10px;
-    animation: slideIn 0.3s ease;
+    animation: slideUp 0.3s ease;
     line-height: 1.6;
+    display: none;
 }
 
-@keyframes slideIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
+.uid-result.show {
+    display: block;
 }
 
+/* ===== DEVICE INFO BOX ===== */
+.device-info-box {
+    background: rgba(0, 200, 255, 0.08);
+    padding: 14px;
+    border-radius: 12px;
+    margin-top: 12px;
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    font-size: 11px;
+    color: #9ad6ff;
+    line-height: 1.8;
+}
+
+.device-info-box .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.device-info-box .info-row span:last-child {
+    color: var(--success);
+    font-weight: 700;
+}
+
+.device-info-box .info-row:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== LOGIN BUTTON ===== */
 .login-btn {
     width: 100%;
-    padding: 13px;
+    padding: 14px;
     border-radius: 12px;
-    background: linear-gradient(135deg, #ff0080 0%, #8a2eff 100%);
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
     color: #fff;
-    font-weight: bold;
+    font-weight: 700;
     border: none;
     font-size: 15px;
     cursor: pointer;
-    box-shadow: 0 0 25px rgba(255, 0, 200, 0.6);
+    box-shadow: 0 0 25px rgba(255, 0, 200, 0.4);
     transition: all 0.3s ease;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-top: 8px;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.login-btn:hover::before {
+    left: 100%;
 }
 
 .login-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 35px rgba(255, 0, 200, 0.8);
+    box-shadow: 0 12px 35px rgba(255, 0, 200, 0.6);
 }
 
 .login-btn:active {
     transform: translateY(0);
 }
 
+/* ===== MESSAGE ===== */
 .login-msg {
-    color: #ff2d75;
-    margin-top: 10px;
-    min-height: 20px;
-    font-size: 12px;
+    margin-top: 12px;
+    min-height: 24px;
+    font-size: 13px;
     text-align: center;
     font-weight: 600;
+    animation: slideUp 0.3s ease;
 }
 
 .login-msg.success {
-    color: #00ff99;
+    color: var(--success);
+    text-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
 }
 
 .login-msg.error {
-    color: #ff2d75;
+    color: var(--secondary);
+    text-shadow: 0 0 10px rgba(255, 45, 117, 0.5);
 }
 
 .login-footer {
-    margin-top: 15px;
-    padding-top: 15px;
+    margin-top: 18px;
+    padding-top: 18px;
     border-top: 1px solid rgba(0, 200, 255, 0.15);
     font-size: 11px;
     color: #9ad6ff;
     text-align: center;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
-.expiry-box {
+.expiry-info {
     background: rgba(0, 200, 255, 0.15);
-    padding: 8px;
+    padding: 10px;
     border-radius: 8px;
-    border: 1px solid rgba(0, 200, 255, 0.3);
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
 .expiry-time {
-    color: #00ff99;
-    font-weight: bold;
+    color: var(--success);
+    font-weight: 700;
 }
 
 /* ===== SIDE MENU ===== */
@@ -269,115 +383,155 @@ body {
     top: 0;
     height: 100vh;
     width: 75px;
-    background: linear-gradient(180deg, #0a1428 0%, #0f1a2e 50%, #081a33 100%);
-    box-shadow: 3px 0 25px rgba(0, 122, 255, 0.25);
+    background: linear-gradient(180deg, #0a1428 0%, #0f1a2e 50%, var(--darker) 100%);
+    box-shadow: 3px 0 30px rgba(0, 122, 255, 0.2);
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 900;
-    transition: width 0.4s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-right: 2px solid rgba(0, 200, 255, 0.15);
     overflow-y: auto;
-    padding-top: 15px;
+    padding-top: 20px;
+}
+
+.side-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.side-menu::-webkit-scrollbar-track {
+    background: rgba(0, 200, 255, 0.05);
+}
+
+.side-menu::-webkit-scrollbar-thumb {
+    background: rgba(0, 200, 255, 0.3);
+    border-radius: 3px;
 }
 
 .side-menu.expanded {
-    width: 260px;
+    width: 280px;
 }
 
 .menu-item {
-    padding: 16px 10px;
+    padding: 18px 12px;
     color: #9ad6ff;
     width: 100%;
     text-align: center;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
     border-left: 4px solid transparent;
     font-size: 12px;
     font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
+    position: relative;
+}
+
+.menu-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: var(--primary);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
 }
 
 .menu-item:hover {
     background: rgba(0, 200, 255, 0.12);
-    border-left-color: #00c8ff;
+    border-left-color: var(--primary);
+}
+
+.menu-item:hover::before {
+    transform: scaleY(1);
 }
 
 .menu-item.active {
     background: linear-gradient(90deg, rgba(255, 0, 128, 0.25), transparent);
-    color: #ff2d75;
-    border-left-color: #ff2d75;
+    color: var(--secondary);
+    border-left-color: var(--secondary);
 }
 
 .menu-icon {
-    font-size: 18px;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.menu-item:hover .menu-icon {
+    transform: scale(1.2) rotate(5deg);
 }
 
 .menu-text {
     display: none;
-    font-size: 11px;
+    font-size: 12px;
+    white-space: nowrap;
 }
 
 .side-menu.expanded .menu-text {
-    display: block;
+    display: inline;
 }
 
 .menu-toggle {
     position: fixed;
-    left: 14px;
+    left: 16px;
     top: 16px;
     font-size: 26px;
-    color: #00c8ff;
+    color: var(--primary);
     background: rgba(8, 26, 51, 0.95);
-    padding: 10px 12px;
+    padding: 12px 15px;
     border-radius: 12px;
     cursor: pointer;
     z-index: 950;
     border: 1.5px solid rgba(0, 200, 255, 0.4);
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .menu-toggle:hover {
-    box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
+    box-shadow: 0 0 25px rgba(0, 200, 255, 0.5);
+    transform: scale(1.1);
+    border-color: var(--primary);
 }
 
 /* ===== MAIN CONTENT ===== */
 .main-content {
     margin-left: 75px;
-    padding-bottom: 80px;
-    transition: margin-left 0.4s;
+    padding-bottom: 90px;
+    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     min-height: 100vh;
 }
 
 .side-menu.expanded ~ .main-content {
-    margin-left: 260px;
+    margin-left: 280px;
 }
 
 /* ===== HEADER ===== */
 .header {
     text-align: center;
-    padding: 20px 0 10px;
-    margin-top: 5px;
+    padding: 30px 0 15px;
+    margin-top: 10px;
+    background: linear-gradient(180deg, rgba(0, 200, 255, 0.05), transparent);
 }
 
 .header h1 {
-    font-size: 26px;
-    letter-spacing: 1px;
+    font-size: 32px;
+    letter-spacing: 2px;
     font-weight: 900;
-    background: linear-gradient(135deg, #ff2d75, #00c8ff);
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
-.sub {
-    color: #00c8ff;
-    font-size: 12px;
-    letter-spacing: 3px;
+.header .sub {
+    color: var(--primary);
+    font-size: 13px;
+    letter-spacing: 4px;
     font-weight: 600;
 }
 
@@ -385,83 +539,88 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 16px;
-    margin: 12px 12px 0;
-    background: rgba(0, 200, 255, 0.1);
-    border-radius: 10px;
-    border: 1px solid rgba(0, 200, 255, 0.2);
-    font-size: 11px;
+    padding: 14px 20px;
+    margin: 15px 15px 0;
+    background: linear-gradient(135deg, rgba(0, 200, 255, 0.1), rgba(0, 200, 255, 0.05));
+    border-radius: 14px;
+    border: 1.5px solid rgba(0, 200, 255, 0.2);
+    font-size: 12px;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
+    backdrop-filter: blur(5px);
 }
 
 .user-info-item {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
 }
 
 .user-info-item .label {
-    color: #00c8ff;
-    font-weight: 600;
+    color: var(--primary);
+    font-weight: 700;
 }
 
 .user-info-item .value {
-    color: #00ff99;
-    font-weight: 600;
+    color: var(--success);
+    font-weight: 700;
 }
 
 /* ===== TABS ===== */
 .tabs-container {
     display: flex;
     justify-content: center;
-    gap: 6px;
-    padding: 12px 10px;
+    gap: 8px;
+    padding: 16px 12px;
     flex-wrap: wrap;
     background: rgba(0, 200, 255, 0.05);
-    margin: 12px 10px 0;
-    border-radius: 14px;
-    border: 1px solid rgba(0, 200, 255, 0.1);
+    margin: 15px 12px 0;
+    border-radius: 16px;
+    border: 1.5px solid rgba(0, 200, 255, 0.1);
 }
 
 .tab-btn {
-    padding: 8px 14px;
-    border-radius: 18px;
+    padding: 10px 18px;
+    border-radius: 20px;
     border: 1.5px solid rgba(0, 200, 255, 0.3);
     background: transparent;
     color: #9ad6ff;
     cursor: pointer;
-    transition: all 0.3s;
-    font-size: 11px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 12px;
     font-weight: 700;
+    position: relative;
+    overflow: hidden;
 }
 
 .tab-btn.active {
-    background: linear-gradient(135deg, #ff0080, #8a2eff);
-    border-color: #ff2d75;
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    border-color: var(--secondary);
     color: #fff;
-    box-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
 }
 
 .tab-btn:hover:not(.active) {
-    border-color: #00c8ff;
-    transform: translateY(-1px);
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 200, 255, 0.3);
 }
 
 /* ===== CARD ===== */
 .card {
-    margin: 10px 12px;
-    padding: 14px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, rgba(10, 25, 50, 0.9), rgba(15, 35, 65, 0.9));
+    margin: 12px 15px;
+    padding: 18px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--card), rgba(15, 35, 65, 0.95));
     border: 1.5px solid rgba(0, 180, 255, 0.25);
-    box-shadow: 0 0 20px rgba(0, 150, 255, 0.1);
-    transition: all 0.3s;
+    box-shadow: 0 0 25px rgba(0, 150, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(255, 0, 150, 0.25);
+    transform: translateY(-4px);
+    box-shadow: 0 0 40px rgba(255, 0, 150, 0.3), 0 0 15px rgba(0, 200, 255, 0.2);
+    border-color: rgba(0, 200, 255, 0.4);
 }
 
 .item {
@@ -475,34 +634,37 @@ body {
 }
 
 .title {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
     color: #fff;
+    letter-spacing: 0.5px;
 }
 
 .desc {
     font-size: 12px;
     color: #9ad6ff;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 
 /* ===== STATUS ===== */
 .status {
-    font-size: 10px;
-    padding: 4px 10px;
-    border-radius: 16px;
-    margin-right: 10px;
+    font-size: 11px;
+    padding: 6px 12px;
+    border-radius: 18px;
+    margin-right: 12px;
     font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .on {
-    background: rgba(0, 255, 150, 0.2);
-    color: #00ff99;
-    border: 1px solid #00ff99;
+    background: linear-gradient(135deg, rgba(0, 255, 150, 0.2), rgba(0, 200, 200, 0.2));
+    color: var(--success);
+    border: 1px solid var(--success);
 }
 
 .off {
-    background: rgba(255, 0, 80, 0.2);
+    background: linear-gradient(135deg, rgba(255, 0, 80, 0.2), rgba(200, 0, 100, 0.2));
     color: #ff4d6d;
     border: 1px solid #ff4d6d;
 }
@@ -510,9 +672,9 @@ body {
 /* ===== SWITCH ===== */
 .switch {
     position: relative;
-    width: 50px;
-    height: 26px;
-    margin-left: 8px;
+    width: 55px;
+    height: 28px;
+    margin-left: 10px;
 }
 
 .switch input {
@@ -522,32 +684,35 @@ body {
 .slider {
     position: absolute;
     inset: 0;
-    background: #2a2a3a;
-    border-radius: 26px;
-    transition: all 0.3s;
+    background: linear-gradient(135deg, #2a2a3a, #1a1a2a);
+    border-radius: 28px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    border: 1px solid rgba(100, 100, 120, 0.5);
+    border: 2px solid rgba(100, 100, 120, 0.5);
 }
 
-.slider:before {
+.slider::before {
     content: "";
     position: absolute;
-    height: 20px;
-    width: 20px;
+    height: 24px;
+    width: 24px;
     left: 2px;
     bottom: 2px;
     background: white;
     border-radius: 50%;
-    transition: all 0.3s;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 input:checked + .slider {
-    background: linear-gradient(135deg, #ff0080, #8a2eff);
-    border-color: #ff2d75;
+    background: linear-gradient(135deg, var(--secondary), var(--accent));
+    border-color: var(--secondary);
+    box-shadow: 0 0 20px rgba(255, 0, 200, 0.5);
 }
 
-input:checked + .slider:before {
-    transform: translateX(24px);
+input:checked + .slider::before {
+    transform: translateX(27px);
+    box-shadow: 0 2px 8px rgba(255, 0, 200, 0.4);
 }
 
 /* ===== BOTTOM NAV ===== */
@@ -559,18 +724,19 @@ input:checked + .slider:before {
     background: linear-gradient(180deg, rgba(7, 20, 34, 0.95), rgba(7, 20, 34, 1));
     display: flex;
     justify-content: space-around;
-    padding: 10px 8px;
+    padding: 14px 10px;
     border-top: 2px solid rgba(0, 150, 255, 0.25);
     z-index: 800;
+    backdrop-filter: blur(10px);
 }
 
 .nav div {
-    font-size: 11px;
+    font-size: 12px;
     color: #9ad6ff;
     cursor: pointer;
-    padding: 8px 10px;
-    border-radius: 10px;
-    transition: all 0.3s;
+    padding: 10px 14px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
     font-weight: 600;
     flex: 1;
     text-align: center;
@@ -578,7 +744,45 @@ input:checked + .slider:before {
 
 .nav div:hover {
     background: rgba(0, 200, 255, 0.15);
-    color: #00c8ff;
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* ===== STATS GRID ===== */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 12px 15px;
+}
+
+.stat-item {
+    background: linear-gradient(135deg, rgba(0, 200, 255, 0.15), rgba(138, 46, 255, 0.15));
+    border: 1.5px solid rgba(0, 200, 255, 0.25);
+    border-radius: 16px;
+    padding: 18px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0, 200, 255, 0.3);
+    border-color: rgba(0, 200, 255, 0.5);
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #9ad6ff;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.stat-value {
+    font-size: 26px;
+    color: var(--success);
+    font-weight: 900;
+    text-shadow: 0 0 15px rgba(0, 255, 153, 0.5);
 }
 
 /* ===== APP CONTENT ===== */
@@ -588,19 +792,21 @@ input:checked + .slider:before {
 
 .app-content.visible {
     display: block;
+    animation: fadeIn 0.6s ease-out;
 }
 
 /* ===== LOADING ===== */
 .loading {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
     display: none;
     align-items: center;
     justify-content: center;
     z-index: 3000;
     flex-direction: column;
-    gap: 15px;
+    gap: 25px;
+    backdrop-filter: blur(5px);
 }
 
 .loading.active {
@@ -608,25 +814,116 @@ input:checked + .slider:before {
 }
 
 .loading-spinner {
-    width: 50px;
-    height: 50px;
-    border: 3px solid rgba(0, 200, 255, 0.2);
-    border-top-color: #00c8ff;
-    border-right-color: #ff2d75;
+    width: 60px;
+    height: 60px;
+    border: 4px solid rgba(0, 200, 255, 0.2);
+    border-top-color: var(--primary);
+    border-right-color: var(--secondary);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin 1.2s linear infinite;
 }
 
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 
-@media (max-width: 480px) {
-    .login-box {
-        min-width: 95%;
-        padding: 25px 18px;
+.loading-text {
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .login-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
     }
-    .header h1 { font-size: 20px; }
+
+    .login-visual {
+        order: 2;
+    }
+
+    .login-box {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-box {
+        padding: 30px;
+        border-radius: 16px;
+        max-height: none;
+    }
+
+    .side-menu.expanded {
+        width: 240px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tabs-container {
+        gap: 6px;
+        padding: 12px 8px;
+    }
+
+    .tab-btn {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-modal {
+        padding: 20px;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: none;
+    }
+
+    .login-logo {
+        font-size: 80px;
+    }
+
+    .login-title h1 {
+        font-size: 24px;
+    }
+
+    .login-visual {
+        display: none;
+    }
+
+    .header h1 {
+        font-size: 22px;
+    }
+
+    .card {
+        margin: 10px 10px;
+        padding: 14px;
+    }
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 200, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 200, 255, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 200, 255, 0.5);
 }
 </style>
 </head>
@@ -634,46 +931,89 @@ input:checked + .slider:before {
 
 <!-- LOGIN MODAL -->
 <div class="login-modal" id="loginModal">
-    <div class="login-box">
-        <div class="login-header">
-            <div class="logo">💀</div>
-            <h1>PANEL IOS HD</h1>
-            <div class="subtitle">DEVICE UID AUTO</div>
-        </div>
-
-        <form class="login-form" onsubmit="checkLogin(event)">
-            <!-- AUTO UID SECTION -->
-            <div class="auto-uid-section">
-                <div class="auto-uid-title">📱 Lấy Device UID Tự Động</div>
-                <button type="button" class="uid-btn" onclick="getDeviceUID()">
-                    🔄 LẤY UID THIẾT BỊ
-                </button>
-                <div id="uidStatus" style="display:none;">
-                    <div class="uid-result" id="uidResultText"></div>
+    <div class="login-container">
+        <!-- LEFT SIDE - VISUAL -->
+        <div class="login-visual">
+            <div class="login-logo">💀</div>
+            <div class="login-title">
+                <h1>PANEL IOS</h1>
+                <p>HD Advanced</p>
+            </div>
+            <div class="login-stats">
+                <div class="stat-box">
+                    <div class="number">12K+</div>
+                    <div class="label">Users</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">99.9%</div>
+                    <div class="label">Uptime</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">24H</div>
+                    <div class="label">Support</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">v2.5</div>
+                    <div class="label">Latest</div>
                 </div>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label>🔑 UID (User ID)</label>
-                <input type="text" id="uidInput" placeholder="UID sẽ tự động điền..." required disabled>
-            </div>
+        <!-- RIGHT SIDE - LOGIN FORM -->
+        <div class="login-box">
+            <form class="login-form" onsubmit="checkLogin(event)">
+                <!-- AUTO UID SECTION -->
+                <div class="uid-section">
+                    <div class="uid-section-title">📱 Device UID Auto Detect</div>
+                    <div class="uid-buttons-group">
+                        <button type="button" class="uid-btn" onclick="getDeviceUID()">🔄 Get UID</button>
+                        <button type="button" class="uid-btn" onclick="autoRegisterUID()">✨ Register</button>
+                    </div>
+                    <div class="uid-result" id="uidStatus"></div>
+                    
+                    <!-- Device Info Box -->
+                    <div class="device-info-box" id="deviceInfo" style="display:none;">
+                        <div class="info-row">
+                            <span>📱 Resolution:</span>
+                            <span id="deviceRes">--</span>
+                        </div>
+                        <div class="info-row">
+                            <span>⚙️ CPU Cores:</span>
+                            <span id="deviceCores">--</span>
+                        </div>
+                        <div class="info-row">
+                            <span>🗣️ Language:</span>
+                            <span id="deviceLang">--</span>
+                        </div>
+                        <div class="info-row">
+                            <span>🔐 Device ID:</span>
+                            <span id="deviceID">--</span>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="form-group">
-                <label>🛡️ Key (License)</label>
-                <input type="text" id="keyInput" placeholder="Nhập License Key..." required>
-            </div>
+                <div class="form-group">
+                    <label>🔑 UID (User ID)</label>
+                    <input type="text" id="uidInput" placeholder="Auto-filled from device..." required disabled>
+                </div>
 
-            <button type="submit" class="login-btn">⚡ ĐĂNG NHẬP</button>
-        </form>
+                <div class="form-group">
+                    <label>🛡️ Key (License)</label>
+                    <input type="text" id="keyInput" placeholder="Enter your license key..." required>
+                </div>
 
-        <div class="login-msg" id="loginMsg"></div>
+                <button type="submit" class="login-btn">⚡ Login Now</button>
+            </form>
 
-        <div class="login-footer">
-            <div class="expiry-box">
-                ⏰ Hết hạn: <span class="expiry-time" id="expiryTime">24h 0m</span>
-            </div>
-            <div style="font-size: 10px; color: #ff2d75; margin-top: 4px;">
-                ℹ️ Nhấn nút "LẤY UID THIẾT BỊ" để tự động điền UID
+            <div class="login-msg" id="loginMsg"></div>
+
+            <div class="login-footer">
+                <div class="expiry-info">
+                    ⏰ Expires in: <span class="expiry-time" id="expiryTime">24h 0m</span>
+                </div>
+                <div style="font-size: 11px; color: #ff2d75;">
+                    ℹ️ Click "Get UID" to auto-detect your device or "Register" for new account
+                </div>
             </div>
         </div>
     </div>
@@ -681,12 +1021,12 @@ input:checked + .slider:before {
 
 <!-- SIDE MENU -->
 <div class="side-menu" id="sideMenu">
-    <div class="menu-item active" onclick="switchTab(0)"><div class="menu-icon">🏠</div><div class="menu-text">Trang Chủ</div></div>
-    <div class="menu-item" onclick="switchTab(1)"><div class="menu-icon">⚡️</div><div class="menu-text">Công Cụ</div></div>
-    <div class="menu-item" onclick="switchTab(2)"><div class="menu-icon">🚀</div><div class="menu-text">Tối Ưu</div></div>
-    <div class="menu-item" onclick="switchTab(3)"><div class="menu-icon">📊</div><div class="menu-text">Thống Kê</div></div>
-    <div class="menu-item" onclick="switchTab(4)"><div class="menu-icon">⚙️</div><div class="menu-text">Cài Đặt</div></div>
-    <div class="menu-item" onclick="logout()"><div class="menu-icon">🚪</div><div class="menu-text">Đăng Xuất</div></div>
+    <div class="menu-item active" onclick="switchTab(0)" title="Home"><div class="menu-icon">🏠</div><div class="menu-text">Home</div></div>
+    <div class="menu-item" onclick="switchTab(1)" title="Tools"><div class="menu-icon">⚡️</div><div class="menu-text">Tools</div></div>
+    <div class="menu-item" onclick="switchTab(2)" title="Optimize"><div class="menu-icon">🚀</div><div class="menu-text">Optimize</div></div>
+    <div class="menu-item" onclick="switchTab(3)" title="Stats"><div class="menu-icon">📊</div><div class="menu-text">Stats</div></div>
+    <div class="menu-item" onclick="switchTab(4)" title="Settings"><div class="menu-icon">⚙️</div><div class="menu-text">Settings</div></div>
+    <div class="menu-item" onclick="logout()" title="Logout"><div class="menu-icon">🚪</div><div class="menu-text">Logout</div></div>
 </div>
 
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -701,25 +1041,25 @@ input:checked + .slider:before {
 
         <div class="user-info-bar">
             <div class="user-info-item"><span class="label">👤 UID:</span><span class="value" id="displayUID">N/A</span></div>
-            <div class="user-info-item"><span class="label">📅 Hết hạn:</span><span class="value" id="displayExpiry">--:--</span></div>
+            <div class="user-info-item"><span class="label">📅 Expires:</span><span class="value" id="displayExpiry">--:--</span></div>
             <div class="user-info-item"><span class="label">⚡ Status:</span><span class="value">✓ Active</span></div>
         </div>
 
         <div class="tabs-container">
-            <button class="tab-btn active" onclick="switchTab(0)">🏠 Trang Chủ</button>
-            <button class="tab-btn" onclick="switchTab(1)">⚡️ Công Cụ</button>
-            <button class="tab-btn" onclick="switchTab(2)">🚀 Tối Ưu</button>
-            <button class="tab-btn" onclick="switchTab(3)">📊 Thống Kê</button>
-            <button class="tab-btn" onclick="switchTab(4)">⚙️ Cài Đặt</button>
+            <button class="tab-btn active" onclick="switchTab(0)">🏠 Home</button>
+            <button class="tab-btn" onclick="switchTab(1)">⚡️ Tools</button>
+            <button class="tab-btn" onclick="switchTab(2)">🚀 Optimize</button>
+            <button class="tab-btn" onclick="switchTab(3)">📊 Stats</button>
+            <button class="tab-btn" onclick="switchTab(4)">⚙️ Settings</button>
         </div>
 
-        <!-- TAB 0 -->
+        <!-- TAB 0: HOME -->
         <div class="tab-content" id="tab-0">
             <div class="card">
                 <div class="item">
                     <div class="item-info">
                         <div class="title">🎮 AIMLOCK</div>
-                        <div class="desc">Định hướng thông minh</div>
+                        <div class="desc">Smart aiming technology</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
@@ -731,7 +1071,7 @@ input:checked + .slider:before {
                 <div class="item">
                     <div class="item-info">
                         <div class="title">🎯 FEATHER AIM</div>
-                        <div class="desc">Mục tiêu chính xác</div>
+                        <div class="desc">Precise targeting</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
@@ -743,7 +1083,7 @@ input:checked + .slider:before {
                 <div class="item">
                     <div class="item-info">
                         <div class="title">⚡ QUICK SWIPE</div>
-                        <div class="desc">Vuốt nhanh mượt mà</div>
+                        <div class="desc">Fast smooth movement</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
@@ -753,13 +1093,13 @@ input:checked + .slider:before {
             </div>
         </div>
 
-        <!-- TAB 1 -->
+        <!-- TAB 1: TOOLS -->
         <div class="tab-content" id="tab-1" style="display:none;">
             <div class="card">
                 <div class="item">
                     <div class="item-info">
                         <div class="title">🔧 RAM CLEANER</div>
-                        <div class="desc">Dọn dẹp bộ nhớ</div>
+                        <div class="desc">Clear memory</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
@@ -771,7 +1111,7 @@ input:checked + .slider:before {
                 <div class="item">
                     <div class="item-info">
                         <div class="title">🌡️ CPU COOLER</div>
-                        <div class="desc">Hạ nhiệt độ xử lý</div>
+                        <div class="desc">Lower temperature</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
@@ -783,7 +1123,7 @@ input:checked + .slider:before {
                 <div class="item">
                     <div class="item-info">
                         <div class="title">📱 BATTERY SAVER</div>
-                        <div class="desc">Tiết kiệm pin</div>
+                        <div class="desc">Save battery</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
@@ -793,13 +1133,13 @@ input:checked + .slider:before {
             </div>
         </div>
 
-        <!-- TAB 2 -->
+        <!-- TAB 2: OPTIMIZE -->
         <div class="tab-content" id="tab-2" style="display:none;">
             <div class="card">
                 <div class="item">
                     <div class="item-info">
                         <div class="title">🔒 STEADY HOLD</div>
-                        <div class="desc">Ổn định tay</div>
+                        <div class="desc">Stable hand control</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
@@ -811,7 +1151,7 @@ input:checked + .slider:before {
                 <div class="item">
                     <div class="item-info">
                         <div class="title">🚀 DRIFT FIX</div>
-                        <div class="desc">Khắc phục lan trôi</div>
+                        <div class="desc">Fix drift issues</div>
                     </div>
                     <div style="display:flex;align-items:center;">
                         <span class="status off">OFF</span>
@@ -819,40 +1159,52 @@ input:checked + .slider:before {
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- TAB 3 -->
-        <div class="tab-content" id="tab-3" style="display:none;">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 12px;">
-                <div style="background:rgba(0,200,255,0.15);border:1px solid rgba(0,200,255,0.3);border-radius:12px;padding:12px;text-align:center;">
-                    <div style="font-size:11px;color:#9ad6ff;margin-bottom:6px;">📈 CPU</div>
-                    <div style="font-size:20px;color:#00ff99;font-weight:900;" id="cpuUsage">45%</div>
-                </div>
-                <div style="background:rgba(0,200,255,0.15);border:1px solid rgba(0,200,255,0.3);border-radius:12px;padding:12px;text-align:center;">
-                    <div style="font-size:11px;color:#9ad6ff;margin-bottom:6px;">🧠 RAM</div>
-                    <div style="font-size:20px;color:#00ff99;font-weight:900;" id="ramUsage">62%</div>
-                </div>
-                <div style="background:rgba(0,200,255,0.15);border:1px solid rgba(0,200,255,0.3);border-radius:12px;padding:12px;text-align:center;">
-                    <div style="font-size:11px;color:#9ad6ff;margin-bottom:6px;">🎮 FPS</div>
-                    <div style="font-size:20px;color:#00ff99;font-weight:900;" id="fpsUsage">120</div>
-                </div>
-                <div style="background:rgba(0,200,255,0.15);border:1px solid rgba(0,200,255,0.3);border-radius:12px;padding:12px;text-align:center;">
-                    <div style="font-size:11px;color:#9ad6ff;margin-bottom:6px;">⏱️ PING</div>
-                    <div style="font-size:20px;color:#00ff99;font-weight:900;" id="pingUsage">12ms</div>
+            <div class="card">
+                <div class="item">
+                    <div class="item-info">
+                        <div class="title">💨 SPEED BOOST</div>
+                        <div class="desc">Boost reaction time</div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="status off">OFF</span>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this,'SPEED BOOST')"><span class="slider"></span></label>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 4 -->
-        <div class="tab-content" id="tab-4" style="display:none;">
-            <div class="card" style="margin-bottom:80px;">
-                <div style="color:#ff2d75;font-weight:bold;margin-bottom:10px;">⚠️ Thông Tin Tài Khoản</div>
-                <div style="font-size:12px;color:#9ad6ff;line-height:2;">
-                    <div>👤 UID: <span style="color:#00ff99;font-weight:600;" id="accountUID">N/A</span></div>
-                    <div>🔑 Key: <span style="color:#00c8ff;font-weight:600;" id="accountKey">••••••••••</span></div>
-                    <div>📅 Hết hạn: <span style="color:#ff2d75;font-weight:600;" id="accountExpiry">--:--</span></div>
+        <!-- TAB 3: STATS -->
+        <div class="tab-content" id="tab-3" style="display:none;">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-label">📈 CPU Usage</div>
+                    <div class="stat-value" id="cpuUsage">45%</div>
                 </div>
-                <button onclick="logout()" style="width:100%;padding:10px;background:linear-gradient(135deg,#ff0080,#8a2eff);color:white;border:none;border-radius:8px;cursor:pointer;font-weight:700;margin-top:12px;">🚪 ĐĂNG XUẤT</button>
+                <div class="stat-item">
+                    <div class="stat-label">🧠 RAM Usage</div>
+                    <div class="stat-value" id="ramUsage">62%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">🎮 FPS Rate</div>
+                    <div class="stat-value" id="fpsUsage">120</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">⏱️ Ping</div>
+                    <div class="stat-value" id="pingUsage">12ms</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: SETTINGS -->
+        <div class="tab-content" id="tab-4" style="display:none;">
+            <div class="card" style="margin-bottom:100px;">
+                <div style="color:var(--secondary);font-weight:bold;margin-bottom:15px;font-size:16px;">⚠️ Account Info</div>
+                <div style="font-size:12px;color:#9ad6ff;line-height:2.2;">
+                    <div>👤 UID: <span style="color:var(--success);font-weight:600;" id="accountUID">N/A</span></div>
+                    <div>🔑 Key: <span style="color:var(--primary);font-weight:600;" id="accountKey">••••••••••</span></div>
+                    <div>📅 Expires: <span style="color:var(--secondary);font-weight:600;" id="accountExpiry">--:--</span></div>
+                </div>
+                <button onclick="logout()" style="width:100%;padding:12px;background:linear-gradient(135deg,var(--secondary),var(--accent));color:white;border:none;border-radius:10px;cursor:pointer;font-weight:700;margin-top:15px;transition:all 0.3s;box-shadow:0 0 20px rgba(255,0,200,0.4);">🚪 LOGOUT</button>
             </div>
         </div>
     </div>
@@ -860,46 +1212,46 @@ input:checked + .slider:before {
 
 <!-- BOTTOM NAV -->
 <div class="nav">
-    <div onclick="switchTab(0)">🏠 Trang Chủ</div>
-    <div onclick="switchTab(3)">📊 Thống Kê</div>
-    <div onclick="switchTab(4)">⚙️ Cài Đặt</div>
+    <div onclick="switchTab(0)">🏠 Home</div>
+    <div onclick="switchTab(3)">📊 Stats</div>
+    <div onclick="switchTab(4)">⚙️ Settings</div>
 </div>
 
 <!-- LOADING -->
 <div class="loading" id="loading">
     <div class="loading-spinner"></div>
-    <div>ĐANG XỬ LÝ...</div>
+    <div class="loading-text">Processing...</div>
 </div>
 
 <audio id="clickSound"><source src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
 
 <script>
-const usersDatabase = {
-    "DEV5C3A8D9E2F": { key: "GIAKHANHSOTO-XRQGH87SHDUUWNSPQ", active: true },
-    "DEVF7B2E9A1C": { key: "GIAKHANHSOTO-KJSJHD8392JKLQWJD", active: true },
-    "DEV4K9L3M7N": { key: "GIAKHANHSOTO-ASKDJQWKKJQ8129ZP", active: true },
-    "DEV8X1Y2Z5W": { key: "GIAKHANHSOTO-PQOWIEJQPWQJHZKQN", active: true },
-    "DEV6P9Q3R7S": { key: "GIAKHANHSOTO-ZXMNVQAPQWJQZXMNV", active: true },
-    "DEV2U5V8T1Q": { key: "GIAKHANHSOTO-QWJKASJQPW284KJLN", active: true },
-    "DEV9H3J7K2L": { key: "GIAKHANHSOTO-MNBVASDQWEJKQWJ12", active: true },
-    "DEVB4F8G6I1": { key: "GIAKHANHSOTO-LKJQWPQJKQWNZXKJQ", active: true },
-    "DEVC7M2N5P": { key: "GIAKHANHSOTO-KJQWJQPWQXZCVLKJA", active: true },
-    "DEVD1E9K4O": { key: "GIAKHANHSOTO-QWEIUJASJKLQWJKJW", active: true },
-};
-
+// ===== DATABASE =====
+let usersDatabase = JSON.parse(localStorage.getItem('usersDatabase')) || {};
 let expireTime = Date.now() + 24*60*60*1000;
 let currentUID = "";
 let currentKey = "";
+let currentDeviceInfo = {};
 
-// ===== AUTO UID - DEVICE =====
-function getDeviceUID() {
+// ===== GET DEVICE INFO =====
+function getDeviceInfo() {
     const userAgent = navigator.userAgent;
     const screen_w = screen.width;
     const screen_h = screen.height;
     const language = navigator.language;
     const cores = navigator.hardwareConcurrency || 1;
     
-    const deviceInfo = `${userAgent}-${screen_w}x${screen_h}-${language}-${cores}`;
+    return {
+        resolution: `${screen_w}x${screen_h}`,
+        cores: cores,
+        language: language,
+        userAgent: userAgent
+    };
+}
+
+function generateDeviceUID() {
+    const info = getDeviceInfo();
+    const deviceInfo = `${info.userAgent}-${info.resolution}-${info.language}-${info.cores}`;
     let hash = 0;
     
     for (let i = 0; i < deviceInfo.length; i++) {
@@ -908,15 +1260,59 @@ function getDeviceUID() {
         hash = hash & hash;
     }
     
-    const deviceUID = "DEV" + Math.abs(hash).toString(16).substring(0, 10).toUpperCase();
+    return "DEV" + Math.abs(hash).toString(16).substring(0, 10).toUpperCase();
+}
+
+// ===== DISPLAY DEVICE INFO =====
+function displayDeviceInfo(deviceUID) {
+    const info = getDeviceInfo();
+    currentDeviceInfo = info;
+    
+    document.getElementById("deviceRes").textContent = info.resolution;
+    document.getElementById("deviceCores").textContent = info.cores;
+    document.getElementById("deviceLang").textContent = info.language;
+    document.getElementById("deviceID").textContent = deviceUID;
+    document.getElementById("deviceInfo").style.display = "block";
+}
+
+// ===== GET DEVICE UID =====
+function getDeviceUID() {
+    const deviceUID = generateDeviceUID();
     document.getElementById("uidInput").value = deviceUID;
-    showUIDStatus(`✓ Device UID: ${deviceUID}<br>Cấu hình: ${screen_w}x${screen_h} | ${cores} cores`);
+    displayDeviceInfo(deviceUID);
+    showUIDStatus(`✓ Device UID detected successfully`);
     playSound();
 }
 
+// ===== AUTO REGISTER =====
+function autoRegisterUID() {
+    const deviceUID = generateDeviceUID();
+    const newKey = "GIAKHANHSOTO-" + generateRandomString(18);
+    
+    usersDatabase[deviceUID] = { key: newKey, active: true };
+    localStorage.setItem('usersDatabase', JSON.stringify(usersDatabase));
+    
+    document.getElementById("uidInput").value = deviceUID;
+    document.getElementById("keyInput").value = newKey;
+    displayDeviceInfo(deviceUID);
+    
+    showUIDStatus(`✅ Account registered! Ready to login.`);
+    playSound();
+}
+
+function generateRandomString(length) {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+}
+
 function showUIDStatus(message) {
-    document.getElementById("uidResultText").innerHTML = message;
-    document.getElementById("uidStatus").style.display = "block";
+    const status = document.getElementById("uidStatus");
+    status.innerHTML = message;
+    status.classList.add("show");
 }
 
 // ===== LOGIN =====
@@ -927,14 +1323,14 @@ function checkLogin(e) {
     const msg = document.getElementById("loginMsg");
 
     if (!uid || uid.length < 5) {
-        msg.textContent = "❌ UID không hợp lệ! Nhấn nút LẤY UID trước.";
+        msg.textContent = "❌ Invalid UID!";
         msg.className = "login-msg error";
         playSound();
         return;
     }
 
     if (!key.startsWith("GIAKHANHSOTO-")) {
-        msg.textContent = "❌ Key phải bắt đầu bằng GIAKHANHSOTO-";
+        msg.textContent = "❌ Key must start with GIAKHANHSOTO-";
         msg.className = "login-msg error";
         playSound();
         return;
@@ -942,20 +1338,20 @@ function checkLogin(e) {
 
     const userData = usersDatabase[uid];
     if (!userData) {
-        msg.textContent = "❌ UID không tồn tại trong hệ thống!";
+        msg.textContent = "❌ UID not registered! Click Register.";
         msg.className = "login-msg error";
         playSound();
         return;
     }
 
     if (userData.key !== key) {
-        msg.textContent = "❌ Key không khớp với UID!";
+        msg.textContent = "❌ Key mismatch!";
         msg.className = "login-msg error";
         playSound();
         return;
     }
 
-    msg.textContent = "✅ Đăng nhập thành công!";
+    msg.textContent = "✅ Login successful!";
     msg.className = "login-msg success";
     currentUID = uid;
     currentKey = key;
@@ -981,6 +1377,7 @@ function updateUserDisplay() {
     document.getElementById("displayExpiry").textContent = `${hours}:${String(minutes).padStart(2, '0')}`;
 }
 
+// ===== UI FUNCTIONS =====
 function toggleMenu() {
     document.getElementById("sideMenu").classList.toggle("expanded");
 }
