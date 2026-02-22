@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PANEL IOS - HD DEVICE UID</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1428 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ===== LOGIN MODAL ===== */
+.login-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 14, 39, 0.98);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.login-box {
+    background: linear-gradient(145deg, #1a2647 0%, #0f1a2e 50%, #1d2f47 100%);
+    border-radius: 28px;
+    padding: 45px 40px;
+    box-shadow: 0 0 60px rgba(0, 200, 255, 0.3), 0 0 20px rgba(255, 45, 117, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgba(0, 200, 255, 0.25);
+    min-width: 360px;
+    animation: slideUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.login-header .logo {
+    font-size: 48px;
+    margin-bottom: 10px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.login-header h1 {
+    color: #00c8ff;
+    font-size: 28px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 15px rgba(0, 200, 255, 0.6);
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+
+.login-header .subtitle {
+    color: #ff2d75;
+    font-size: 13px;
+    letter-spacing: 4px;
+    font-weight: 600;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 12px;
+    color: #00c8ff;
+    margin-bottom: 6px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1.5px solid rgba(0, 200, 255, 0.3);
+    outline: none;
+    font-size: 14px;
+    background: rgba(30, 50, 85, 0.6);
+    color: #fff;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.form-group input:focus {
+    border-color: #00c8ff;
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.4);
+    background: rgba(30, 50, 85, 0.9);
+}
+
+.form-group input::placeholder {
+    color: rgba(154, 214, 255, 0.5);
+}
+
+.form-group input:disabled {
+    background: rgba(30, 50, 85, 0.4);
+    color: #00ff99;
+    cursor: not-allowed;
+}
+
+/* ===== AUTO UID SECTION ===== */
+.auto-uid-section {
+    background: rgba(0, 200, 255, 0.1);
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    border: 1.5px solid rgba(0, 200, 255, 0.25);
+}
+
+.auto-uid-title {
+    font-size: 11px;
+    color: #00c8ff;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.uid-btn {
+    width: 100%;
+    padding: 11px;
+    background: linear-gradient(135deg, rgba(138, 46, 255, 0.3), rgba(138, 46, 255, 0.1));
+    border: 1.5px solid rgba(138, 46, 255, 0.4);
+    color: #8a2eff;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.uid-btn:hover {
+    background: rgba(138, 46, 255, 0.4);
+    border-color: #8a2eff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(138, 46, 255, 0.6);
+}
+
+.uid-btn:active {
+    transform: translateY(0);
+}
+
+.uid-result {
+    background: rgba(0, 255, 153, 0.15);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 153, 0.3);
+    font-size: 12px;
+    color: #00ff99;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 10px;
+    animation: slideIn 0.3s ease;
+    line-height: 1.6;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.login-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff0080 0%, #8a2eff 100%);
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 0 25px rgba(255, 0, 200, 0.6);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 8px;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 35px rgba(255, 0, 200, 0.8);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.login-msg {
+    color: #ff2d75;
+    margin-top: 10px;
+    min-height: 20px;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.login-msg.success {
+    color: #00ff99;
+}
+
+.login-msg.error {
+    color: #ff2d75;
+}
+
+.login-footer {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 200, 255, 0.15);
+    font-size: 11px;
+    color: #9ad6ff;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.expiry-box {
+    background: rgba(0, 200, 255, 0.15);
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 200, 255, 0.3);
+    margin-bottom: 6px;
+}
+
+.expiry-time {
+    color: #00ff99;
+    font-weight: bold;
+}
+
+/* ===== SIDE MENU ===== */
+.side-menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 75px;
+    background: linear-gradient(180deg, #0a1428 0%, #0f1a2e 50%, #081a33 100%);
+    box-shadow: 3px 0 25px rgba(0, 122, 255, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 900;
+    transition: width 0.4s;
+    border-right: 2px solid rgba(0, 200, 255, 0.15);
+    overflow-y: auto;
+    padding-top: 15px;
+}
+
+.side-menu.expanded {
+    width: 260px;
+}
+
+.menu-item {
+    padding: 16px 10px;
+    color: #9ad6ff;
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-left: 4px solid transparent;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.menu-item:hover {
+    background: rgba(0, 200, 255, 0.12);
+    border-left-color: #00c8ff;
+}
+
+.menu-item.active {
+    background: linear-gradient(90deg, rgba(255, 0, 128, 0.25), transparent);
+    color: #ff2d75;
+    border-left-color: #ff2d75;
+}
+
+.menu-icon {
+    font-size: 18px;
+}
+
+.menu-text {
+    display: none;
+    font-size: 11px;
+}
+
+.side-menu.expanded .menu-text {
+    display: block;
+}
+
+.menu-toggle {
+    position: fixed;
+    left: 14px;
+    top: 16px;
+    font-size: 26px;
+    color: #00c8ff;
+    background: rgba(8, 26, 51, 0.95);
+    padding: 10px 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    z-index: 950;
+    border: 1.5px solid rgba(0, 200, 255, 0.4);
+    transition: all 0.3s;
+}
+
+.menu-toggle:hover {
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.5);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    margin-left: 75px;
+    padding-bottom: 80px;
+    transition: margin-left 0.4s;
+    min-height: 100vh;
+}
+
+.side-menu.expanded ~ .main-content {
+    margin-left: 260px;
+}
+
+/* ===== HEADER ===== */
+.header {
+    text-align: center;
+    padding: 20px 0 10px;
+    margin-top: 5px;
+}
+
+.header h1 {
+    font-size: 26px;
+    letter-spacing: 1px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ff2d75, #00c8ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4px;
+}
+
+.sub {
+    color: #00c8ff;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.user-info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    margin: 12px 12px 0;
+    background: rgba(0, 200, 255, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 200, 255, 0.2);
+    font-size: 11px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.user-info-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.user-info-item .label {
+    color: #00c8ff;
+    font-weight: 600;
+}
+
+.user-info-item .value {
+    color: #00ff99;
+    font-weight: 600;
+}
+
+/* ===== TABS ===== */
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 10px;
+    flex-wrap: wrap;
+    background: rgba(0, 200, 255, 0.05);
+    margin: 12px 10px 0;
+    border-radius: 14px;
+    border: 1px solid rgba(0, 200, 255, 0.1);
+}
+
+.tab-btn {
+    padding: 8px 14px;
+    border-radius: 18px;
+    border: 1.5px solid rgba(0, 200, 255, 0.3);
+    background: transparent;
+    color: #9ad6ff;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #ff0080, #8a2eff);
+    border-color: #ff2d75;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(255, 0, 128, 0.5);
+}
+
+.tab-btn:hover:not(.active) {
+    border-color: #00c8ff;
+    transform: translateY(-1px);
+}
+
+/* ===== CARD ===== */
+.card {
+    margin: 10px 12px;
+    padding: 14px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(10, 25, 50, 0.9), rgba(15, 35, 65, 0.9));
+    border: 1.5px solid rgba(0, 180, 255, 0.25);
+    box-shadow: 0 0 20px rgba(0, 150, 255, 0.1);
+    transition: all 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px rgba(255, 0, 150, 0.25);
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.desc {
+    font-size: 12px;
+    color: #9ad6ff;
+    margin-top: 4px;
+}
+
+/* ===== STATUS ===== */
+.status {
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 16px;
+    margin-right: 10px;
+    font-weight: 700;
+}
+
+.on {
+    background: rgba(0, 255, 150, 0.2);
+    color: #00ff99;
+    border: 1px solid #00ff99;
+}
+
+.off {
+    background: rgba(255, 0, 80, 0.2);
+    color: #ff4d6d;
+    border: 1px solid #ff4d6d;
+}
+
+/* ===== SWITCH ===== */
+.switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+    margin-left: 8px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background: #2a2a3a;
+    border-radius: 26px;
+    transition: all 0.3s;
+    cursor: pointer;
+    border: 1px solid rgba(100, 100, 120, 0.5);
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background: white;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+input:checked + .slider {
+    background: linear-gradient(135deg, #ff0080, #8a2eff);
+    border-color: #ff2d75;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+/* ===== BOTTOM NAV ===== */
+.nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    background: linear-gradient(180deg, rgba(7, 20, 34, 0.95), rgba(7, 20, 34, 1));
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 8px;
+    border-top: 2px solid rgba(0, 150, 255, 0.25);
+    z-index: 800;
+}
+
+.nav div {
+    font-size: 11px;
+    color: #9ad6ff;
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: 10px;
+    transition: all 0.3s;
+    font-weight: 600;
+    flex: 1;
+    text-align: center;
+}
+
+.nav div:hover {
+    background: rgba(0, 200, 255, 0.15);
+    color: #00c8ff;
+}
+
+/* ===== APP CONTENT ===== */
+.app-content {
+    display: none;
+}
+
+.app-content.visible {
+    display: block;
+}
+
+/* ===== LOADING ===== */
+.loading {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.loading.active {
+    display: flex;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 200, 255, 0.2);
+    border-top-color: #00c8ff;
+    border-right-color: #ff2d75;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 480px) {
+    .login-box {
+        min-width: 95%;
+        padding: 25px 18px;
+    }
+    .header h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN MODAL -->
+<div class="login-modal" id="loginModal">
+    <div class="login-box">
+        <div class="login-header">
+            <div class="logo">💀</div>
+            <h1>PANEL IOS HD</h1>
+            <div class="subtitle">DEVICE UID AUTO</div>
+        </div>
+
+        <form class="login-form" onsubmit="checkLogin(event)">
+            <!-- AUTO UID SECTION -->
+            <div class="auto-uid-section">
+                <div class="auto-uid-title">📱 Lấy Device UID Tự Động</div>
+                <button type="button" class="uid-btn" onclick="getDeviceUID()">
+                    🔄 LẤY UID THIẾT BỊ
+                </button>
+                <div id="uidStatus" style="display:none;">
+                    <div class="uid-result" id="uidResultText"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>🔑 UID (User ID)</label>
+                <input type="text" id="uidInput" placeholder="UID sẽ tự động điền..." required disabled>
+            </div>
+
+            <div class="form-group">
+                <label>🛡️ Key (License)</label>
+                <input type="text" id="keyInput" placeholder="Nhập License Key..." required>
+            </div>
+
+            <button type="submit" class="login-btn">⚡ ĐĂNG NHẬP</button>
+        </form>
+
+        <div class="login-msg" id="loginMsg"></div>
+
+        <div class="login-footer">
+            <div class="expiry-box">
+                ⏰ Hết hạn: <span class="expiry-time" id="expiryTime">24h 0m</span>
+            </div>
+            <div style="font-size: 10px; color: #ff2d75; margin-top: 4px;">
+                ℹ️ Nhấn nút "LẤY UID THIẾT BỊ" để tự động điền UID
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SIDE MENU -->
+<div class="side-menu" id="sideMenu">
+    <div class="menu-item active" onclick="switchTab(0)"><div class="menu-icon">🏠</div><div class="menu-text">Trang Chủ</div></div>
+    <div class="menu-item" onclick="switchTab(1)"><div class="menu-icon">⚡️</div><div class="menu-text">Công Cụ</div></div>
+    <div class="menu-item" onclick="switchTab(2)"><div class="menu-icon">🚀</div><div class="menu-text">Tối Ưu</div></div>
+    <div class="menu-item" onclick="switchTab(3)"><div class="menu-icon">📊</div><div class="menu-text">Thống Kê</div></div>
+    <div class="menu-item" onclick="switchTab(4)"><div class="menu-icon">⚙️</div><div class="menu-text">Cài Đặt</div></div>
+    <div class="menu-item" onclick="logout()"><div class="menu-icon">🚪</div><div class="menu-text">Đăng Xuất</div></div>
+</div>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<!-- MAIN APP -->
+<div class="app-content" id="appContent">
+    <div class="main-content">
+        <div class="header">
+            <h1>💀 PANEL IOS HD</h1>
+            <div class="sub">Advanced Gaming Optimizer</div>
+        </div>
+
+        <div class="user-info-bar">
+            <div class="user-info-item"><span class="label">👤 UID:</span><span class="value" id="displayUID">N/A</span></div>
+            <div class="user-info-item"><span class="label">📅 Hết hạn:</span><span class="value" id="displayExpiry">--:--</span></div>
+            <div class="user-info-item"><span class="label">⚡ Status:</span><span class="value">✓ Active</span></div>
+        </div>
+
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="switchTab(0)">🏠 Trang Chủ</button>
+            <button class="tab-btn" onclick="switchTab(1)">⚡️ Công Cụ</button>
+            <button class="tab-btn" onclick="switchTab(2)">🚀 Tối Ưu</button>
+            <button class="tab-btn" onclick="switchTab(3)">📊 Thống Kê</button>
+            <button class="tab-btn" onclick="switchTab(4)">⚙️ Cài Đặt</button>
+        </div>
+
+        <!-- TAB 0 -->
+        <div class="tab-content" id="tab-0">
+            <div class="card">
+                <div class="item">
+                    <div class="item-info">
+                        <div class="title">🎮 AIMLOCK</div>
+                        <div class="desc">Định hướng thông minh</div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="status off">OFF</span>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this,'AIMLOCK')"><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="item">
+                    <div class="item-info">
+                        <div class="title">🎯 FEATHER AIM</div>
+                        <div class="desc">Mục tiêu chính xác</div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="status off">OFF</span>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this,'FEATHER AIM')"><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="item">
+                    <div class="item-info">
+                        <div class="title">⚡ QUICK SWIPE</div>
+                        <div class="desc">Vuốt nhanh mượt mà</div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="status off">OFF</span>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this,'QUICK SWIPE')"><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 1 -->
+        <div class="tab-content" id="tab-1" style="display:none;">
+            <div class="card">
+                <div class="item">
+                    <div class="item-info">
+                        <div class="title">🔧 RAM CLEANER</div>
+                        <div class="desc">Dọn dẹp bộ nhớ</div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="status off">OFF</span>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this,'RAM CLEANER')"><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="item">
+                    <div class="item-info">
+                        <div class="title">🌡️ CPU COOLER</div>
+                        <div class="desc">Hạ nhiệt độ xử lý</div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="status off">OFF</span>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this,'CPU COOLER')"><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="item">
+                    <div class="item-info">
+                        <div class="title">📱 BATTERY SAVER</div>
+                        <div class="desc">Tiết kiệm pin</div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="status off">OFF</span>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this,'BATTERY SAVER')"><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2 -->
+        <div class="tab-content" id="tab-2" style="display:none;">
+            <div class="card">
+                <div class="item">
+                    <div class="item-info">
+                        <div class="title">🔒 STEADY HOLD</div>
+                        <div class="desc">Ổn định tay</div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="status off">OFF</span>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this,'STEADY HOLD')"><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="item">
+                    <div class="item-info">
+                        <div class="title">🚀 DRIFT FIX</div>
+                        <div class="desc">Khắc phục lan trôi</div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="status off">OFF</span>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this,'DRIFT FIX')"><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3 -->
+        <div class="tab-content" id="tab-3" style="display:none;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 12px;">
+                <div style="background:rgba(0,200,255,0.15);border:1px solid rgba(0,200,255,0.3);border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:11px;color:#9ad6ff;margin-bottom:6px;">📈 CPU</div>
+                    <div style="font-size:20px;color:#00ff99;font-weight:900;" id="cpuUsage">45%</div>
+                </div>
+                <div style="background:rgba(0,200,255,0.15);border:1px solid rgba(0,200,255,0.3);border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:11px;color:#9ad6ff;margin-bottom:6px;">🧠 RAM</div>
+                    <div style="font-size:20px;color:#00ff99;font-weight:900;" id="ramUsage">62%</div>
+                </div>
+                <div style="background:rgba(0,200,255,0.15);border:1px solid rgba(0,200,255,0.3);border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:11px;color:#9ad6ff;margin-bottom:6px;">🎮 FPS</div>
+                    <div style="font-size:20px;color:#00ff99;font-weight:900;" id="fpsUsage">120</div>
+                </div>
+                <div style="background:rgba(0,200,255,0.15);border:1px solid rgba(0,200,255,0.3);border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:11px;color:#9ad6ff;margin-bottom:6px;">⏱️ PING</div>
+                    <div style="font-size:20px;color:#00ff99;font-weight:900;" id="pingUsage">12ms</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4 -->
+        <div class="tab-content" id="tab-4" style="display:none;">
+            <div class="card" style="margin-bottom:80px;">
+                <div style="color:#ff2d75;font-weight:bold;margin-bottom:10px;">⚠️ Thông Tin Tài Khoản</div>
+                <div style="font-size:12px;color:#9ad6ff;line-height:2;">
+                    <div>👤 UID: <span style="color:#00ff99;font-weight:600;" id="accountUID">N/A</span></div>
+                    <div>🔑 Key: <span style="color:#00c8ff;font-weight:600;" id="accountKey">••••••••••</span></div>
+                    <div>📅 Hết hạn: <span style="color:#ff2d75;font-weight:600;" id="accountExpiry">--:--</span></div>
+                </div>
+                <button onclick="logout()" style="width:100%;padding:10px;background:linear-gradient(135deg,#ff0080,#8a2eff);color:white;border:none;border-radius:8px;cursor:pointer;font-weight:700;margin-top:12px;">🚪 ĐĂNG XUẤT</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="nav">
+    <div onclick="switchTab(0)">🏠 Trang Chủ</div>
+    <div onclick="switchTab(3)">📊 Thống Kê</div>
+    <div onclick="switchTab(4)">⚙️ Cài Đặt</div>
+</div>
+
+<!-- LOADING -->
+<div class="loading" id="loading">
+    <div class="loading-spinner"></div>
+    <div>ĐANG XỬ LÝ...</div>
+</div>
+
+<audio id="clickSound"><source src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"></audio>
+
+<script>
+const usersDatabase = {
+    "DEV5C3A8D9E2F": { key: "GIAKHANHSOTO-XRQGH87SHDUUWNSPQ", active: true },
+    "DEVF7B2E9A1C": { key: "GIAKHANHSOTO-KJSJHD8392JKLQWJD", active: true },
+    "DEV4K9L3M7N": { key: "GIAKHANHSOTO-ASKDJQWKKJQ8129ZP", active: true },
+    "DEV8X1Y2Z5W": { key: "GIAKHANHSOTO-PQOWIEJQPWQJHZKQN", active: true },
+    "DEV6P9Q3R7S": { key: "GIAKHANHSOTO-ZXMNVQAPQWJQZXMNV", active: true },
+    "DEV2U5V8T1Q": { key: "GIAKHANHSOTO-QWJKASJQPW284KJLN", active: true },
+    "DEV9H3J7K2L": { key: "GIAKHANHSOTO-MNBVASDQWEJKQWJ12", active: true },
+    "DEVB4F8G6I1": { key: "GIAKHANHSOTO-LKJQWPQJKQWNZXKJQ", active: true },
+    "DEVC7M2N5P": { key: "GIAKHANHSOTO-KJQWJQPWQXZCVLKJA", active: true },
+    "DEVD1E9K4O": { key: "GIAKHANHSOTO-QWEIUJASJKLQWJKJW", active: true },
+};
+
+let expireTime = Date.now() + 24*60*60*1000;
+let currentUID = "";
+let currentKey = "";
+
+// ===== AUTO UID - DEVICE =====
+function getDeviceUID() {
+    const userAgent = navigator.userAgent;
+    const screen_w = screen.width;
+    const screen_h = screen.height;
+    const language = navigator.language;
+    const cores = navigator.hardwareConcurrency || 1;
+    
+    const deviceInfo = `${userAgent}-${screen_w}x${screen_h}-${language}-${cores}`;
+    let hash = 0;
+    
+    for (let i = 0; i < deviceInfo.length; i++) {
+        const char = deviceInfo.charCodeAt(i);
+        hash = ((hash << 5) - hash) + char;
+        hash = hash & hash;
+    }
+    
+    const deviceUID = "DEV" + Math.abs(hash).toString(16).substring(0, 10).toUpperCase();
+    document.getElementById("uidInput").value = deviceUID;
+    showUIDStatus(`✓ Device UID: ${deviceUID}<br>Cấu hình: ${screen_w}x${screen_h} | ${cores} cores`);
+    playSound();
+}
+
+function showUIDStatus(message) {
+    document.getElementById("uidResultText").innerHTML = message;
+    document.getElementById("uidStatus").style.display = "block";
+}
+
+// ===== LOGIN =====
+function checkLogin(e) {
+    e.preventDefault();
+    const uid = document.getElementById("uidInput").value.trim().toUpperCase();
+    const key = document.getElementById("keyInput").value.trim().toUpperCase();
+    const msg = document.getElementById("loginMsg");
+
+    if (!uid || uid.length < 5) {
+        msg.textContent = "❌ UID không hợp lệ! Nhấn nút LẤY UID trước.";
+        msg.className = "login-msg error";
+        playSound();
+        return;
+    }
+
+    if (!key.startsWith("GIAKHANHSOTO-")) {
+        msg.textContent = "❌ Key phải bắt đầu bằng GIAKHANHSOTO-";
+        msg.className = "login-msg error";
+        playSound();
+        return;
+    }
+
+    const userData = usersDatabase[uid];
+    if (!userData) {
+        msg.textContent = "❌ UID không tồn tại trong hệ thống!";
+        msg.className = "login-msg error";
+        playSound();
+        return;
+    }
+
+    if (userData.key !== key) {
+        msg.textContent = "❌ Key không khớp với UID!";
+        msg.className = "login-msg error";
+        playSound();
+        return;
+    }
+
+    msg.textContent = "✅ Đăng nhập thành công!";
+    msg.className = "login-msg success";
+    currentUID = uid;
+    currentKey = key;
+    localStorage.setItem("panelHDLogin", "true");
+    localStorage.setItem("panelHDUID", uid);
+    localStorage.setItem("panelHDKey", key);
+    localStorage.setItem("panelHDExpiry", expireTime);
+    playSound();
+
+    setTimeout(() => {
+        document.getElementById("loginModal").style.display = "none";
+        document.getElementById("appContent").classList.add("visible");
+        updateUserDisplay();
+    }, 800);
+}
+
+function updateUserDisplay() {
+    document.getElementById("displayUID").textContent = currentUID;
+    document.getElementById("accountUID").textContent = currentUID;
+    document.getElementById("accountKey").textContent = currentKey.substring(0, 14) + "...";
+    const hours = Math.floor((expireTime - Date.now()) / 3600000);
+    const minutes = Math.floor(((expireTime - Date.now()) % 3600000) / 60000);
+    document.getElementById("displayExpiry").textContent = `${hours}:${String(minutes).padStart(2, '0')}`;
+}
+
+function toggleMenu() {
+    document.getElementById("sideMenu").classList.toggle("expanded");
+}
+
+function switchTab(num) {
+    document.querySelectorAll(".tab-content").forEach(t => t.style.display = "none");
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.getElementById("tab-" + num).style.display = "block";
+    document.querySelectorAll(".tab-btn")[num].classList.add("active");
+}
+
+function toggle(el, name) {
+    const status = el.parentElement.parentElement.querySelector(".status");
+    if (el.checked) {
+        status.textContent = "ON";
+        status.classList.remove("off");
+        status.classList.add("on");
+    } else {
+        status.textContent = "OFF";
+        status.classList.remove("on");
+        status.classList.add("off");
+    }
+    playSound();
+}
+
+function logout() {
+    localStorage.removeItem("panelHDLogin");
+    location.reload();
+}
+
+function playSound() {
+    const audio = document.getElementById("clickSound");
+    audio.currentTime = 0;
+    audio.play().catch(e => {});
+}
+
+function updateStats() {
+    if (document.getElementById("cpuUsage")) {
+        document.getElementById("cpuUsage").textContent = Math.floor(Math.random() * 50 + 20) + "%";
+        document.getElementById("ramUsage").textContent = Math.floor(Math.random() * 40 + 40) + "%";
+        document.getElementById("fpsUsage").textContent = Math.floor(Math.random() * 40 + 80);
+        document.getElementById("pingUsage").textContent = Math.floor(Math.random() * 30 + 5) + "ms";
+    }
+}
+
+window.onload = () => {
+    setInterval(updateStats, 3000);
+    updateStats();
+
+    if (localStorage.getItem("panelHDLogin") === "true") {
+        const savedExpiry = parseInt(localStorage.getItem("panelHDExpiry"));
+        if (savedExpiry && Date.now() <= savedExpiry) {
+            document.getElementById("loginModal").style.display = "none";
+            document.getElementById("appContent").classList.add("visible");
+            currentUID = localStorage.getItem("panelHDUID");
+            currentKey = localStorage.getItem("panelHDKey");
+            updateUserDisplay();
+        } else {
+            localStorage.removeItem("panelHDLogin");
+        }
+    }
+
+    document.getElementById("keyInput").addEventListener("keypress", (e) => {
+        if (e.key === "Enter") checkLogin(e);
+    });
+};
+</script>
+
+</body>
+</html>
