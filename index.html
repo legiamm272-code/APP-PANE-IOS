@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PANEL IOS - HD COMPLETE FINAL</title>
+<title>PANEL IOS - HD CLEAN</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -30,8 +30,6 @@ body {
 @keyframes slideDown { from { transform: translateY(-100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-@keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(255, 165, 0, 0.5); } 50% { box-shadow: 0 0 40px rgba(255, 165, 0, 0.8); } }
 
 .login-modal {
     position: fixed;
@@ -241,7 +239,6 @@ body {
     font-weight: 800;
 }
 
-/* SIDE MENU */
 .side-menu {
     position: fixed;
     left: 0;
@@ -348,7 +345,6 @@ body {
     transform: scale(1.1);
 }
 
-/* MAIN CONTENT */
 .main-content {
     margin-left: 75px;
     padding-bottom: 100px;
@@ -584,37 +580,6 @@ input:checked + .slider::before {
     transform: translateX(24px);
 }
 
-/* ON ALL BUTTON */
-.on-all-button {
-    position: fixed;
-    bottom: 100px;
-    right: 20px;
-    width: 70px;
-    height: 70px;
-    background: linear-gradient(135deg, var(--admin), #ffff00);
-    border-radius: 50%;
-    border: 3px solid var(--admin);
-    font-size: 36px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 0 30px rgba(255, 165, 0, 0.6);
-    animation: pulse 2s ease-in-out infinite, glow 2s ease-in-out infinite;
-    transition: all 0.3s;
-    z-index: 500;
-}
-
-.on-all-button:hover {
-    transform: scale(1.15);
-    box-shadow: 0 0 50px rgba(255, 165, 0, 0.8);
-}
-
-.on-all-button:active {
-    transform: scale(0.95);
-}
-
-/* NAV */
 .nav {
     position: fixed;
     bottom: 0;
@@ -693,12 +658,6 @@ input:checked + .slider::before {
     animation: fadeIn 0.6s;
 }
 
-.app-content.admin .header h1 {
-    background: linear-gradient(135deg, var(--admin), #ffff00);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 .loading {
     position: fixed;
     inset: 0;
@@ -739,7 +698,6 @@ input:checked + .slider::before {
     .login-box { padding: 25px; }
     .side-menu.expanded { width: 240px; }
     .stats-grid { grid-template-columns: 1fr; }
-    .on-all-button { width: 60px; height: 60px; font-size: 28px; }
 }
 
 @media (max-width: 480px) {
@@ -762,7 +720,7 @@ input:checked + .slider::before {
             <div class="login-logo">💀</div>
             <div class="login-title">
                 <h1>PANEL IOS</h1>
-                <p>HD Complete Final</p>
+                <p>HD Clean Final</p>
             </div>
             <div class="login-stats">
                 <div class="stat-box"><div class="number">12K+</div><div class="label">Users</div></div>
@@ -780,8 +738,8 @@ input:checked + .slider::before {
                 </div>
 
                 <div class="form-group">
-                    <label>🛡️ Key (Nhập Tự Do hoặc Admin)</label>
-                    <input type="text" id="keyInput" placeholder="Nhập Key hoặc dùng Admin..." required>
+                    <label>🛡️ Key (20 Keys hoặc Admin Key)</label>
+                    <input type="text" id="keyInput" placeholder="Nhập Key..." required>
                 </div>
 
                 <button type="submit" class="login-btn">⚡ Đăng Nhập</button>
@@ -793,7 +751,7 @@ input:checked + .slider::before {
                 <div class="expiry-info">
                     ⏰ Hết hạn: <span class="expiry-time" id="expiryTime">24h 0m</span>
                 </div>
-                <div>✨ 20 Keys (24H) + 1 Admin (♾️) ✨</div>
+                <div>✨ 20 Regular Keys (24H) + 1 Admin Key (♾️ Forever) ✨</div>
             </div>
         </div>
     </div>
@@ -811,9 +769,6 @@ input:checked + .slider::before {
 
 <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">☰</div>
 
-<!-- ON ALL BUTTON -->
-<div class="on-all-button" id="onAllButton" onclick="activateAllFeatures()">ON ALL</div>
-
 <!-- MAIN APP -->
 <div class="app-content" id="appContent">
     <div class="main-content">
@@ -825,7 +780,7 @@ input:checked + .slider::before {
         <div class="user-info-bar" id="userInfoBar">
             <div class="user-info-item"><span class="label">👤 UID:</span><span class="value" id="displayUID">N/A</span></div>
             <div class="user-info-item"><span class="label">📅 Hết hạn:</span><span class="value" id="displayExpiry">--:--</span></div>
-            <div class="user-info-item"><span class="label">⚡ Status:</span><span class="value">✓ Active</span></div>
+            <div class="user-info-item"><span class="label">⚡ Status:</span><span class="value" id="statusValue">✓ User</span></div>
         </div>
 
         <div class="tabs-container" id="tabsContainer">
@@ -902,9 +857,21 @@ input:checked + .slider::before {
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="item">
+                    <div style="flex: 1;">
+                        <div class="title">📱 BATTERY SAVER</div>
+                        <div class="desc">Tiết kiệm pin</div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="status off">OFF</span>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- TAB 2: OPTIMIZATION -->
+        <!-- TAB 2: OPTIMIZE -->
         <div class="tab-content" id="tab-2" style="display:none;">
             <div class="card">
                 <div class="item">
@@ -918,18 +885,38 @@ input:checked + .slider::before {
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <div class="item">
+                    <div style="flex: 1;">
+                        <div class="title">🚀 DRIFT FIX</div>
+                        <div class="desc">Khắc phục lan trôi</div>
+                    </div>
+                    <div style="display:flex;align-items:center;">
+                        <span class="status off">OFF</span>
+                        <label class="switch"><input type="checkbox" onchange="toggle(this)"><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- TAB 3: STATS -->
         <div class="tab-content" id="tab-3" style="display:none;">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <div class="stat-label">📈 CPU</div>
+                    <div class="stat-label">📈 CPU USAGE</div>
                     <div class="stat-value">45%</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">🧠 RAM</div>
+                    <div class="stat-label">🧠 RAM USAGE</div>
                     <div class="stat-value">62%</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">🌡️ TEMPERATURE</div>
+                    <div class="stat-value">38°C</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">🎮 FPS RATE</div>
+                    <div class="stat-value">120 FPS</div>
                 </div>
             </div>
         </div>
@@ -939,11 +926,23 @@ input:checked + .slider::before {
             <div class="card">
                 <div class="item">
                     <div style="flex: 1;">
-                        <div class="title">🔊 Sound</div>
-                        <div class="desc">Audio Feedback</div>
+                        <div class="title">🌙 Chế độ tối</div>
+                        <div class="desc">Giao diện tối giảm mỏi mắt</div>
                     </div>
-                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    <label class="switch"><input type="checkbox" checked onchange="toggle(this)"><span class="slider"></span></label>
                 </div>
+            </div>
+            <div class="card">
+                <div class="item">
+                    <div style="flex: 1;">
+                        <div class="title">🔐 Bảo vệ mật khẩu</div>
+                        <div class="desc">Yêu cầu mật khẩu khi mở app</div>
+                    </div>
+                    <label class="switch"><input type="checkbox" checked onchange="toggle(this)"><span class="slider"></span></label>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 20px; text-align: center;">
+                <button onclick="logout()" style="width: 100%; padding: 12px; background: linear-gradient(135deg, var(--secondary), var(--accent)); border: none; border-radius: 10px; color: white; font-weight: 700; cursor: pointer;">🚪 ĐĂNG XUẤT</button>
             </div>
         </div>
     </div>
@@ -959,193 +958,168 @@ input:checked + .slider::before {
 <!-- LOADING -->
 <div class="loading" id="loading">
     <div class="loading-spinner"></div>
-    <div>ĐANG NHẬP...</div>
+    <div>ĐANG XỬ LÝ...</div>
 </div>
 
 <script>
-// ===== 20 VALID KEYS (24H EXPIRY) =====
-const validKeys = [
-    "GIAKHANHSOTO-KEY01COMPLETE2026",
-    "GIAKHANHSOTO-KEY02COMPLETE2026",
-    "GIAKHANHSOTO-KEY03COMPLETE2026",
-    "GIAKHANHSOTO-KEY04COMPLETE2026",
-    "GIAKHANHSOTO-KEY05COMPLETE2026",
-    "GIAKHANHSOTO-KEY06COMPLETE2026",
-    "GIAKHANHSOTO-KEY07COMPLETE2026",
-    "GIAKHANHSOTO-KEY08COMPLETE2026",
-    "GIAKHANHSOTO-KEY09COMPLETE2026",
-    "GIAKHANHSOTO-KEY10COMPLETE2026",
-    "GIAKHANHSOTO-KEY11COMPLETE2026",
-    "GIAKHANHSOTO-KEY12COMPLETE2026",
-    "GIAKHANHSOTO-KEY13COMPLETE2026",
-    "GIAKHANHSOTO-KEY14COMPLETE2026",
-    "GIAKHANHSOTO-KEY15COMPLETE2026",
-    "GIAKHANHSOTO-KEY16COMPLETE2026",
-    "GIAKHANHSOTO-KEY17COMPLETE2026",
-    "GIAKHANHSOTO-KEY18COMPLETE2026",
-    "GIAKHANHSOTO-KEY19COMPLETE2026",
-    "GIAKHANHSOTO-KEY20COMPLETE2026"
+// 20 Regular Keys (24H Expiry) + 1 Admin Key (Forever)
+const VALID_KEYS = [
+    "GIAKHANHSOTO-XRQGH87SHDUUWNSPQ",
+    "GIAKHANHSOTO-KJSJHD8392JKLQWJD",
+    "GIAKHANHSOTO-EIQPAJSZQKASQPJWW",
+    "GIAKHANHSOTO-ASKDJQWKKJQ8129ZP",
+    "GIAKHANHSOTO-PQOWIEJQPWQJHZKQN",
+    "GIAKHANHSOTO-ZXMNVQAPQWJQZXMNV",
+    "GIAKHANHSOTO-QWJKASJQPW284KJLN",
+    "GIAKHANHSOTO-MNBVASDQWEJKQWJ12",
+    "GIAKHANHSOTO-LKJQWPQJKQWNZXKJQ",
+    "GIAKHANHSOTO-KJQWJQPWQXZCVLKJA",
+    "GIAKHANHSOTO-QWEIUJASJKLQWJKJW",
+    "GIAKHANHSOTO-PLKJQWEJKLZXCMNVB",
+    "GIAKHANHSOTO-XJAKQWPQJKQZXMNVB",
+    "GIAKHANHSOTO-KJQWXZMNVBJKQWJQW",
+    "GIAKHANHSOTO-XDQWEJKLQWJKJWJKQ",
+    "GIAKHANHSOTO-LKJQWKJKQWJKJQWJK",
+    "GIAKHANHSOTO-PQJKZCMNBKJQWJQWJ",
+    "GIAKHANHSOTO-XQJKWJQPWJKQWJKQW",
+    "GIAKHANHSOTO-AKJQWJKQWJKQWJKJW",
+    "GIAKHANHSOTO-ZMNVBJKQWJKQWJKJV"
 ];
 
-const adminKey = "GIAKHANHSOTO-ADMIN-ULTIMATE-FOREVER";
+const ADMIN_KEY = "GIAKHANHSOTO-ADMIN-ULTIMATE-FOREVER";
 
-let expireTime = 0;
-let currentUID = "";
 let isAdmin = false;
+let currentUID = "";
+let expireTime = 0;
 
-// ===== LOGIN CHECK =====
 function checkLogin(e) {
     e.preventDefault();
     
-    const uid = document.getElementById("uidInput").value.trim();
+    const uid = document.getElementById("uidInput").value.trim().toUpperCase();
     const key = document.getElementById("keyInput").value.trim().toUpperCase();
     const msg = document.getElementById("loginMsg");
     
-    if (!uid) {
+    if (!uid || uid.length < 1) {
         msg.textContent = "❌ UID không được để trống!";
         msg.className = "login-msg error";
         return;
     }
     
-    // Check Admin Key
-    if (key === adminKey) {
-        msg.textContent = "✅ Admin Login - No Expiry!";
+    if (!key.startsWith("GIAKHANHSOTO-")) {
+        msg.textContent = "❌ Key không hợp lệ!";
+        msg.className = "login-msg error";
+        return;
+    }
+    
+    // Check for Admin Key
+    if (key === ADMIN_KEY) {
+        msg.textContent = "✅ Đăng Nhập Admin Thành Công!";
         msg.className = "login-msg admin";
         isAdmin = true;
+        currentUID = uid;
+        expireTime = Date.now() + (999 * 365 * 24 * 60 * 60 * 1000); // Forever
         
         setTimeout(() => {
-            doLogin(uid, key);
+            loginSuccess();
         }, 800);
         return;
     }
     
-    // Check User Keys
-    if (validKeys.includes(key)) {
-        msg.textContent = "✅ Login Success!";
+    // Check for Regular Keys
+    if (VALID_KEYS.includes(key)) {
+        msg.textContent = "✅ Đăng Nhập Thành Công!";
         msg.className = "login-msg success";
         isAdmin = false;
+        currentUID = uid;
+        expireTime = Date.now() + (24 * 60 * 60 * 1000); // 24 Hours
         
         setTimeout(() => {
-            doLogin(uid, key);
+            loginSuccess();
         }, 800);
         return;
     }
     
-    msg.textContent = "❌ Invalid Key!";
+    msg.textContent = "❌ Key Không Hợp Lệ!";
     msg.className = "login-msg error";
 }
 
-function doLogin(uid, key) {
-    currentUID = uid;
-    
-    // Set expiry time
-    if (isAdmin) {
-        expireTime = Date.now() + (365 * 24 * 60 * 60 * 1000); // 1 year for demo
-        document.getElementById("expiryTime").textContent = "♾️";
-        document.getElementById("expiryTime").className = "expiry-time forever";
-    } else {
-        expireTime = Date.now() + (24 * 60 * 60 * 1000); // 24 hours
-        updateExpiryDisplay();
-    }
-    
-    // Hide login, show app
+function loginSuccess() {
     document.getElementById("loginModal").style.display = "none";
     document.getElementById("appContent").classList.add("visible");
-    
-    // Update UI
     updateUserDisplay();
     applyAdminTheme();
-    
-    // Start expiry timer
-    setInterval(updateExpiryDisplay, 1000);
-}
-
-function updateExpiryDisplay() {
-    if (isAdmin) return;
-    
-    const now = Date.now();
-    const diff = expireTime - now;
-    
-    if (diff <= 0) {
-        logout();
-        return;
-    }
-    
-    const hours = Math.floor(diff / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    
-    document.getElementById("expiryTime").textContent = `${hours}h ${minutes}m`;
-    document.getElementById("displayExpiry").textContent = `${hours}:${String(minutes).padStart(2, '0')}`;
 }
 
 function updateUserDisplay() {
     document.getElementById("displayUID").textContent = currentUID;
-    const status = isAdmin ? "🔐 ADMIN" : "✓ User";
-    document.querySelector(".user-info-bar .user-info-item:nth-child(3) .value").textContent = status;
+    
+    const hours = Math.floor((expireTime - Date.now()) / (1000 * 60 * 60));
+    const minutes = Math.floor(((expireTime - Date.now()) % (1000 * 60 * 60)) / (1000 * 60));
+    
+    if (isAdmin) {
+        document.getElementById("displayExpiry").textContent = "♾️ FOREVER";
+        document.getElementById("statusValue").textContent = "⭐ ADMIN";
+    } else {
+        document.getElementById("displayExpiry").textContent = `${hours}h ${minutes}m`;
+        document.getElementById("statusValue").textContent = "✓ User";
+    }
 }
 
 function applyAdminTheme() {
     if (isAdmin) {
-        document.getElementById("sideMenu").classList.add("admin");
-        document.getElementById("menuToggle").classList.add("admin");
-        document.getElementById("headerTitle").classList.add("admin");
-        document.querySelector(".header .sub").classList.add("admin");
-        document.getElementById("userInfoBar").classList.add("admin");
-        document.getElementById("tabsContainer").classList.add("admin");
-        document.getElementById("nav").classList.add("admin");
-        document.getElementById("appContent").classList.add("admin");
+        const sideMenu = document.getElementById("sideMenu");
+        const menuToggle = document.getElementById("menuToggle");
+        const userInfoBar = document.getElementById("userInfoBar");
+        const tabsContainer = document.getElementById("tabsContainer");
+        const nav = document.getElementById("nav");
+        const headerH1 = document.querySelector(".header h1");
+        const headerSub = document.querySelector(".header .sub");
+        const appContent = document.getElementById("appContent");
+        
+        sideMenu.classList.add("admin");
+        menuToggle.classList.add("admin");
+        userInfoBar.classList.add("admin");
+        tabsContainer.classList.add("admin");
+        nav.classList.add("admin");
+        headerH1.classList.add("admin");
+        headerSub.classList.add("admin");
+        appContent.classList.add("admin");
     }
 }
 
-// ===== TOGGLE MENU =====
 function toggleMenu() {
     document.getElementById("sideMenu").classList.toggle("expanded");
 }
 
-// ===== SWITCH TABS =====
 function switchTab(num) {
-    document.querySelectorAll(".tab-content").forEach(el => el.style.display = "none");
-    document.querySelectorAll(".tab-btn").forEach(el => el.classList.remove("active"));
-    document.querySelectorAll(".menu-item").forEach(el => el.classList.remove("active"));
+    const tabs = document.querySelectorAll(".tab-content");
+    const btns = document.querySelectorAll(".tab-btn");
+    const menuItems = document.querySelectorAll(".menu-item");
+    
+    tabs.forEach(t => t.style.display = "none");
+    btns.forEach(b => b.classList.remove("active"));
+    menuItems.forEach(m => m.classList.remove("active"));
     
     document.getElementById("tab-" + num).style.display = "block";
-    document.querySelectorAll(".tab-btn")[num].classList.add("active");
-    if (document.querySelectorAll(".menu-item")[num]) {
-        document.querySelectorAll(".menu-item")[num].classList.add("active");
-    }
+    if (btns[num]) btns[num].classList.add("active");
+    if (menuItems[num]) menuItems[num].classList.add("active");
 }
 
-// ===== TOGGLE FEATURE =====
 function toggle(el) {
     const status = el.closest(".item").querySelector(".status");
     const isChecked = el.checked;
-    
-    if (isChecked) {
-        status.textContent = "ON";
-        status.className = "status on";
-    } else {
-        status.textContent = "OFF";
-        status.className = "status off";
-    }
+    status.textContent = isChecked ? "ON" : "OFF";
+    status.className = isChecked ? "status on" : "status off";
 }
 
-// ===== ON ALL =====
-function activateAllFeatures() {
-    document.querySelectorAll(".switch input").forEach(el => {
-        el.checked = true;
-        el.dispatchEvent(new Event("change"));
-    });
-    
-    alert("✅ All Features Activated!");
-}
-
-// ===== LOGOUT =====
 function logout() {
     if (confirm("Bạn có chắc muốn đăng xuất?")) {
         location.reload();
     }
 }
-</script>
 
+// Update timer every minute
+setInterval(updateUserDisplay, 60000);
+</script>
 </body>
 </html>
