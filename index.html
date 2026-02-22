@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PANEL IOS - HD SIMPLE LOGIN</title>
+<title>PANEL IOS - HD UNLIMITED</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -749,19 +749,19 @@ input:checked + .slider::before {
             <form class="login-form" onsubmit="checkLogin(event)">
                 <div class="info-box">
                     <div class="title">📝 Hướng Dẫn Đăng Nhập</div>
-                    ✓ Nhập UID bất kỳ (3-20 ký tự)<br>
-                    ✓ Nhập Key bất kỳ (tối thiểu 5 ký tự)<br>
+                    ✓ Nhập UID bất kỳ (không giới hạn)<br>
+                    ✓ Nhập Key bất kỳ (không giới hạn)<br>
                     ✓ Key sẽ hết hạn sau 24 giờ
                 </div>
 
                 <div class="form-group">
                     <label>🔑 UID (User ID)</label>
-                    <input type="text" id="uidInput" placeholder="Nhập UID bất kỳ..." required>
+                    <input type="text" id="uidInput" placeholder="Nhập UID..." required>
                 </div>
 
                 <div class="form-group">
                     <label>🛡️ Key (License)</label>
-                    <input type="text" id="keyInput" placeholder="Nhập Key bất kỳ..." required>
+                    <input type="text" id="keyInput" placeholder="Nhập Key..." required>
                 </div>
 
                 <button type="submit" class="login-btn">⚡ Đăng Nhập</button>
@@ -774,7 +774,7 @@ input:checked + .slider::before {
                     ⏰ Hết hạn trong: <span class="expiry-time" id="expiryTime">24h 0m</span>
                 </div>
                 <div style="font-size: 10px; color: #ff2d75; margin-top: 4px;">
-                    ℹ️ Không cần UID thực - nhập gì cũng được!
+                    ℹ️ Nhập bất kỳ UID & Key - Không giới hạn!
                 </div>
             </div>
         </div>
@@ -998,15 +998,15 @@ function checkLogin(e) {
     const key = document.getElementById("keyInput").value.trim();
     const msg = document.getElementById("loginMsg");
 
-    if (!uid || uid.length < 3 || uid.length > 20) {
-        msg.textContent = "❌ UID phải từ 3-20 ký tự!";
+    if (!uid) {
+        msg.textContent = "❌ UID không được để trống!";
         msg.className = "login-msg error";
         playSound();
         return;
     }
 
-    if (!key || key.length < 5) {
-        msg.textContent = "❌ Key phải tối thiểu 5 ký tự!";
+    if (!key) {
+        msg.textContent = "❌ Key không được để trống!";
         msg.className = "login-msg error";
         playSound();
         return;
@@ -1064,8 +1064,10 @@ function toggle(el) {
 }
 
 function logout() {
-    localStorage.removeItem("panelHDLogin");
-    location.reload();
+    if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+        localStorage.removeItem("panelHDLogin");
+        location.reload();
+    }
 }
 
 function playSound() {
