@@ -209,14 +209,64 @@
     <div id="toast"></div>
 
     <script>
+        // --- PHẦN MỚI: QUẢN LÝ THIẾT BỊ (DEVICE ID) ---
+        function getOrCreateDeviceId() {
+            let deviceId = localStorage.getItem('zikosi_device_id');
+            if (!deviceId) {
+                // Tạo mã định danh duy nhất cho thiết bị
+                deviceId = 'ZK-' + Math.random().toString(36).substr(2, 9).toUpperCase() + '-' + Date.now();
+                localStorage.setItem('zikosi_device_id', deviceId);
+            }
+            return deviceId;
+        }
+
+        // --- PHẦN MỚI: XỬ LÝ ĐĂNG NHẬP QUA GOOGLE SHEETS ---
         function handleLogin() {
-            const key = document.getElementById('accessKey').value;
+            const key = document.getElementById('accessKey').value.trim();
             if(!key) return alert("HÃY NHẬP LICENSE KEY!");
 
+            const deviceId = getOrCreateDeviceId();
+            
+            // 🛑 THAY LINK WEB APP CỦA BẠN VÀO DÒNG DƯỚI ĐÂY 🛑
+            const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbyBbskm5SHtPSmIUSRbC_LyaHPI_ZnBbUIXeIxjHEpCitfVBkxQiVb3P2lBkHGJwB5vOA/exec"; 
+
+            // Ẩn các nút để hiện loader
             document.getElementById('accessKey').style.display = 'none';
             document.querySelector('.btn-action').style.display = 'none';
             document.getElementById('loader').style.display = 'block';
+            document.getElementById('load-status').innerText = "VERIFYING LICENSE & DEVICE...";
 
+            // Gửi yêu cầu kiểm tra tới Google Sheets
+            fetch(WEB_APP_URL, {
+                method: 'POST',
+                mode: 'cors',
+                body: JSON.stringify({ key: key, deviceId: deviceId })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    // Nếu hợp lệ, chạy hiệu ứng loading rồi vào menu
+                    startLoadingAnimation();
+                } else {
+                    // Nếu không hợp lệ (sai key hoặc sai thiết bị)
+                    alert("❌ LỖI: " + data.message);
+                    // Reset giao diện login
+                    document.getElementById('accessKey').style.display = 'block';
+                    document.querySelector('.btn-action').style.display = 'block';
+                    document.getElementById('loader').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                alert("❌ LỖI KẾT NỐI SERVER!");
+                document.getElementById('accessKey').style.display = 'block';
+                document.querySelector('.btn-action').style.display = 'block';
+                document.getElementById('loader').style.display = 'none';
+                console.error(error);
+            });
+        }
+
+        // --- HÀM CHẠY HIỆU ỨNG LOADING ---
+        function startLoadingAnimation() {
             let p = 0;
             const statusText = ["BYPASSING ANTICHEAT...", "INJECTING DATA...", "CLEANING LOGS...", "DONE!"];
             let sIdx = 0;
@@ -240,6 +290,7 @@
             }, 50);
         }
 
+        // --- CÁC HÀM HỆ THỐNG GIỮ NGUYÊN ---
         function startSystemMonitor() {
             setInterval(() => {
                 document.getElementById('st-fps').innerText = Math.floor(Math.random() * 5) + 116;
@@ -255,8 +306,6 @@
             toast.style.display = 'block';
             toast.style.color = active ? "#00ff87" : "#ff003c";
             setTimeout(() => toast.style.display = 'none', 2000);
-            
-            // Hiệu ứng rung nhẹ trên điện thoại
             if (window.navigator.vibrate) window.navigator.vibrate(50);
         }
     </script>
