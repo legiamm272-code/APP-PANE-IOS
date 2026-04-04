@@ -3,241 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>ZIKOSI RED - CONFIG EDITION</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>ZIKOSI RED - ULTIMATE BYPASS V4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --primary: #ff003c;
-            --primary-glow: rgba(255, 0, 60, 0.5);
-            --bg-dark: #050507;
-            --panel-bg: rgba(10, 10, 15, 0.98);
-            --text-main: #ffffff;
-            --text-dim: #888fb1;
-            --success: #00ffa3;
+            --primary-rgb: 255, 0, 60;
+            --bg: #030305;
+            --panel: rgba(10, 10, 15, 0.95);
+            --neon-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
         }
 
-        /* NỀN TẢNG */
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            height: 100vh; width: 100vw;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Rajdhani', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg); color: #fff; height: 100vh; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+
+        /* Hiệu ứng hạt bụi bay phía sau (Background Particles) */
+        body::before {
+            content: ''; position: absolute; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png'); opacity: 0.1;
+        }
+
+        .container { width: 95%; max-width: 420px; z-index: 10; perspective: 1000px; }
+
+        .main-card {
+            background: var(--panel);
+            border-radius: 35px;
+            border: 1px solid rgba(255, 0, 60, 0.3);
+            box-shadow: 0 0 100px rgba(0,0,0,1), var(--neon-shadow);
             overflow: hidden;
-            display: flex; justify-content: center; align-items: center;
-            font-family: 'Rajdhani', sans-serif;
-            background: radial-gradient(circle at center, #1a050a 0%, #050507 100%);
+            backdrop-filter: blur(20px);
         }
 
-        .wrapper { position: relative; z-index: 10; width: 92%; max-width: 380px; }
-
-        .glass-panel {
-            background: var(--panel-bg);
-            border-radius: 30px;
-            border: 2px solid rgba(255, 0, 60, 0.3);
-            box-shadow: 0 0 50px rgba(0, 0, 0, 1);
-            overflow: hidden;
-            transition: 0.5s;
-        }
-
-        /* --- 1. LOGIN & LOADING SCREEN --- */
-        #login-box { padding: 50px 30px; text-align: center; }
-        .logo-box { position: relative; width: 100px; height: 100px; margin: 0 auto 20px; display: flex; justify-content: center; align-items: center; animation: floating 3s ease-in-out infinite; }
-        @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .radar { position: absolute; inset: 0; border: 2px solid var(--primary); border-radius: 50%; animation: pulse 2s infinite; opacity: 0; }
-        @keyframes pulse { 0% { transform: scale(0.5); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
-        .logo-svg { width: 70px; height: 70px; filter: drop-shadow(0 0 10px var(--primary)); z-index: 2; }
-
-        .input-key {
-            width: 100%; padding: 18px; background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 0, 60, 0.2); border-radius: 12px;
-            color: #fff; font-family: 'Orbitron'; font-size: 13px;
-            text-align: center; outline: none; transition: 0.4s; margin-bottom: 20px;
-        }
-        .btn-login {
-            width: 100%; padding: 18px; background: transparent; border: 2px solid var(--primary); border-radius: 12px;
-            color: #fff; font-family: 'Orbitron'; font-weight: 700; cursor: pointer; transition: 0.4s; text-transform: uppercase;
-        }
-        .btn-login:hover { background: var(--primary); box-shadow: 0 0 25px var(--primary-glow); }
-
-        #loading-container { display: none; margin-top: 20px; }
-        .progress-bg { width: 100%; height: 8px; background: rgba(255,255,255,0.05); border-radius: 10px; overflow: hidden; margin: 15px 0; }
-        .progress-bar { width: 0%; height: 100%; background: var(--primary); box-shadow: 0 0 15px var(--primary); }
-
-        /* --- 2. MAIN MENU SCREEN --- */
-        #main-menu { display: none; }
-
-        .admin-section { padding: 25px 20px 15px; text-align: center; background: linear-gradient(180deg, rgba(255,0,60,0.15) 0%, transparent 100%); }
-        .admin-avatar-wrapper { position: relative; width: 80px; height: 80px; margin: 0 auto 10px; }
-        .admin-avatar-wrapper::before { content: ''; position: absolute; inset: -5px; border: 2px solid var(--primary); border-radius: 22px; animation: rotate 4s linear infinite; }
-        @keyframes rotate { 100% { transform: rotate(360deg); } }
-        .admin-avatar { width: 100%; height: 100%; border-radius: 20px; object-fit: cover; border: 2px solid #000; }
-
-        /* CONFIG FILE AREA */
-        .config-box {
-            margin: 0 20px 15px; padding: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 15px; border: 1px dashed rgba(255, 0, 60, 0.5);
-            text-align: center; cursor: pointer; transition: 0.3s;
-        }
-        .config-box:hover { background: rgba(255, 0, 60, 0.05); }
-        .config-name { font-size: 11px; color: var(--success); font-family: 'Orbitron'; margin-top: 5px; display: block; }
-
-        /* MONITORING */
-        .monitor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 20px 15px; }
-        .monitor-card { background: rgba(255,255,255,0.03); padding: 10px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.05); }
-        .monitor-label { font-size: 9px; color: var(--text-dim); text-transform: uppercase; }
-        .monitor-val { font-family: 'Orbitron'; font-size: 11px; color: var(--primary); float: right; }
-        .monitor-bar-bg { width: 100%; height: 3px; background: #222; border-radius: 10px; margin-top: 5px; overflow: hidden; }
-        .monitor-bar-fill { height: 100%; background: var(--primary); width: 0%; transition: 0.5s; }
-
-        /* SCROLL AREA */
-        .scroll-area { max-height: 320px; overflow-y: auto; padding: 0 20px 20px; scrollbar-width: none; }
-        .scroll-area::-webkit-scrollbar { display: none; }
-        .group-title { font-size: 10px; color: var(--primary); font-weight: 700; margin: 15px 0 8px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-        .group-title::after { content: ''; flex: 1; height: 1px; background: rgba(255,0,60,0.1); }
-
-        .feature-item { display: flex; justify-content: space-between; align-items: center; padding: 14px; background: rgba(255, 255, 255, 0.02); border-radius: 15px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.03); }
-        .feat-info span { display: block; font-size: 13px; font-weight: 600; }
-        .feat-info small { font-size: 9px; color: var(--text-dim); }
-
-        /* SWITCH */
-        .switch { position: relative; width: 38px; height: 19px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; inset: 0; background: #222; border-radius: 20px; transition: 0.4s; }
-        .slider:before { position: absolute; content: ""; height: 13px; width: 13px; left: 3px; bottom: 3px; background: #fff; transition: 0.4s; border-radius: 50%; }
-        input:checked + .slider { background: var(--primary); }
-        input:checked + .slider:before { transform: translateX(19px); }
-
-        .btn-launch { width: calc(100% - 40px); margin: 0 auto 20px; display: block; padding: 16px; background: var(--primary); border: none; border-radius: 15px; color: #fff; font-weight: 700; font-family: 'Orbitron'; cursor: pointer; }
+        /* --- 1. LOGIN SCREEN --- */
+        #login-screen { padding: 50px 30px; text-align: center; }
         
-        #toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #fff; color: #000; padding: 10px 20px; border-radius: 10px; font-size: 12px; font-weight: 700; display: none; z-index: 99; }
+        .hologram-logo {
+            position: relative; width: 120px; height: 120px; margin: 0 auto 30px;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .hologram-logo svg { width: 80px; filter: drop-shadow(0 0 15px var(--primary)); }
+        .ring {
+            position: absolute; border: 2px solid var(--primary); border-radius: 50%;
+            animation: ring-pulse 2s infinite ease-out; opacity: 0;
+        }
+        @keyframes ring-pulse { 0% { transform: scale(0.6); opacity: 1; } 100% { transform: scale(1.6); opacity: 0; } }
+
+        .glitch-text {
+            font-family: 'Orbitron'; font-weight: 900; font-size: 28px; color: var(--primary);
+            text-shadow: 2px 0 #fff, -2px 0 #00ffff; animation: glitch 3s infinite;
+        }
+        @keyframes glitch { 0% { transform: skew(0deg); } 20% { transform: skew(-2deg); } 40% { transform: skew(2deg); } }
+
+        .input-box {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,0,60,0.2);
+            border-radius: 15px; padding: 18px; width: 100%; color: #fff;
+            text-align: center; font-family: 'Orbitron'; font-size: 14px; margin-bottom: 20px;
+            transition: 0.3s;
+        }
+        .input-box:focus { border-color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); outline: none; }
+
+        .btn-action {
+            background: linear-gradient(45deg, var(--primary), #b0002a);
+            border: none; border-radius: 15px; padding: 18px; width: 100%;
+            color: #fff; font-family: 'Orbitron'; font-weight: 700; cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255,0,60,0.4); text-transform: uppercase;
+        }
+
+        /* --- 2. MAIN MENU --- */
+        #menu-screen { display: none; height: 90vh; display: flex; flex-direction: column; }
+
+        .header-status {
+            padding: 25px; background: rgba(255,0,60,0.1); border-bottom: 1px solid rgba(255,0,60,0.2);
+            display: flex; align-items: center; gap: 15px;
+        }
+        .avatar { width: 60px; height: 60px; border-radius: 15px; border: 2px solid var(--primary); box-shadow: 0 0 15px var(--primary); }
+
+        /* ADVANCED MONITORING */
+        .grid-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; padding: 15px; }
+        .stat-item { background: rgba(255,255,255,0.02); padding: 10px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .stat-item small { font-size: 9px; color: #888; display: block; }
+        .stat-item b { font-family: 'Orbitron'; font-size: 11px; color: var(--primary); }
+
+        /* SCROLLABLE FEATURES */
+        .scroll-content { flex: 1; overflow-y: auto; padding: 10px 20px; scrollbar-width: none; }
+        .scroll-content::-webkit-scrollbar { display: none; }
+
+        .category { font-size: 11px; color: var(--primary); font-weight: 900; margin: 20px 0 10px; letter-spacing: 3px; display: flex; align-items: center; }
+        .category::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,0,60,0.3), transparent); margin-left: 10px; }
+
+        .feat-card {
+            background: rgba(255,255,255,0.03); border-radius: 18px; padding: 15px;
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;
+            border: 1px solid rgba(255,255,255,0.03); transition: 0.2s;
+        }
+        .feat-card:active { transform: scale(0.96); background: rgba(255,0,60,0.05); }
+
+        /* SWITCH NEON */
+        .tg-switch { position: relative; width: 45px; height: 22px; }
+        .tg-switch input { opacity: 0; width: 0; height: 0; }
+        .tg-slider { position: absolute; cursor: pointer; inset: 0; background: #1a1a1a; border-radius: 20px; transition: 0.4s; }
+        .tg-slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background: #444; transition: 0.4s; border-radius: 50%; }
+        input:checked + .tg-slider { background: rgba(255,0,60,0.2); border: 1px solid var(--primary); }
+        input:checked + .tg-slider:before { transform: translateX(23px); background: var(--primary); box-shadow: 0 0 10px var(--primary); }
+
+        /* FOOTER BUTTON */
+        .footer-launch { padding: 20px; background: rgba(0,0,0,0.5); }
+
+        #toast {
+            position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+            background: rgba(255,255,255,0.95); color: #000; padding: 12px 30px;
+            border-radius: 20px; font-weight: 900; font-size: 12px; display: none; z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <div id="login-box" class="glass-panel">
-            <div class="logo-box">
-                <div class="radar"></div>
-                <div class="logo-svg">
-                    <svg viewBox="0 0 100 100"><path d="M50 10 L90 80 L10 80 Z" fill="none" stroke="#ff003c" stroke-width="4"/><circle cx="50" cy="58" r="10" fill="#ff003c"/></svg>
+    <div class="container">
+        <div class="main-card">
+            
+            <div id="login-screen">
+                <div class="hologram-logo">
+                    <div class="ring" style="animation-delay: 0s"></div>
+                    <div class="ring" style="animation-delay: 0.5s"></div>
+                    <svg viewBox="0 0 100 100">
+                        <path d="M50 5 L95 85 L5 85 Z" fill="none" stroke="#ff003c" stroke-width="5" stroke-linejoin="round"/>
+                        <circle cx="50" cy="55" r="12" fill="#ff003c">
+                            <animate attributeName="opacity" values="1;0.3;1" dur="1s" repeatCount="indefinite" />
+                        </circle>
+                    </svg>
                 </div>
-            </div>
-            <h2 style="font-family: 'Orbitron'; color: var(--primary);">ZIKOSI RED</h2>
-            <p style="font-size: 10px; color: var(--text-dim); letter-spacing: 4px; margin-bottom: 30px;">ELITE SYSTEM</p>
-            <input type="text" id="keyInput" class="input-key" placeholder="ACCESS KEY...">
-            <button class="btn-login" onclick="startLoading()">LOGIN</button>
-            <div id="loading-container">
-                <span class="percent-txt" id="percent-val">0%</span>
-                <div class="progress-bg"><div class="progress-bar" id="p-bar"></div></div>
-            </div>
-        </div>
-
-        <div id="main-menu" class="glass-panel">
-            <div class="admin-section">
-                <div class="admin-avatar-wrapper">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR-PnYSckFBSTJb3sNoyqkcLuUrsq2iiuMPg&s" class="admin-avatar">
-                </div>
-                <h2 style="font-family: 'Orbitron'; font-size: 16px;">ADMIN ZIKOSI</h2>
-            </div>
-
-            <div class="config-box" onclick="document.getElementById('fileInput').click()">
-                <span style="font-size: 10px; color: var(--text-dim);">LOAD CUSTOM CONFIG (.dlack)</span>
-                <span id="fileName" class="config-name">No file selected</span>
-                <input type="file" id="fileInput" style="display:none" accept=".dlack" onchange="handleFile(this)">
-            </div>
-
-            <div class="monitor-grid">
-                <div class="monitor-card"><span class="monitor-label">CPU</span><span class="monitor-val" id="m-cpu">0%</span><div class="monitor-bar-bg"><div class="monitor-bar-fill" id="b-cpu"></div></div></div>
-                <div class="monitor-card"><span class="monitor-label">RAM</span><span class="monitor-val" id="m-ram">0%</span><div class="monitor-bar-bg"><div class="monitor-bar-fill" id="b-ram"></div></div></div>
-            </div>
-
-            <div class="scroll-area">
-                <div class="group-title">Elite Aiming</div>
-                <div class="feature-item">
-                    <div class="feat-info"><span>Auto Aim Lock</span><small>Khóa tâm mục tiêu</small></div>
-                    <label class="switch"><input type="checkbox" onchange="nt('Aim Lock', this.checked)"><span class="slider"></span></label>
-                </div>
-                <div class="feature-item">
-                    <div class="feat-info"><span>Headshot Magic</span><small>Tăng tỷ lệ Headshot</small></div>
-                    <label class="switch"><input type="checkbox" onchange="nt('Headshot', this.checked)"><span class="slider"></span></label>
-                </div>
-                <div class="feature-item">
-                    <div class="feat-info"><span>Aim Smooth</span><small>Di tâm mượt mà</small></div>
-                    <label class="switch"><input type="checkbox" onchange="nt('Smooth', this.checked)"><span class="slider"></span></label>
-                </div>
-
-                <div class="group-title">System Support</div>
-                <div class="feature-item">
-                    <div class="feat-info"><span>Bypass Security</span><small>Chống phát hiện</small></div>
-                    <label class="switch"><input type="checkbox" onchange="nt('Bypass', this.checked)"><span class="slider"></span></label>
-                </div>
-                <div class="feature-item">
-                    <div class="feat-info"><span>Ultra 120 FPS</span><small>Tối ưu mượt game</small></div>
-                    <label class="switch"><input type="checkbox" onchange="nt('FPS Boost', this.checked)"><span class="slider"></span></label>
+                <h1 class="glitch-text">ZIKOSI RED</h1>
+                <p style="color: #555; font-size: 10px; letter-spacing: 5px; margin-bottom: 40px;">PRIVATE BYPASS VERSION</p>
+                
+                <input type="text" id="accessKey" class="input-box" placeholder="LICENSE KEY...">
+                <button class="btn-action" onclick="handleLogin()">AUTHENTICATE</button>
+                
+                <div id="loader" style="display:none; margin-top: 25px;">
+                    <div style="font-size: 11px; color: var(--primary); margin-bottom: 10px;" id="load-status">BYPASSING SECURITY...</div>
+                    <div style="width: 100%; height: 3px; background: #111; border-radius: 10px; overflow: hidden;">
+                        <div id="bar" style="width: 0%; height: 100%; background: var(--primary); box-shadow: 0 0 10px var(--primary);"></div>
+                    </div>
                 </div>
             </div>
 
-            <button class="btn-launch" onclick="window.location.href='freefire://'">LAUNCH GAME</button>
+            <div id="menu-screen" style="display: none;">
+                <div class="header-status">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR-PnYSckFBSTJb3sNoyqkcLuUrsq2iiuMPg&s" class="avatar">
+                    <div>
+                        <h3 style="font-family: 'Orbitron'; font-size: 16px;">ADMIN ZIKOSI</h3>
+                        <span id="ip-display" style="font-size: 10px; color: var(--success);">SECURE IP: 103.45.XX.XX</span>
+                    </div>
+                </div>
+
+                <div class="grid-stats">
+                    <div class="stat-item"><small>FPS</small><b id="st-fps">120</b></div>
+                    <div class="stat-item"><small>PING</small><b id="st-ping">15ms</b></div>
+                    <div class="stat-item"><small>TEMP</small><b id="st-temp">36°C</b></div>
+                    <div class="stat-item"><small>CPU</small><b id="st-cpu">22%</b></div>
+                    <div class="stat-item"><small>RAM</small><b id="st-ram">4.1GB</b></div>
+                    <div class="stat-item"><small>GPU</small><b id="st-gpu">18%</b></div>
+                </div>
+
+                <div class="scroll-content">
+                    <div class="category">AIMBOT PROTOCOL</div>
+                    <div class="feat-card"><div><span>Auto Aim Lock</span><small>Dính tâm 89%</small></div><label class="tg-switch"><input type="checkbox" onchange="st('Aim Lock', this.checked)"><span class="tg-slider"></span></label></div>
+                    <div class="feat-card"><div><span>Silent Aim</span><small>Giảm lực cản </small></div><label class="tg-switch"><input type="checkbox" onchange="st('Silent Aim', this.checked)"><span class="tg-slider"></span></label></div>
+                    <div class="feat-card"><div><span>Aim Target: Head</span><small>Ưu tiên Headshot</small></div><label class="tg-switch"><input type="checkbox" onchange="st('Head', this.checked)"><span class="tg-slider"></span></label></div>
+                    <div class="feat-card"><div><span>Aim Smooth</span><small>Giảm giật tâm (Anti-Ban)</small></div><label class="tg-switch"><input type="checkbox" onchange="st('Smooth', this.checked)"><span class="tg-slider"></span></label></div>
+                    <div class="feat-card"><div><span>FOV Range</span><small>Nhẹ tâm </small></div><label class="tg-switch"><input type="checkbox" onchange="st('FOV', this.checked)"><span class="tg-slider"></span></label></div>
+                    <div class="feat-card"><div><span>Prediction</span><small>Dự đoán hướng chạy</small></div><label class="tg-switch"><input type="checkbox" onchange="st('Predict', this.checked)"><span class="tg-slider"></span></label></div>
+
+                   <div class="category">HEART ZING </div> 
+                   <div class="feat-card"><div><span>Zing Maxx ZzZzZ</span><small>Zing Max</small></div><label class="tg-switch"><input type="checkbox" onchange="st('Aim Lock', this.checked)"><span class="tg-slider"></span></label></div>
+
+                    <div class="category">WEAPON MODS</div>
+                    <div class="feat-card"><div><span>No Recoil</span><small>Súng không giật</small></div><label class="tg-switch"><input type="checkbox" onchange="st('Recoil', this.checked)"><span class="tg-slider"></span></label></div>
+                    <div class="feat-card"><div><span>Fast Reload</span><small>Kin hasd</small></div><label class="tg-switch"><input type="checkbox" onchange="st('Reload', this.checked)"><span class="tg-slider"></span></label></div>
+                    <div class="feat-card"><div><span>Magic Bullet</span><small>Fix zing</small></div><label class="tg-switch"><input type="checkbox" onchange="st('Magic', this.checked)"><span class="tg-slider"></span></label></div>
+                    
+                    <div class="category">ADMIN SUPPORT</div>
+                    <a href="https://zalo.me/0397332249" style="text-decoration: none; width: 100%;">
+                        <div class="feat-card" style="border-color: rgba(0, 104, 255, 0.3); background: rgba(0, 104, 255, 0.05);">
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Icon_of_Zalo.svg/1200px-Icon_of_Zalo.svg.png" width="32" style="border-radius: 50%;">
+                                <div>
+                                    <span style="color: #fff;">Zalo Support</span>
+                                    <small style="color: #00a2ff;">Nhấn để liên hệ Admin</small>
+                                </div>
+                            </div>
+                            <div style="color: #00a2ff; font-family: 'Orbitron'; font-weight: 900; font-size: 11px;">CHAT</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="footer-launch">
+                    <button class="btn-action" style="letter-spacing: 5px;" onclick="window.location.href='freefire://'">LAUNCH GAME</button>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <div id="toast"></div>
 
     <script>
-        function startLoading() {
-            if(!document.getElementById('keyInput').value) return alert("Nhập Key!");
-            document.getElementById('input-area')?.style.setProperty('display','none');
-            document.getElementById('loading-container').style.display = 'block';
+        function handleLogin() {
+            const key = document.getElementById('accessKey').value;
+            if(!key) return alert("HÃY NHẬP LICENSE KEY!");
+
+            document.getElementById('accessKey').style.display = 'none';
+            document.querySelector('.btn-action').style.display = 'none';
+            document.getElementById('loader').style.display = 'block';
+
             let p = 0;
-            let timer = setInterval(() => {
-                p += Math.floor(Math.random()*10)+2;
+            const statusText = ["BYPASSING ANTICHEAT...", "INJECTING DATA...", "CLEANING LOGS...", "DONE!"];
+            let sIdx = 0;
+
+            const interval = setInterval(() => {
+                p += Math.floor(Math.random() * 5) + 1;
+                if(p > 25) sIdx = 1;
+                if(p > 60) sIdx = 2;
                 if(p >= 100) {
-                    p = 100; clearInterval(timer);
-                    document.getElementById('login-box').style.display = 'none';
-                    document.getElementById('main-menu').style.display = 'block';
-                    startMonitor();
+                    p = 100;
+                    sIdx = 3;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('login-screen').style.display = 'none';
+                        document.getElementById('menu-screen').style.display = 'flex';
+                        startSystemMonitor();
+                    }, 500);
                 }
-                document.getElementById('p-bar').style.width = p + "%";
-                document.getElementById('percent-val').innerText = p + "%";
-            }, 80);
+                document.getElementById('bar').style.width = p + '%';
+                document.getElementById('load-status').innerText = statusText[sIdx];
+            }, 50);
         }
 
-        // XỬ LÝ FILE .DLACK
-        function handleFile(input) {
-            const file = input.files[0];
-            if (file) {
-                if (file.name.endsWith('.dlack')) {
-                    document.getElementById('fileName').innerText = "LOADED: " + file.name;
-                    showToast("Config '" + file.name + "' applied!");
-                } else {
-                    alert("Chỉ chấp nhận file đuôi .dlack");
-                    input.value = "";
-                }
-            }
-        }
-
-        function startMonitor() {
+        function startSystemMonitor() {
             setInterval(() => {
-                let c = Math.floor(Math.random()*20)+30;
-                let r = Math.floor(Math.random()*15)+50;
-                document.getElementById('m-cpu').innerText = c + "%";
-                document.getElementById('b-cpu').style.width = c + "%";
-                document.getElementById('m-ram').innerText = r + "%";
-                document.getElementById('b-ram').style.width = r + "%";
-            }, 2000);
+                document.getElementById('st-fps').innerText = Math.floor(Math.random() * 5) + 116;
+                document.getElementById('st-ping').innerText = Math.floor(Math.random() * 10) + 12 + "ms";
+                document.getElementById('st-cpu').innerText = Math.floor(Math.random() * 20) + 15 + "%";
+                document.getElementById('st-ram').innerText = (Math.random() * 1 + 3.5).toFixed(1) + "GB";
+            }, 1500);
         }
 
-        function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.innerText = msg; t.style.display = 'block';
-            setTimeout(() => t.style.display = 'none', 2000);
-        }
-
-        function nt(name, state) {
-            showToast((state ? "BẬT: " : "TẮT: ") + name);
+        function st(name, active) {
+            const toast = document.getElementById('toast');
+            toast.innerText = (active ? "ENABLED: " : "DISABLED: ") + name;
+            toast.style.display = 'block';
+            toast.style.color = active ? "#00ff87" : "#ff003c";
+            setTimeout(() => toast.style.display = 'none', 2000);
+            
+            // Hiệu ứng rung nhẹ trên điện thoại
+            if (window.navigator.vibrate) window.navigator.vibrate(50);
         }
     </script>
 </body>
